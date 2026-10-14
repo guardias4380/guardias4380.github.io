@@ -42,6 +42,7 @@ Si el proyecto pasa 7 días sin ninguna actividad, Supabase lo pausa y hay que r
 - En Excel, selecciona desde la fila de cabecera hasta el último día (columnas FECHA a NOCTURNO 12 H), copia y pégalo en la app. Se conservan las columnas.
 - O sube el `.xlsx` directamente (necesita conexión la primera vez).
 - Regla aplicada: nombre en 24 h → las de 12 h no aplican; nombre en una de 12 h → la otra mitad queda libre; día sin nombres → día completo libre para externos.
+- Un guion (`-`) en una celda de 12 h indica que ese turno no existe (por ejemplo, el primer día de servicio que solo tiene noche); no se oferta a externos.
 - Importar sustituye las guardias de esas fechas y categoría y retira sus ofertas del tablón. Ver la previsualización antes de confirmar.
 
 ## Reglas del tablón

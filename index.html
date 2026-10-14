@@ -162,7 +162,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.2.1'
+  VERSION: '0.2.2'
 };
 </script>
 
@@ -333,8 +333,9 @@ function parseCuadrante(rows) {
       filas.push({ fecha, franja: '24h', titular: a });
       if (d || no) avisos.push(ddmm(fecha) + ': hay nombre en 24 h y también en 12 h; se usa el de 24 h.');
     } else if (d || no) {
-      filas.push({ fecha, franja: 'D', titular: d || null });
-      filas.push({ fecha, franja: 'N', titular: no || null });
+      // Un guion (-) en una celda de 12 h significa «no hay turno», no «libre para externos»
+      if (d !== '-') filas.push({ fecha, franja: 'D', titular: d || null });
+      if (no !== '-') filas.push({ fecha, franja: 'N', titular: no || null });
     } else {
       filas.push({ fecha, franja: '24h', titular: null });
     }
