@@ -38,6 +38,16 @@ Con `SUPABASE_URL` vacío la app funciona en **modo demo**: los datos se guardan
 ### Plan gratuito de Supabase
 Si el proyecto pasa 7 días sin ninguna actividad, Supabase lo pausa y hay que reactivarlo desde su panel. Con uso diario no ocurre.
 
+## Fase 2 · Avisos, incidencias, procedimientos y teléfonos
+1. Supabase → SQL Editor → New query → pega `supabase/fase2.sql` entero → Run. Se puede repetir sin riesgo.
+2. Comprueba en Table Editor que aparecen `avisos`, `incidencias`, `procedimientos` y `contactos`, y en Storage los espacios `fotos` y `procedimientos`.
+3. Hasta que no se ejecute, la app funciona igual que en la fase 1 y esas secciones muestran un aviso.
+
+### Contraseñas
+- Cada usuario puede cambiar la suya en Más → Cambiar mi contraseña.
+- Si alguien la olvida: Más → Usuarios → «Generar contraseña temporal». Se la pasas por privado y la cambia al entrar.
+- El enlace «He olvidado mi contraseña» por correo solo funciona si se configura un servidor de correo propio (SMTP) en Supabase; el correo gratuito de Supabase solo envía a los miembros del equipo del proyecto y a 2 correos por hora.
+
 ## Importar el cuadrante cada mes
 - En Excel, selecciona desde la fila de cabecera hasta el último día (columnas FECHA a NOCTURNO 12 H), copia y pégalo en la app. Se conservan las columnas.
 - O sube el `.xlsx` directamente (necesita conexión la primera vez).
