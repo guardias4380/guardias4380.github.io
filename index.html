@@ -162,7 +162,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.2.2'
+  VERSION: '0.2.3'
 };
 </script>
 
@@ -672,6 +672,7 @@ function sheetImport() {
     const asign = p.filas.filter(f => f.titular).length, lib = p.filas.length - asign;
     h += '<div class="card stack"><b>' + p.dias + ' días · del ' + ddmm(p.desde) + ' al ' + ddmm(p.hasta) + '</b><span class="muted">' + asign + ' turnos asignados · ' + lib + ' sin cubrir (externos)</span>' +
       (p.avisos.length ? '<div class="banner">' + p.avisos.map(esc).join('<br>') + '</div>' : '') +
+      '<button class="btn primary block" data-act="impOk"' + (S.offline ? ' disabled' : '') + '>Importar ' + p.dias + ' días</button>' +
       '<div class="tablewrap"><table><thead><tr><th>Fecha</th><th>Turno</th><th>Titular</th></tr></thead><tbody>' +
       p.filas.map(f => '<tr><td class="mono">' + diaSem(f.fecha) + ' ' + ddmm(f.fecha) + '</td><td>' + FR[f.franja].corto + '</td><td>' + (f.titular ? esc(f.titular) : '<span style="color:var(--free)">Libre</span>') + '</td></tr>').join('') +
       '</tbody></table></div><p class="muted" style="margin:0;font-size:14px">Al importar se sustituyen las guardias de ' + (S.impCat === 'ENF' ? 'enfermería' : 'TES') + ' de esas fechas y se retiran sus ofertas del tablón.</p>' +
