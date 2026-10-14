@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>43.80 SVA-E</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#a3131b">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="43.80 SVA-E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: una columna de móvil, cabecera fija arriba y navegación de pulgar abajo; hojas deslizantes para las acciones */
+:root{
+  --bg:#f5f2f1; --surface:#ffffff; --sunk:#ece7e6; --ink:#1e1a1a; --muted:#6c6261; --line:#e1d9d8;
+  --accent:#a3131b; --accent-ink:#ffffff; --accent-soft:#f6dfe0;
+  --c24:#2b2626; --c24-ink:#ffffff; --cD:#f3e2b8; --cD-ink:#5a4300; --cN:#d9def3; --cN-ink:#1f2b5c;
+  --free:#1f6b52; --free-soft:#d8efe6; --warn:#8a5300; --warn-soft:#fbecd2; --err:#a3131b;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:Barlow,"Segoe UI",Roboto,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:12px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141111; --surface:#1e1a1a; --sunk:#272121; --ink:#f2eceb; --muted:#a89d9b; --line:#352e2d;
+  --accent:#e2484f; --accent-ink:#ffffff; --accent-soft:#3a1c1e;
+  --c24:#f2eceb; --c24-ink:#1e1a1a; --cD:#4a3c17; --cD-ink:#f6dd9c; --cN:#262d4d; --cN-ink:#c9d1f5;
+  --free:#6fd1aa; --free-soft:#173329; --warn:#f0b45a; --warn-soft:#3a2a12; --err:#ff7b80; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141111; --surface:#1e1a1a; --sunk:#272121; --ink:#f2eceb; --muted:#a89d9b; --line:#352e2d;
+  --accent:#e2484f; --accent-ink:#ffffff; --accent-soft:#3a1c1e;
+  --c24:#f2eceb; --c24-ink:#1e1a1a; --cD:#4a3c17; --cD-ink:#f6dd9c; --cN:#262d4d; --cN-ink:#c9d1f5;
+  --free:#6fd1aa; --free-soft:#173329; --warn:#f0b45a; --warn-soft:#3a2a12; --err:#ff7b80; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.app{max-width:640px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--accent);color:var(--accent-ink);
+  padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;align-items:center;gap:12px}
+.brand{font-family:var(--f-display);font-weight:700;font-size:22px;letter-spacing:.02em;line-height:1}
+.brand small{display:block;font-size:12px;font-weight:600;letter-spacing:.12em;opacity:.85;margin-top:3px}
+.top .spacer{flex:1}
+.pill{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.18);white-space:nowrap}
+.pill.off{background:#fff;color:#a3131b}
+main{flex:1;padding-block:16px 96px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;margin:0;text-wrap:balance;line-height:1.15}
+h1{font-size:26px} h2{font-size:20px} h3{font-size:17px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.stack{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.hero{background:var(--surface);border-radius:var(--r);border:1px solid var(--line);overflow:hidden}
+.hero .band{background:var(--c24);color:var(--c24-ink);padding:14px 16px}
+.hero .band.D{background:var(--cD);color:var(--cD-ink)} .hero .band.N{background:var(--cN);color:var(--cN-ink)}
+.hero .big{font-family:var(--f-display);font-size:30px;font-weight:700;line-height:1.05}
+.hero .body{padding:12px 16px;display:flex;gap:16px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column}
+.stat b{font-family:var(--f-display);font-size:24px;line-height:1}
+.stat span{font-size:13px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:8px;padding:6px 10px;font-weight:600;font-size:14px;border:0;text-align:left;min-height:36px;line-height:1.2}
+.chip .t{font-family:var(--f-mono);font-size:11px;opacity:.8;letter-spacing:0}
+.c24{background:var(--c24);color:var(--c24-ink)} .cD{background:var(--cD);color:var(--cD-ink)} .cN{background:var(--cN);color:var(--cN-ink)}
+.cfree{background:var(--free-soft);color:var(--free);border:1px dashed var(--free)}
+.chip.mine{box-shadow:0 0 0 3px var(--accent)}
+.chip .tag{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);border-radius:4px;padding:1px 5px}
+.seg{display:flex;background:var(--sunk);border-radius:10px;padding:3px;gap:3px}
+.seg button{flex:1;border:0;background:transparent;border-radius:8px;padding:8px 10px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.monthbar{display:flex;align-items:center;gap:8px}
+.monthbar h2{flex:1;text-align:center;text-transform:capitalize}
+.iconbtn{width:44px;height:44px;border-radius:10px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center}
+.days{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.day{display:grid;grid-template-columns:58px 1fr;gap:10px;padding:8px 12px;border-top:1px solid var(--line);align-items:center}
+.day:first-child{border-top:0}
+.day.we .dnum{color:var(--accent)}
+.day.today{background:var(--accent-soft)}
+.dlabel{display:flex;flex-direction:column;line-height:1.1}
+.dnum{font-family:var(--f-display);font-size:22px;font-weight:700}
+.dname{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.slots{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.btn{border:0;border-radius:10px;padding:12px 16px;font-weight:700;min-height:46px;background:var(--sunk);color:var(--ink)}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.ok{background:var(--free);color:var(--surface)}
+.btn.ghost{background:transparent;border:1px solid var(--line)}
+.btn.block{width:100%}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.offer{display:flex;flex-direction:column;gap:10px}
+.offer .head{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.badge{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:6px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.badge.ces{background:var(--warn-soft);color:var(--warn)} .badge.cam{background:var(--cN);color:var(--cN-ink)} .badge.me{background:var(--accent-soft);color:var(--accent)}
+.note{background:var(--sunk);border-radius:8px;padding:8px 10px;font-size:15px}
+.list{display:flex;flex-direction:column}
+.list .it{padding:10px 0;border-top:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
+.list .it:first-child{border-top:0}
+.empty{text-align:center;color:var(--muted);padding:22px 12px;border:1px dashed var(--line);border-radius:var(--r)}
+.banner{border-radius:10px;padding:10px 12px;font-size:14px;background:var(--warn-soft);color:var(--warn);font-weight:500}
+.menu a,.menu button.mi{display:flex;align-items:center;gap:12px;padding:14px 4px;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.menu > :first-child{border-top:0}
+.menu .sub{font-size:13px;color:var(--muted)}
+.menu .arr{margin-left:auto;color:var(--muted)}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--surface);border-top:1px solid var(--line);
+  padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
+nav.tabs .in{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+nav.tabs button{border:0;background:none;padding:8px 4px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:600;color:var(--muted);position:relative}
+nav.tabs button[aria-current="page"]{color:var(--accent)}
+nav.tabs svg{width:24px;height:24px}
+.dot{position:absolute;top:5px;left:calc(50% + 8px);min-width:18px;height:18px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-size:11px;display:grid;place-items:center;padding:0 4px}
+.scrim{position:fixed;inset:0;background:rgba(10,8,8,.45);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--surface);width:100%;max-width:640px;max-height:88%;overflow:auto;border-radius:18px 18px 0 0;
+  padding-block:18px calc(18px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:14px}
+.sheet .grab{width:40px;height:4px;border-radius:2px;background:var(--line);align-self:center}
+label.f{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px}
+input[type=text],input[type=email],input[type=password],select,textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px;font-size:16px}
+textarea{min-height:90px;resize:vertical}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer}
+.opt input{margin-top:4px;accent-color:var(--accent);width:18px;height:18px}
+.opt b{display:block}
+.err{color:var(--err);font-weight:600;font-size:14px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;max-width:calc(100% - 32px)}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:6px 8px;border-top:1px solid var(--line);text-align:left;white-space:nowrap}
+th{background:var(--sunk);font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-top:0}
+.auth{max-width:420px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:14px;padding-top:12px}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:up .18s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">43.80<small>SVA-E · GUARDIAS</small></div>
+    <div class="spacer"></div>
+    <span id="status"></span>
+  </header>
+  <main id="main"><p class="muted">Cargando…</p></main>
+  <nav class="tabs" id="tabs" hidden><div class="in">
+    <button data-tab="inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Inicio</button>
+    <button data-tab="cuadrante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Cuadrante</button>
+    <button data-tab="tablon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h13l-3-3M17 17H4l3 3"/></svg>Tablón</button>
+    <button data-tab="mas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Más</button>
+  </div></nav>
+</div>
+<div id="sheet"></div>
+<div id="toast"></div>
+
+<script>
+/* ================= CONFIGURACIÓN =================
+   Deja SUPABASE_URL vacío para usar el MODO DEMO (datos guardados solo en este móvil).
+   Cuando crees el proyecto en Supabase, pega aquí la URL y la clave "anon public". */
+const CONFIG = {
+  SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
+  MULTIEMERGENCIAS_URL: 'https://jaacos.github.io/Multiemergencias/',
+  VERSION: '0.2.0'
+};
+</script>
+
+<script>
+/*CORE-START*/
+const FR = {
+  '24h': { label: '24 h', corto: '24 h', ini: 9, dur: 24, cls: 'c24', horario: '09–09' },
+  'D':   { label: 'Diurno 12 h', corto: 'Diurno', ini: 9, dur: 12, cls: 'cD', horario: '09–21' },
+  'N':   { label: 'Nocturno 12 h', corto: 'Nocturno', ini: 21, dur: 12, cls: 'cN', horario: '21–09' }
+};
+const ORDEN_FR = { '24h': 0, 'D': 1, 'N': 2 };
+const DIAS = ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'];
+const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
+function dayNum(f) { const [y, m, d] = f.split('-').map(Number); return Date.UTC(y, m - 1, d) / 86400000; }
+function fromDayNum(n) { const d = new Date(n * 86400000); return d.toISOString().slice(0, 10); }
+function rango(g) { const s = dayNum(g.fecha) * 1440 + FR[g.franja].ini * 60; return [s, s + FR[g.franja].dur * 60]; }
+function nowMin() { const d = new Date(); return Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 60000); }
+function solapan(a, b) { const x = rango(a), y = rango(b); return x[0] < y[1] && y[0] < x[1]; }
+function ddmm(f) { return f.slice(8, 10) + '/' + f.slice(5, 7); }
+function diaSem(f) { return DIAS[new Date(dayNum(f) * 86400000).getUTCDay()]; }
+const NOMBRE_G = { '24h': 'guardia de 24 h', 'D': 'guardia diurna', 'N': 'guardia nocturna' };
+function descG(g) { return NOMBRE_G[g.franja] + ' del ' + diaSem(g.fecha) + ' ' + ddmm(g.fecha); }
+function haEmpezado(g, ahora) { return rango(g)[0] <= (ahora ?? nowMin()); }
+
+function conflicto(D, nombre, g, excluir) {
+  return D.guardias.find(o => o.titular === nombre && o.id !== g.id && !(excluir || []).includes(o.id) && solapan(o, g));
+}
+function hist(D, actor, texto) { D.historial.unshift({ id: ++D.seq, creado: new Date().toISOString(), actor, texto }); }
+function err(m) { throw new Error(m); }
+function ofertaAbiertaDe(D, gid) { return D.ofertas.find(o => o.guardia_id === gid && o.estado === 'abierta'); }
+function descartarPropuestasCon(D, gids) {
+  D.propuestas.forEach(p => { if (p.estado === 'pendiente' && gids.includes(p.guardia_id)) p.estado = 'descartada'; });
+}
+function cerrarOfertasDe(D, gids, estado) {
+  D.ofertas.forEach(o => {
+    if (o.estado === 'abierta' && gids.includes(o.guardia_id)) {
+      o.estado = estado || 'cancelada'; o.resuelta = new Date().toISOString();
+      D.propuestas.forEach(p => { if (p.oferta_id === o.id && p.estado === 'pendiente') p.estado = 'descartada'; });
+    }
+  });
+}
+
+const core = {
+  publicar(D, me, gid, tipo, nota) {
+    const g = D.guardias.find(x => x.id === gid) || err('La guardia no existe.');
+    if (g.titular !== me.nombre) err('Esta guardia no es tuya.');
+    if (haEmpezado(g)) err('La guardia ya ha empezado o ha pasado.');
+    if (ofertaAbiertaDe(D, gid)) err('Ya está publicada en el tablón.');
+    if (!['cesion', 'cambio'].includes(tipo)) err('Tipo de oferta no válido.');
+    D.ofertas.push({ id: ++D.seq, guardia_id: gid, ofertante: me.nombre, tipo, nota: (nota || '').trim().slice(0, 300), estado: 'abierta', aceptante: null, creada: new Date().toISOString(), resuelta: null });
+    hist(D, me.nombre, (tipo === 'cesion' ? 'Ofrece ceder su ' : 'Ofrece cambiar su ') + descG(g));
+  },
+  cancelar(D, me, oid) {
+    const o = D.ofertas.find(x => x.id === oid) || err('La oferta no existe.');
+    if (o.estado !== 'abierta') err('La oferta ya está cerrada.');
+    if (o.ofertante !== me.nombre && me.rol !== 'admin') err('Solo quien la publicó puede retirarla.');
+    const g = D.guardias.find(x => x.id === o.guardia_id);
+    cerrarOfertasDe(D, [o.guardia_id], 'cancelada');
+    hist(D, me.nombre, 'Retira del tablón la ' + descG(g));
+  },
+  aceptarCesion(D, me, oid) {
+    const o = D.ofertas.find(x => x.id === oid) || err('La oferta no existe.');
+    if (o.estado !== 'abierta') err('Otra persona se ha adelantado: la oferta ya está cerrada.');
+    if (o.tipo !== 'cesion') err('Esta oferta es un cambio: tienes que proponer una guardia tuya.');
+    const g = D.guardias.find(x => x.id === o.guardia_id);
+    if (g.titular !== o.ofertante) err('La guardia ya no pertenece a quien la ofertó.');
+    if (o.ofertante === me.nombre) err('No puedes aceptar tu propia oferta.');
+    if (me.categoria !== g.categoria) err('Solo puede cubrirla alguien de la misma categoría.');
+    if (haEmpezado(g)) err('La guardia ya ha empezado.');
+    const c = conflicto(D, me.nombre, g);
+    if (c) err('Se solapa con tu ' + descG(c) + '.');
+    g.titular = me.nombre;
+    o.estado = 'aceptada'; o.aceptante = me.nombre; o.resuelta = new Date().toISOString();
+    descartarPropuestasCon(D, [g.id]);
+    hist(D, me.nombre, 'Se queda la ' + descG(g) + ' de ' + o.ofertante);
+  },
+  proponer(D, me, oid, gid) {
+    const o = D.ofertas.find(x => x.id === oid) || err('La oferta no existe.');
+    if (o.estado !== 'abierta' || o.tipo !== 'cambio') err('La oferta ya no admite propuestas.');
+    if (o.ofertante === me.nombre) err('No puedes proponerte un cambio a ti mismo.');
+    const mia = D.guardias.find(x => x.id === gid) || err('La guardia no existe.');
+    const suya = D.guardias.find(x => x.id === o.guardia_id);
+    if (mia.titular !== me.nombre) err('Esa guardia no es tuya.');
+    if (mia.categoria !== suya.categoria) err('El cambio tiene que ser entre la misma categoría.');
+    if (haEmpezado(mia) || haEmpezado(suya)) err('Una de las guardias ya ha empezado.');
+    if (D.propuestas.some(p => p.oferta_id === oid && p.guardia_id === gid && p.estado === 'pendiente')) err('Ya has propuesto esa guardia.');
+    const c1 = conflicto(D, me.nombre, suya, [mia.id]); if (c1) err('Su guardia se solapa con tu ' + descG(c1) + '.');
+    const c2 = conflicto(D, o.ofertante, mia, [suya.id]); if (c2) err('Tu guardia se solapa con otra de ' + o.ofertante + '.');
+    D.propuestas.push({ id: ++D.seq, oferta_id: oid, proponente: me.nombre, guardia_id: gid, estado: 'pendiente', creada: new Date().toISOString() });
+    hist(D, me.nombre, 'Propone a ' + o.ofertante + ' su ' + descG(mia) + ' por la ' + descG(suya));
+  },
+  retirar(D, me, pid) {
+    const p = D.propuestas.find(x => x.id === pid) || err('La propuesta no existe.');
+    if (p.proponente !== me.nombre) err('Solo puedes retirar tus propuestas.');
+    if (p.estado !== 'pendiente') err('La propuesta ya no está pendiente.');
+    p.estado = 'retirada';
+  },
+  aceptarPropuesta(D, me, pid) {
+    const p = D.propuestas.find(x => x.id === pid) || err('La propuesta no existe.');
+    if (p.estado !== 'pendiente') err('La propuesta ya no está pendiente.');
+    const o = D.ofertas.find(x => x.id === p.oferta_id);
+    if (o.ofertante !== me.nombre) err('Solo quien publicó la oferta puede aceptar propuestas.');
+    if (o.estado !== 'abierta') err('La oferta ya está cerrada.');
+    const g1 = D.guardias.find(x => x.id === o.guardia_id), g2 = D.guardias.find(x => x.id === p.guardia_id);
+    if (g1.titular !== o.ofertante || g2.titular !== p.proponente) err('Alguna de las guardias ha cambiado de titular. Recarga.');
+    if (haEmpezado(g1) || haEmpezado(g2)) err('Una de las guardias ya ha empezado.');
+    if (conflicto(D, o.ofertante, g2, [g1.id])) err('Esa guardia se solapa con otra tuya.');
+    if (conflicto(D, p.proponente, g1, [g2.id])) err('Tu guardia se solapa con otra de ' + p.proponente + '.');
+    g1.titular = p.proponente; g2.titular = o.ofertante;
+    o.estado = 'aceptada'; o.aceptante = p.proponente; o.resuelta = new Date().toISOString();
+    p.estado = 'aceptada';
+    D.propuestas.forEach(x => { if (x.oferta_id === o.id && x.estado === 'pendiente') x.estado = 'descartada'; });
+    cerrarOfertasDe(D, [g2.id], 'cancelada');
+    descartarPropuestasCon(D, [g1.id, g2.id]);
+    hist(D, me.nombre, 'Cambio cerrado: ' + o.ofertante + ' hace la ' + descG(g2) + ' y ' + p.proponente + ' la ' + descG(g1));
+  },
+  importar(D, me, cat, desde, hasta, filas) {
+    if (me.rol !== 'admin') err('Solo un administrador puede importar el cuadrante.');
+    const fuera = D.guardias.filter(g => g.categoria === cat && g.fecha >= desde && g.fecha <= hasta).map(g => g.id);
+    cerrarOfertasDe(D, fuera, 'cancelada');
+    D.propuestas = D.propuestas.filter(p => !fuera.includes(p.guardia_id));
+    D.guardias = D.guardias.filter(g => !fuera.includes(g.id));
+    filas.forEach(f => D.guardias.push({ id: ++D.seq, fecha: f.fecha, franja: f.franja, categoria: cat, titular: f.titular || null }));
+    hist(D, me.nombre, 'Importa el cuadrante ' + (cat === 'ENF' ? 'de enfermería' : 'de TES') + ' del ' + ddmm(desde) + ' al ' + ddmm(hasta));
+  },
+  asignar(D, me, gid, nombre) {
+    if (me.rol !== 'admin') err('Solo un administrador puede asignar guardias.');
+    const g = D.guardias.find(x => x.id === gid) || err('La guardia no existe.');
+    const n = (nombre || '').trim() || null;
+    if (n) { const c = conflicto(D, n, g); if (c) err(n + ' ya tiene la ' + descG(c) + ' en ese horario.'); }
+    cerrarOfertasDe(D, [gid], 'cancelada');
+    descartarPropuestasCon(D, [gid]);
+    const antes = g.titular;
+    g.titular = n;
+    hist(D, me.nombre, (n ? 'Asigna la ' + descG(g) + ' a ' + n : 'Deja libre la ' + descG(g)) + (antes ? ' (antes: ' + antes + ')' : ''));
+  }
+};
+
+/* Importador: filas de celdas (texto pegado desde Excel o leído del .xlsx).
+   Regla del cuadrante: si hay nombre en 24 h, las de 12 h no aplican; si hay alguna de 12 h, la 24 h no aplica
+   y la otra mitad queda libre; si no hay nadie, el día entero queda libre. */
+function parseFecha(v) {
+  if (v == null) return null;
+  const s = String(v).trim();
+  let m = s.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{2,4})$/);
+  if (m) { let y = +m[3]; if (y < 100) y += 2000; return y + '-' + String(+m[2]).padStart(2, '0') + '-' + String(+m[1]).padStart(2, '0'); }
+  m = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (m) return m[1] + '-' + m[2] + '-' + m[3];
+  return null;
+}
+function parseCuadrante(rows) {
+  const avisos = [];
+  let c24 = 2, cD = 3, cN = 4;
+  for (const r of rows) {
+    const up = r.map(x => String(x || '').toUpperCase());
+    const i24 = up.findIndex(x => x.includes('24')), iD = up.findIndex(x => x.includes('DIURN')), iN = up.findIndex(x => x.includes('NOCTUR'));
+    if (iD >= 0 && iN >= 0) { if (i24 >= 0) c24 = i24; cD = iD; cN = iN; break; }
+  }
+  const filas = [];
+  for (const r of rows) {
+    const fi = r.findIndex(c => parseFecha(c));
+    if (fi < 0 || fi > 1) continue;
+    const fecha = parseFecha(r[fi]);
+    const n = i => String(r[i] ?? '').trim().replace(/\s+/g, ' ');
+    const a = n(c24), d = n(cD), no = n(cN);
+    if (a) {
+      filas.push({ fecha, franja: '24h', titular: a });
+      if (d || no) avisos.push(ddmm(fecha) + ': hay nombre en 24 h y también en 12 h; se usa el de 24 h.');
+    } else if (d || no) {
+      filas.push({ fecha, franja: 'D', titular: d || null });
+      filas.push({ fecha, franja: 'N', titular: no || null });
+    } else {
+      filas.push({ fecha, franja: '24h', titular: null });
+    }
+  }
+  const fechas = [...new Set(filas.map(f => f.fecha))].sort();
+  return { filas, avisos, desde: fechas[0], hasta: fechas[fechas.length - 1], dias: fechas.length };
+}
+function rowsFromText(txt) {
+  return txt.replace(/\r/g, '').split('\n').filter(l => l.trim()).map(l => l.includes('\t') ? l.split('\t') : l.split(/;|,(?=\S)/));
+}
+
+function seedDemo() {
+  const D = { seq: 0, guardias: [], ofertas: [], propuestas: [], historial: [], usuarios: [] };
+  const nov = [
+    ['01'], ['02', null, 'Airam Acosta', null], ['03', 'Robert Friedwald'], ['04', 'Jael Reyes'], ['05', 'Alejandro Armas'],
+    ['06', 'Jesús Tovar'], ['07', null, null, 'Airam Acosta'], ['08'], ['09'], ['10', null, null, 'Susana Yanes'],
+    ['11', 'Sara Pérez'], ['12', 'Susana Yanes'], ['13'], ['14', 'Robert Friedwald'], ['15'], ['16', 'Jesús Tovar'],
+    ['17', null, 'Airam Acosta', null], ['18', 'Pablo Arrocha'], ['19', null, null, 'Airam Acosta'], ['20'],
+    ['21', 'Pablo Arrocha'], ['22'], ['23', 'Nacho Herranz'], ['24', 'Robert Friedwald'], ['25', 'Airam Acosta'],
+    ['26', 'Susana Yanes'], ['27', 'Víctor Alexis'], ['28'], ['29', null, 'Airam Acosta', null], ['30']
+  ];
+  const rows = nov.map(([d, a, di, no]) => [d + '/11/2026', '', a || '', di || '', no || '']);
+  const p = parseCuadrante(rows);
+  p.filas.forEach(f => D.guardias.push({ id: ++D.seq, fecha: f.fecha, franja: f.franja, categoria: 'ENF', titular: f.titular }));
+  ['Airam Acosta', 'Robert Friedwald', 'Jael Reyes', 'Alejandro Armas', 'Jesús Tovar', 'Susana Yanes', 'Sara Pérez', 'Pablo Arrocha', 'Nacho Herranz', 'Víctor Alexis']
+    .forEach((n, i) => D.usuarios.push({ nombre: n, categoria: 'ENF', externo: false, rol: i === 0 ? 'admin' : 'usuario', aprobado: true }));
+  hist(D, 'Airam Acosta', 'Importa el cuadrante de enfermería del 01/11 al 30/11');
+  // Ejemplos para que el tablón no aparezca vacío en la demo
+  const g = (f, fr) => D.guardias.find(x => x.fecha === f && x.franja === fr).id;
+  core.publicar(D, D.usuarios[1], g('2026-11-14', '24h'), 'cesion', 'Tengo un compromiso familiar ese sábado.');
+  core.publicar(D, D.usuarios[5], g('2026-11-26', '24h'), 'cambio', 'Prefiero un día de la semana del 16 al 20.');
+  return D;
+}
+/*CORE-END*/
+</script>
+
+<script>
+/* ================= DATOS: modo demo o Supabase ================= */
+const DEMO = !CONFIG.SUPABASE_URL;
+const LS = {
+  get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+const clone = o => JSON.parse(JSON.stringify(o));
+
+const DemoStore = {
+  key: 'sva4380-demo-v1',
+  async init() { this.D = LS.get(this.key) || seedDemo(); this.save(); },
+  save() { LS.set(this.key, this.D); },
+  async load() { return clone(this.D); },
+  me() { const n = LS.get('sva4380-demo-user') || 'Airam Acosta'; return this.D.usuarios.find(u => u.nombre === n) || this.D.usuarios[0]; },
+  async run(fn, ...a) { const copy = clone(this.D); core[fn](copy, this.me(), ...a); this.D = copy; this.save(); },
+  reset() { LS.del(this.key); this.D = seedDemo(); this.save(); }
+};
+
+const SupaStore = {
+  async init() {
+    await new Promise((res, rej) => {
+      if (window.supabase) return res();
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js';
+      s.onload = res; s.onerror = () => rej(new Error('No se pudo cargar la librería del servidor.'));
+      document.head.appendChild(s);
+    });
+    this.sb = window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY, { auth: { persistSession: true, autoRefreshToken: true } });
+    const { data } = await this.sb.auth.getSession();
+    this.session = data.session;
+    this.perfil = LS.get('sva4380-perfil');
+  },
+  async load() {
+    const sb = this.sb;
+    const { data: p, error: pe } = await sb.from('perfiles').select('*').eq('id', this.session.user.id).maybeSingle();
+    if (pe) throw pe;
+    this.perfil = p; LS.set('sva4380-perfil', p);
+    if (!p || !p.aprobado) return null;
+    const desde = fromDayNum(Math.floor(nowMin() / 1440) - 62);
+    const hace30 = new Date(Date.now() - 30 * 86400000).toISOString();
+    const [g, o, pr, h, u] = await Promise.all([
+      sb.from('guardias').select('*').gte('fecha', desde).order('fecha'),
+      sb.from('ofertas').select('*').or('estado.eq.abierta,resuelta.gte.' + hace30),
+      sb.from('propuestas').select('*').gte('creada', new Date(Date.now() - 90 * 86400000).toISOString()),
+      sb.from('historial').select('*').order('creado', { ascending: false }).limit(80),
+      p.rol === 'admin' ? sb.from('perfiles').select('*').order('nombre') : Promise.resolve({ data: [p] })
+    ]);
+    for (const r of [g, o, pr, h, u]) if (r.error) throw r.error;
+    const D = { guardias: g.data, ofertas: o.data, propuestas: pr.data, historial: h.data, usuarios: u.data };
+    LS.set('sva4380-cache', { D, at: new Date().toISOString() });
+    return D;
+  },
+  me() { return this.perfil; },
+  async rpc(name, args) { const { error } = await this.sb.rpc(name, args); if (error) throw new Error(error.message); },
+  async run(fn, ...a) {
+    const m = {
+      publicar: () => this.rpc('publicar_oferta', { p_guardia: a[0], p_tipo: a[1], p_nota: a[2] || '' }),
+      cancelar: () => this.rpc('cancelar_oferta', { p_oferta: a[0] }),
+      aceptarCesion: () => this.rpc('aceptar_cesion', { p_oferta: a[0] }),
+      proponer: () => this.rpc('proponer_cambio', { p_oferta: a[0], p_guardia: a[1] }),
+      retirar: () => this.rpc('retirar_propuesta', { p_propuesta: a[0] }),
+      aceptarPropuesta: () => this.rpc('aceptar_propuesta', { p_propuesta: a[0] }),
+      importar: () => this.rpc('importar_cuadrante', { p_categoria: a[0], p_desde: a[1], p_hasta: a[2], p_filas: a[3] }),
+      asignar: () => this.rpc('asignar_guardia', { p_guardia: a[0], p_nombre: a[1] || null }),
+      aprobar: () => this.rpc('gestionar_usuario', a[0])
+    };
+    await m[fn]();
+  }
+};
+const Store = DEMO ? DemoStore : SupaStore;
+
+/* ================= ESTADO Y UTILIDADES DE INTERFAZ ================= */
+const S = { D: null, tab: 'inicio', mes: null, cat: 'ENF', soloMias: false, offline: false, cacheAt: null, sheet: null, authMode: 'login' };
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const me = () => Store.me();
+function toast(t) { const el = $('#toast'); el.innerHTML = '<div class="toast" role="status">' + esc(t) + '</div>'; clearTimeout(toast.t); toast.t = setTimeout(() => el.innerHTML = '', 3200); }
+function hace(iso) {
+  const m = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
+  if (m < 1) return 'ahora'; if (m < 60) return 'hace ' + m + ' min';
+  const h = Math.round(m / 60); if (h < 24) return 'hace ' + h + ' h';
+  return 'hace ' + Math.round(h / 24) + ' d';
+}
+function fechaLarga(f) { const d = new Date(dayNum(f) * 86400000); return DIAS[d.getUTCDay()] + ' ' + d.getUTCDate() + ' ' + MESES[d.getUTCMonth()].slice(0, 3); }
+function sortG(a, b) { return a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : ORDEN_FR[a.franja] - ORDEN_FR[b.franja]; }
+const G = id => S.D.guardias.find(g => g.id === id);
+const hoyStr = () => fromDayNum(Math.floor(nowMin() / 1440));
+
+function chip(g, opts = {}) {
+  const fr = FR[g.franja];
+  const mine = me() && g.titular === me().nombre;
+  const of = ofertaAbiertaDe(S.D, g.id);
+  if (!g.titular) {
+    const lbl = g.franja === '24h' ? 'Día libre · externos' : fr.corto + ' libre · externos';
+    return '<button class="chip cfree" data-act="guardia" data-id="' + g.id + '">' + esc(lbl) + '</button>';
+  }
+  return '<button class="chip ' + fr.cls + (mine ? ' mine' : '') + '" data-act="guardia" data-id="' + g.id + '"><span class="t">' + fr.horario + '</span>' +
+    esc(opts.nombre === false ? fr.corto : g.titular) + (of ? ' <span class="tag">tablón</span>' : '') + '</button>';
+}
+
+function mesesDisponibles() {
+  const set = new Set(S.D.guardias.map(g => g.fecha.slice(0, 7)));
+  set.add(hoyStr().slice(0, 7));
+  return [...set].sort();
+}
+function mesInicial() {
+  const hoy = hoyStr().slice(0, 7);
+  const ms = mesesDisponibles();
+  if (S.D.guardias.some(g => g.fecha.startsWith(hoy))) return hoy;
+  return ms.find(m => m > hoy && S.D.guardias.some(g => g.fecha.startsWith(m))) || hoy;
+}
+
+/* ================= VISTAS ================= */
+function vInicio() {
+  const u = me(), ahora = nowMin();
+  const mias = S.D.guardias.filter(g => g.titular === u.nombre && rango(g)[1] > ahora).sort(sortG);
+  const prox = mias[0];
+  const enCurso = S.D.guardias.filter(g => { const r = rango(g); return r[0] <= ahora && ahora < r[1] && g.categoria === u.categoria; });
+  const mes = S.mes;
+  const horas = S.D.guardias.filter(g => g.titular === u.nombre && g.fecha.startsWith(mes)).reduce((s, g) => s + FR[g.franja].dur, 0);
+  const abiertas = S.D.ofertas.filter(o => o.estado === 'abierta' && G(o.guardia_id) && G(o.guardia_id).categoria === u.categoria);
+  const pendientes = misPropuestasRecibidas().length;
+  let h = '<div class="stack"><div class="eyebrow">Hola, ' + esc(u.nombre.split(' ')[0]) + '</div>';
+  if (prox) {
+    const fr = FR[prox.franja];
+    h += '<div class="hero"><div class="band ' + (prox.franja === '24h' ? '' : prox.franja) + '"><div class="eyebrow" style="color:inherit;opacity:.8">Tu próxima guardia</div>' +
+      '<div class="big">' + esc(fechaLarga(prox.fecha)) + '</div><div class="mono">' + fr.label + ' · ' + fr.horario + '</div></div>' +
+      '<div class="body"><div class="stat"><b class="mono">' + mias.length + '</b><span>guardias pendientes</span></div>' +
+      '<div class="stat"><b class="mono">' + horas + ' h</b><span>en ' + MESES[+mes.slice(5) - 1] + '</span></div></div></div>';
+  } else {
+    h += '<div class="empty">No tienes guardias pendientes en el cuadrante cargado.</div>';
+  }
+  h += '</div>';
+  if (pendientes) h += '<button class="banner" style="border:0;text-align:left" data-tab-go="tablon">Tienes ' + pendientes + ' propuesta' + (pendientes > 1 ? 's' : '') + ' de cambio esperando tu respuesta →</button>';
+  h += '<div class="stack"><h3>De guardia ahora</h3>';
+  h += enCurso.length ? '<div class="slots">' + enCurso.map(g => chip(g)).join('') + '</div>' : '<p class="muted" style="margin:0">Nadie en este momento según el cuadrante cargado.</p>';
+  h += '</div>';
+  h += '<div class="stack"><div class="row" style="justify-content:space-between"><h3>Tablón</h3><button class="btn ghost" data-tab-go="tablon">Ver todo</button></div>';
+  h += abiertas.length ? '<p class="muted" style="margin:0">' + abiertas.length + ' guardia' + (abiertas.length > 1 ? 's' : '') + ' ofertada' + (abiertas.length > 1 ? 's' : '') + ' por compañeros.</p>' : '<p class="muted" style="margin:0">No hay ofertas abiertas.</p>';
+  h += '</div>';
+  if (mias.length > 1) h += '<div class="stack"><h3>Tus siguientes guardias</h3><div class="days">' + mias.slice(1, 6).map(g => filaDia(g.fecha, [g])).join('') + '</div></div>';
+  return h;
+}
+
+function filaDia(f, gs) {
+  const d = new Date(dayNum(f) * 86400000), wd = d.getUTCDay();
+  return '<div class="day' + (wd === 0 || wd === 6 ? ' we' : '') + (f === hoyStr() ? ' today' : '') + '"><div class="dlabel"><span class="dnum mono">' + String(d.getUTCDate()).padStart(2, '0') + '</span><span class="dname">' + DIAS[wd] + '</span></div><div class="slots">' + gs.map(g => chip(g)).join('') + '</div></div>';
+}
+
+function vCuadrante() {
+  const [y, m] = S.mes.split('-').map(Number);
+  const u = me();
+  let h = '<div class="monthbar"><button class="iconbtn" data-act="mes" data-d="-1" aria-label="Mes anterior">‹</button><h2>' + MESES[m - 1] + ' ' + y + '</h2><button class="iconbtn" data-act="mes" data-d="1" aria-label="Mes siguiente">›</button></div>';
+  h += '<div class="seg" role="group" aria-label="Categoría"><button data-act="cat" data-v="ENF" aria-pressed="' + (S.cat === 'ENF') + '">Enfermería</button><button data-act="cat" data-v="TES" aria-pressed="' + (S.cat === 'TES') + '">TES</button></div>';
+  h += '<div class="seg" role="group" aria-label="Filtro"><button data-act="mias" data-v="0" aria-pressed="' + !S.soloMias + '">Todo</button><button data-act="mias" data-v="1" aria-pressed="' + S.soloMias + '">Solo mis guardias</button></div>';
+  const gs = S.D.guardias.filter(g => g.categoria === S.cat && g.fecha.startsWith(S.mes) && (!S.soloMias || g.titular === u.nombre));
+  if (!gs.length) {
+    h += '<div class="empty">' + (S.cat === 'TES' && !S.soloMias ? 'Aún no se ha cargado el cuadrante de TES de este mes.' : S.soloMias ? 'No tienes guardias este mes.' : 'No hay cuadrante cargado para este mes.') + '</div>';
+    return h;
+  }
+  const libres = gs.filter(g => !g.titular).length;
+  if (!S.soloMias && libres) h += '<p class="muted" style="margin:0">' + libres + ' turno' + (libres > 1 ? 's' : '') + ' sin cubrir para externos. Toca cualquier guardia para ver opciones.</p>';
+  const porDia = {};
+  gs.sort(sortG).forEach(g => (porDia[g.fecha] = porDia[g.fecha] || []).push(g));
+  h += '<div class="days">' + Object.keys(porDia).sort().map(f => filaDia(f, porDia[f])).join('') + '</div>';
+  return h;
+}
+
+function misPropuestasRecibidas() {
+  const u = me();
+  return S.D.propuestas.filter(p => p.estado === 'pendiente' && (S.D.ofertas.find(o => o.id === p.oferta_id) || {}).ofertante === u.nombre && (S.D.ofertas.find(o => o.id === p.oferta_id) || {}).estado === 'abierta');
+}
+
+function vTablon() {
+  const u = me();
+  const abiertas = S.D.ofertas.filter(o => o.estado === 'abierta' && G(o.guardia_id)).sort((a, b) => sortG(G(a.guardia_id), G(b.guardia_id)));
+  let h = '<div class="stack"><h1>Tablón de cambios</h1><p class="muted" style="margin:0">Guardias que tus compañeros quieren ceder o cambiar. Un cambio vale en cuanto lo aceptan las dos partes y queda registrado.</p></div>';
+  if (S.offline) h += '<div class="banner">Sin conexión: puedes consultar el tablón, pero para ofertar o aceptar necesitas cobertura.</div>';
+  if (!abiertas.length) h += '<div class="empty">No hay ofertas abiertas. Para ofertar una guardia tuya, tócala en el cuadrante.</div>';
+  else h += '<div class="stack">' + abiertas.map(o => tarjetaOferta(o, u)).join('') + '</div>';
+  const hist = S.D.historial.slice(0, 15);
+  h += '<div class="stack"><h3>Movimientos recientes</h3>' + (hist.length ? '<div class="card list">' + hist.map(x => '<div class="it"><div style="flex:1;min-width:0"><div>' + esc(x.texto) + '</div><div class="muted" style="font-size:13px">' + esc(x.actor) + ' · ' + hace(x.creado) + '</div></div></div>').join('') + '</div>' : '<p class="muted">Sin movimientos.</p>') + '</div>';
+  return h;
+}
+
+function tarjetaOferta(o, u) {
+  const g = G(o.guardia_id), mia = o.ofertante === u.nombre;
+  const props = S.D.propuestas.filter(p => p.oferta_id === o.id && p.estado === 'pendiente');
+  let h = '<div class="card offer"><div class="head"><div><div class="row" style="gap:6px">' + chip(g, { nombre: false }) + '<b>' + esc(fechaLarga(g.fecha)) + '</b></div>' +
+    '<div class="muted" style="font-size:14px;margin-top:4px">' + esc(o.ofertante) + ' · ' + hace(o.creada) + '</div></div>' +
+    '<span class="badge ' + (o.tipo === 'cesion' ? 'ces' : 'cam') + '">' + (o.tipo === 'cesion' ? 'La cede' : 'La cambia') + '</span></div>';
+  if (o.nota) h += '<div class="note">' + esc(o.nota) + '</div>';
+  const dis = S.offline ? ' disabled' : '';
+  if (mia) {
+    if (o.tipo === 'cambio') {
+      h += props.length ? '<div class="stack"><div class="eyebrow">Propuestas recibidas</div>' + props.map(p => {
+        const pg = G(p.guardia_id);
+        return '<div class="row" style="justify-content:space-between;align-items:center"><div style="min-width:0"><b>' + esc(p.proponente) + '</b> te ofrece su <b>' + esc(descG(pg)) + '</b></div><button class="btn ok" data-act="acepProp" data-id="' + p.id + '"' + dis + '>Aceptar</button></div>';
+      }).join('') + '</div>' : '<p class="muted" style="margin:0">Aún no hay propuestas.</p>';
+    }
+    h += '<button class="btn ghost" data-act="cancelar" data-id="' + o.id + '"' + dis + '>Retirar del tablón</button>';
+  } else if (g.categoria !== u.categoria) {
+    h += '<p class="muted" style="margin:0">Solo pueden cubrirla compañeros de ' + (g.categoria === 'ENF' ? 'enfermería' : 'TES') + '.</p>';
+  } else if (o.tipo === 'cesion') {
+    const c = conflicto(S.D, u.nombre, g);
+    h += c ? '<p class="err" style="margin:0">Se solapa con tu ' + esc(descG(c)) + '.</p>' : '<button class="btn primary" data-act="quedar" data-id="' + o.id + '"' + dis + '>Me la quedo</button>';
+  } else {
+    const yaProp = props.filter(p => p.proponente === u.nombre);
+    yaProp.forEach(p => { h += '<div class="row" style="justify-content:space-between"><span>Has propuesto tu <b>' + esc(descG(G(p.guardia_id))) + '</b></span><button class="btn ghost" data-act="retirar" data-id="' + p.id + '"' + dis + '>Retirar</button></div>'; });
+    h += '<button class="btn primary" data-act="proponerSheet" data-id="' + o.id + '"' + dis + '>Proponer una guardia mía</button>';
+  }
+  return h + '</div>';
+}
+
+function vMas() {
+  const u = me();
+  let h = '<div class="stack"><h1>Más</h1></div>';
+  h += '<div class="card menu">' +
+    '<a href="' + esc(CONFIG.MULTIEMERGENCIAS_URL) + '" target="_blank" rel="noopener"><div><b>Multiemergencias</b><div class="sub">Herramienta de escena. Se abre como app independiente y funciona sin conexión.</div></div><span class="arr">↗</span></a>' +
+    '<div class="mi" style="display:flex;gap:12px;padding:14px 4px;border-top:1px solid var(--line)"><div><b>Avisos de material y averías</b><div class="sub">Fase 2 · en preparación</div></div></div>' +
+    '<div class="mi" style="display:flex;gap:12px;padding:14px 4px;border-top:1px solid var(--line)"><div><b>Incidencias de turno</b><div class="sub">Fase 2 · en preparación</div></div></div>' +
+    '<div class="mi" style="display:flex;gap:12px;padding:14px 4px;border-top:1px solid var(--line)"><div><b>Procedimientos y guías</b><div class="sub">Fase 3 · en preparación</div></div></div>' +
+    '</div>';
+  if (u.rol === 'admin') {
+    h += '<div class="stack"><h3>Administración</h3><div class="card menu">' +
+      '<button class="mi" data-act="importSheet"><div><b>Importar cuadrante</b><div class="sub">Pega las celdas desde Excel o sube el .xlsx</div></div><span class="arr">›</span></button>' +
+      (DEMO ? '' : '<button class="mi" data-act="usuariosSheet"><div><b>Usuarios</b><div class="sub">' + S.D.usuarios.filter(x => !x.aprobado).length + ' pendientes de aprobar</div></div><span class="arr">›</span></button>') +
+      '</div><p class="muted" style="margin:0;font-size:14px">Para asignar una guardia libre a un externo, tócala en el cuadrante.</p></div>';
+  }
+  h += '<div class="stack"><h3>Tu cuenta</h3><div class="card menu">';
+  if (DEMO) {
+    h += '<label class="f" style="padding:6px 0">Probar la demo como…<select id="demoUser">' + S.D.usuarios.map(x => '<option' + (x.nombre === u.nombre ? ' selected' : '') + '>' + esc(x.nombre) + '</option>').join('') + '</select></label>' +
+      '<button class="mi" data-act="resetDemo"><div><b>Reiniciar datos de la demo</b><div class="sub">Vuelve al cuadrante de noviembre original</div></div></button>';
+  } else {
+    h += '<div style="padding:10px 0"><b>' + esc(u.nombre) + '</b><div class="sub muted">' + (u.categoria === 'ENF' ? 'Enfermería' : 'TES') + (u.externo ? ' · externo' : '') + (u.rol === 'admin' ? ' · administrador' : '') + '</div></div>' +
+      '<button class="mi" data-act="logout"><div><b>Cerrar sesión</b></div></button>';
+  }
+  h += '</div></div><p class="muted" style="font-size:13px;margin:0">Versión ' + CONFIG.VERSION + (DEMO ? ' · modo demo: los datos solo existen en este dispositivo' : '') + (S.cacheAt ? ' · datos de ' + new Date(S.cacheAt).toLocaleString('es-ES') : '') + '</p>';
+  return h;
+}
+
+/* ================= HOJAS (acciones) ================= */
+function sheetGuardia(id) {
+  const g = G(id), u = me(), fr = FR[g.franja];
+  const of = ofertaAbiertaDe(S.D, g.id);
+  const mia = g.titular === u.nombre;
+  let h = '<div class="eyebrow">' + (g.categoria === 'ENF' ? 'Enfermería' : 'TES') + ' · ' + fr.label + '</div><h2>' + esc(fechaLarga(g.fecha)) + ' · <span class="mono">' + fr.horario + '</span></h2>';
+  h += '<p style="margin:0">' + (g.titular ? 'Titular: <b>' + esc(g.titular) + '</b>' : '<b>Sin cubrir.</b> ' + (g.franja === '24h' ? 'Se oferta a externos como 24 h o como dos turnos de 12 h.' : 'Se oferta a externos.')) + '</p>';
+  const dis = S.offline ? ' disabled' : '';
+  if (mia && !of && !haEmpezado(g)) {
+    h += '<div class="stack"><div class="eyebrow">Ofertar en el tablón</div>' +
+      '<label class="opt"><input type="radio" name="tipo" value="cesion" checked><span><b>La cedo</b><span class="muted">La primera persona que la acepte se la queda.</span></span></label>' +
+      '<label class="opt"><input type="radio" name="tipo" value="cambio"><span><b>La cambio</b><span class="muted">Te proponen una guardia suya y tú eliges cuál aceptas.</span></span></label>' +
+      '<label class="f">Nota para tus compañeros (opcional)<textarea id="nota" maxlength="300" placeholder="Ej.: me vendría bien un día entre semana"></textarea></label>' +
+      '<button class="btn primary block" data-act="publicar" data-id="' + g.id + '"' + dis + '>Publicar en el tablón</button></div>';
+  } else if (of) {
+    h += '<div class="banner">Publicada en el tablón por ' + esc(of.ofertante) + ' (' + (of.tipo === 'cesion' ? 'la cede' : 'la cambia') + ').</div><button class="btn block" data-act="irTablon">Ver en el tablón</button>';
+  }
+  if (u.rol === 'admin') {
+    const nombres = [...new Set(S.D.guardias.map(x => x.titular).filter(Boolean))].sort();
+    h += '<div class="stack"><div class="eyebrow">Administración</div><label class="f">Asignar a<input type="text" id="asigNombre" list="nombres" value="' + esc(g.titular || '') + '" placeholder="Nombre y apellido, o Externo"></label><datalist id="nombres">' + nombres.map(n => '<option value="' + esc(n) + '">').join('') + '<option value="Externo"></datalist>' +
+      '<div class="row"><button class="btn primary" style="flex:1" data-act="asignar" data-id="' + g.id + '"' + dis + '>Guardar</button><button class="btn ghost" style="flex:1" data-act="liberar" data-id="' + g.id + '"' + dis + '>Dejar libre</button></div></div>';
+  }
+  h += '<button class="btn ghost block" data-act="cerrar">Cerrar</button>';
+  return h;
+}
+
+function sheetProponer(oid) {
+  const o = S.D.ofertas.find(x => x.id === oid), suya = G(o.guardia_id), u = me();
+  const mias = S.D.guardias.filter(g => g.titular === u.nombre && g.categoria === suya.categoria && !haEmpezado(g)).sort(sortG);
+  let h = '<div class="eyebrow">Proponer cambio a ' + esc(o.ofertante) + '</div><h2>Por su ' + esc(descG(suya)) + '</h2>';
+  if (!mias.length) return h + '<div class="empty">No tienes guardias futuras que ofrecer.</div><button class="btn ghost block" data-act="cerrar">Cerrar</button>';
+  h += '<p class="muted" style="margin:0">Elige qué guardia tuya le ofreces. Si la acepta, el cambio es inmediato.</p><div class="stack">';
+  mias.forEach(g => {
+    const c1 = conflicto(S.D, u.nombre, suya, [g.id]), c2 = conflicto(S.D, o.ofertante, g, [suya.id]);
+    const motivo = c1 ? 'Su guardia se solapa con tu ' + descG(c1) : c2 ? 'Se solapa con otra guardia de ' + o.ofertante : '';
+    h += '<button class="opt" style="background:none;text-align:left" data-act="proponer" data-id="' + o.id + '" data-g="' + g.id + '"' + (motivo || S.offline ? ' disabled' : '') + '><span>' + chip(g, { nombre: false }).replace(/<button[^>]*>/, '<span class="chip ' + FR[g.franja].cls + '">').replace('</button>', '</span>') +
+      '</span><span><b>' + esc(fechaLarga(g.fecha)) + '</b>' + (motivo ? '<span class="err" style="display:block">' + esc(motivo) + '</span>' : '') + '</span></button>';
+  });
+  return h + '</div><button class="btn ghost block" data-act="cerrar">Cancelar</button>';
+}
+
+function sheetConfirm(texto, act, id) {
+  return '<h2>' + esc(texto) + '</h2><div class="row"><button class="btn primary" style="flex:1" data-act="' + act + '" data-id="' + id + '" data-ok="1">Confirmar</button><button class="btn ghost" style="flex:1" data-act="cerrar">Cancelar</button></div>';
+}
+
+function sheetImport() {
+  const p = S.importPrev;
+  let h = '<div class="eyebrow">Administración</div><h2>Importar cuadrante</h2>' +
+    '<div class="seg" role="group"><button data-act="impCat" data-v="ENF" aria-pressed="' + (S.impCat === 'ENF') + '">Enfermería</button><button data-act="impCat" data-v="TES" aria-pressed="' + (S.impCat === 'TES') + '">TES</button></div>' +
+    '<label class="f">Pega aquí las celdas<span class="muted" style="font-weight:400">En Excel selecciona desde la cabecera hasta el último día (columnas FECHA a NOCTURNO), copia y pega.</span><textarea id="impTxt" placeholder="FECHA&#9;DÍA&#9;GUARDIA 24 H&#9;DIURNO 12 H&#9;NOCTURNO 12 H"></textarea></label>' +
+    '<label class="f">…o sube el archivo .xlsx<input type="file" id="impFile" accept=".xlsx,.xls,.csv"></label>' +
+    '<button class="btn block" data-act="impPrev">Previsualizar</button>';
+  if (S.impErr) h += '<p class="err">' + esc(S.impErr) + '</p>';
+  if (p) {
+    const asign = p.filas.filter(f => f.titular).length, lib = p.filas.length - asign;
+    h += '<div class="card stack"><b>' + p.dias + ' días · del ' + ddmm(p.desde) + ' al ' + ddmm(p.hasta) + '</b><span class="muted">' + asign + ' turnos asignados · ' + lib + ' sin cubrir (externos)</span>' +
+      (p.avisos.length ? '<div class="banner">' + p.avisos.map(esc).join('<br>') + '</div>' : '') +
+      '<div class="tablewrap"><table><thead><tr><th>Fecha</th><th>Turno</th><th>Titular</th></tr></thead><tbody>' +
+      p.filas.map(f => '<tr><td class="mono">' + diaSem(f.fecha) + ' ' + ddmm(f.fecha) + '</td><td>' + FR[f.franja].corto + '</td><td>' + (f.titular ? esc(f.titular) : '<span style="color:var(--free)">Libre</span>') + '</td></tr>').join('') +
+      '</tbody></table></div><p class="muted" style="margin:0;font-size:14px">Al importar se sustituyen las guardias de ' + (S.impCat === 'ENF' ? 'enfermería' : 'TES') + ' de esas fechas y se retiran sus ofertas del tablón.</p>' +
+      '<button class="btn primary block" data-act="impOk"' + (S.offline ? ' disabled' : '') + '>Importar ' + p.dias + ' días</button></div>';
+  }
+  return h + '<button class="btn ghost block" data-act="cerrar">Cerrar</button>';
+}
+
+function sheetUsuarios() {
+  let h = '<div class="eyebrow">Administración</div><h2>Usuarios</h2><p class="muted" style="margin:0">El nombre debe coincidir exactamente con el del cuadrante para que cada uno vea sus guardias.</p>';
+  h += S.D.usuarios.map(x => '<div class="card stack" data-uid="' + esc(x.id) + '"><label class="f">Nombre<input type="text" class="u-nombre" value="' + esc(x.nombre) + '"></label>' +
+    '<div class="row"><select class="u-cat" style="flex:1"><option value="ENF"' + (x.categoria === 'ENF' ? ' selected' : '') + '>Enfermería</option><option value="TES"' + (x.categoria === 'TES' ? ' selected' : '') + '>TES</option></select>' +
+    '<select class="u-rol" style="flex:1"><option value="usuario"' + (x.rol === 'usuario' ? ' selected' : '') + '>Usuario</option><option value="admin"' + (x.rol === 'admin' ? ' selected' : '') + '>Administrador</option></select></div>' +
+    '<label class="row" style="gap:8px"><input type="checkbox" class="u-ext"' + (x.externo ? ' checked' : '') + '> Externo</label>' +
+    '<div class="row"><button class="btn ' + (x.aprobado ? 'ghost' : 'primary') + '" style="flex:1" data-act="guardarUsr" data-ap="1">' + (x.aprobado ? 'Guardar' : 'Aprobar acceso') + '</button>' +
+    (x.aprobado ? '<button class="btn ghost" style="flex:1" data-act="guardarUsr" data-ap="0">Quitar acceso</button>' : '') + '</div></div>').join('');
+  return h + '<button class="btn ghost block" data-act="cerrar">Cerrar</button>';
+}
+
+/* ================= AUTENTICACIÓN (solo con servidor) ================= */
+function vAuth(msg) {
+  const reg = S.authMode === 'registro';
+  return '<div class="auth"><h1>' + (reg ? 'Crear cuenta' : 'Entrar') + '</h1>' +
+    (reg ? '<p class="muted" style="margin:0">Tu acceso quedará pendiente hasta que un administrador lo apruebe.</p>' : '') +
+    '<form id="authForm" class="stack"><label class="f">Correo<input type="email" id="aEmail" autocomplete="email" required></label>' +
+    '<label class="f">Contraseña<input type="password" id="aPass" autocomplete="' + (reg ? 'new-password' : 'current-password') + '" minlength="8" required></label>' +
+    (reg ? '<label class="f">Nombre y apellido tal como aparecen en el cuadrante<input type="text" id="aNombre" required placeholder="Ej.: Airam Acosta"></label>' +
+      '<label class="f">Categoría<select id="aCat"><option value="ENF">Enfermería</option><option value="TES">TES</option></select></label>' +
+      '<label class="row" style="gap:8px"><input type="checkbox" id="aExt"> Soy personal externo</label>' : '') +
+    (msg ? '<p class="err">' + esc(msg) + '</p>' : '') +
+    '<button class="btn primary block" type="submit">' + (reg ? 'Crear cuenta' : 'Entrar') + '</button></form>' +
+    '<button class="btn ghost block" data-act="authMode">' + (reg ? 'Ya tengo cuenta' : 'Crear una cuenta nueva') + '</button></div>';
+}
+function vPendiente() {
+  const p = Store.perfil;
+  return '<div class="auth"><h1>Acceso pendiente</h1><p>Tu cuenta' + (p ? ' (<b>' + esc(p.nombre) + '</b>)' : '') + ' está creada. Un administrador tiene que aprobarla antes de que puedas ver el cuadrante.</p>' +
+    '<button class="btn primary block" data-act="recargar">Comprobar de nuevo</button><button class="btn ghost block" data-act="logout">Cerrar sesión</button></div>';
+}
+
+/* ================= RENDER ================= */
+function render() {
+  const st = $('#status');
+  st.innerHTML = S.offline ? '<span class="pill off">Sin conexión</span>' : DEMO ? '<span class="pill">Demo</span>' : '';
+  $('#main').innerHTML = S.tab === 'cuadrante' ? vCuadrante() : S.tab === 'tablon' ? vTablon() : S.tab === 'mas' ? vMas() : vInicio();
+  const nav = $('#tabs'); nav.hidden = false;
+  const pend = misPropuestasRecibidas().length;
+  nav.querySelectorAll('button').forEach(b => {
+    b.setAttribute('aria-current', b.dataset.tab === S.tab ? 'page' : 'false');
+    b.querySelector('.dot')?.remove();
+    if (b.dataset.tab === 'tablon' && pend) b.insertAdjacentHTML('beforeend', '<span class="dot">' + pend + '</span>');
+  });
+  renderSheet();
+}
+function renderSheet() {
+  const el = $('#sheet');
+  if (!S.sheet) { el.innerHTML = ''; return; }
+  const s = S.sheet;
+  const inner = s.t === 'guardia' ? sheetGuardia(s.id) : s.t === 'proponer' ? sheetProponer(s.id) : s.t === 'confirm' ? sheetConfirm(s.texto, s.act, s.id) : s.t === 'import' ? sheetImport() : s.t === 'usuarios' ? sheetUsuarios() : '';
+  el.innerHTML = '<div class="scrim" data-act="scrim"><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>' + inner + '</div></div>';
+}
+function go(tab) { S.tab = tab; S.sheet = null; render(); window.scrollTo(0, 0); }
+
+async function refrescar() {
+  try {
+    const D = await Store.load();
+    if (D === null) { $('#tabs').hidden = true; $('#main').innerHTML = vPendiente(); return false; }
+    S.D = D; S.offline = false; S.cacheAt = null;
+  } catch (e) {
+    const c = LS.get('sva4380-cache');
+    if (!DEMO && c) { S.D = c.D; S.offline = true; S.cacheAt = c.at; }
+    else throw e;
+  }
+  if (!S.mes) S.mes = mesInicial();
+  return true;
+}
+async function accion(fn, args, ok) {
+  if (S.offline) { toast('Sin conexión. Inténtalo cuando tengas cobertura.'); return; }
+  try {
+    await Store.run(fn, ...args);
+    S.sheet = null;
+    await refrescar();
+    render();
+    toast(ok);
+  } catch (e) {
+    toast(e.message || 'No se pudo completar.');
+    await refrescar().catch(() => {});
+    render();
+  }
+}
+
+/* ================= EVENTOS ================= */
+document.addEventListener('click', async ev => {
+  const tb = ev.target.closest('[data-tab]'); if (tb) return go(tb.dataset.tab);
+  const tg = ev.target.closest('[data-tab-go]'); if (tg) return go(tg.dataset.tabGo);
+  const b = ev.target.closest('[data-act]'); if (!b || b.disabled) return;
+  const act = b.dataset.act, id = b.dataset.id ? +b.dataset.id : null;
+  if (act === 'scrim') { if (ev.target === b) { S.sheet = null; renderSheet(); } return; }
+  switch (act) {
+    case 'cerrar': S.sheet = null; return renderSheet();
+    case 'guardia': S.sheet = { t: 'guardia', id }; return renderSheet();
+    case 'irTablon': return go('tablon');
+    case 'mes': { const ms = mesesDisponibles(); let [y, m] = S.mes.split('-').map(Number); m += +b.dataset.d; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } S.mes = y + '-' + String(m).padStart(2, '0'); return render(); }
+    case 'cat': S.cat = b.dataset.v; return render();
+    case 'mias': S.soloMias = b.dataset.v === '1'; return render();
+    case 'publicar': {
+      const tipo = (document.querySelector('input[name=tipo]:checked') || {}).value || 'cesion';
+      return accion('publicar', [id, tipo, $('#nota').value], 'Publicada en el tablón');
+    }
+    case 'cancelar': if (!b.dataset.ok) { S.sheet = { t: 'confirm', texto: '¿Retirar esta guardia del tablón?', act, id }; return renderSheet(); } return accion('cancelar', [id], 'Retirada del tablón');
+    case 'quedar': {
+      if (!b.dataset.ok) { const o = S.D.ofertas.find(x => x.id === id); S.sheet = { t: 'confirm', texto: '¿Te quedas la ' + descG(G(o.guardia_id)) + ' de ' + o.ofertante + '?', act, id }; return renderSheet(); }
+      return accion('aceptarCesion', [id], 'Guardia asignada a tu nombre');
+    }
+    case 'proponerSheet': S.sheet = { t: 'proponer', id }; return renderSheet();
+    case 'proponer': return accion('proponer', [id, +b.dataset.g], 'Propuesta enviada');
+    case 'retirar': return accion('retirar', [id], 'Propuesta retirada');
+    case 'acepProp': {
+      if (!b.dataset.ok) { const p = S.D.propuestas.find(x => x.id === id), o = S.D.ofertas.find(x => x.id === p.oferta_id); S.sheet = { t: 'confirm', texto: 'Cambiar tu ' + descG(G(o.guardia_id)) + ' por la ' + descG(G(p.guardia_id)) + ' de ' + p.proponente + '?', act, id }; S.sheet.texto = '¿' + S.sheet.texto; return renderSheet(); }
+      return accion('aceptarPropuesta', [id], 'Cambio hecho');
+    }
+    case 'asignar': return accion('asignar', [id, $('#asigNombre').value], 'Guardia actualizada');
+    case 'liberar': return accion('asignar', [id, ''], 'Guardia libre para externos');
+    case 'importSheet': S.importPrev = null; S.impErr = null; S.impCat = S.impCat || 'ENF'; S.sheet = { t: 'import' }; return renderSheet();
+    case 'impCat': { const t = $('#impTxt')?.value; S.impCat = b.dataset.v; renderSheet(); if (t) $('#impTxt').value = t; return; }
+    case 'impPrev': {
+      S.impErr = null; S.importPrev = null;
+      const txt = $('#impTxt').value, f = $('#impFile').files[0];
+      try {
+        let rows;
+        if (f) rows = await leerXlsx(f); else rows = rowsFromText(txt);
+        const p = parseCuadrante(rows);
+        if (!p.filas.length) throw new Error('No he encontrado filas con fecha (dd/mm/aaaa). Revisa que has copiado desde la columna FECHA.');
+        S.importPrev = p;
+      } catch (e) { S.impErr = e.message; }
+      renderSheet(); if (txt) $('#impTxt').value = txt; return;
+    }
+    case 'impOk': { const p = S.importPrev; S.mes = p.desde.slice(0, 7); S.cat = S.impCat; return accion('importar', [S.impCat, p.desde, p.hasta, p.filas], 'Cuadrante importado'); }
+    case 'usuariosSheet': S.sheet = { t: 'usuarios' }; return renderSheet();
+    case 'guardarUsr': {
+      const c = b.closest('[data-uid]');
+      return accion('aprobar', [{ p_id: c.dataset.uid, p_nombre: c.querySelector('.u-nombre').value.trim(), p_categoria: c.querySelector('.u-cat').value, p_externo: c.querySelector('.u-ext').checked, p_rol: c.querySelector('.u-rol').value, p_aprobado: b.dataset.ap === '1' }], 'Usuario actualizado');
+    }
+    case 'resetDemo': if (!b.dataset.ok) { S.sheet = { t: 'confirm', texto: '¿Borrar los cambios y volver al cuadrante original de la demo?', act, id: 0 }; return renderSheet(); } DemoStore.reset(); S.sheet = null; await refrescar(); render(); return toast('Demo reiniciada');
+    case 'logout': await Store.sb.auth.signOut(); LS.del('sva4380-cache'); LS.del('sva4380-perfil'); location.reload(); return;
+    case 'authMode': S.authMode = S.authMode === 'login' ? 'registro' : 'login'; $('#main').innerHTML = vAuth(); return;
+    case 'recargar': return arrancar();
+  }
+});
+document.addEventListener('change', ev => {
+  if (ev.target.id === 'demoUser') { LS.set('sva4380-demo-user', ev.target.value); S.sheet = null; render(); toast('Ahora ves la app como ' + ev.target.value); }
+});
+document.addEventListener('submit', async ev => {
+  if (ev.target.id !== 'authForm') return;
+  ev.preventDefault();
+  const email = $('#aEmail').value.trim(), pass = $('#aPass').value;
+  try {
+    if (S.authMode === 'registro') {
+      const { error } = await Store.sb.auth.signUp({ email, password: pass, options: { data: { nombre: $('#aNombre').value.trim().replace(/\s+/g, ' '), categoria: $('#aCat').value, externo: $('#aExt').checked } } });
+      if (error) throw new Error(/database/i.test(error.message) ? 'Ese nombre ya está registrado o falta algún dato.' : error.message);
+      $('#main').innerHTML = '<div class="auth"><h1>Cuenta creada</h1><p>Si te llega un correo de confirmación, ábrelo. Después entra con tu correo y contraseña; el acceso se activa cuando un administrador lo apruebe.</p><button class="btn primary block" data-act="authMode">Ir a entrar</button></div>';
+      S.authMode = 'registro';
+    } else {
+      const { data, error } = await Store.sb.auth.signInWithPassword({ email, password: pass });
+      if (error) throw new Error(/invalid/i.test(error.message) ? 'Correo o contraseña incorrectos.' : error.message);
+      Store.session = data.session; arrancar();
+    }
+  } catch (e) { $('#main').innerHTML = vAuth(e.message); }
+});
+
+async function leerXlsx(file) {
+  if (/\.csv$/i.test(file.name)) return rowsFromText(await file.text());
+  if (!window.XLSX) await new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'; s.onload = res; s.onerror = () => rej(new Error('No se pudo cargar el lector de Excel. Necesitas conexión.')); document.head.appendChild(s); });
+  const wb = XLSX.read(await file.arrayBuffer(), { type: 'array', cellDates: true });
+  const ws = wb.Sheets[wb.SheetNames[0]];
+  const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: '' });
+  return rows.map(r => r.map(c => c instanceof Date ? String(c.getDate()).padStart(2, '0') + '/' + String(c.getMonth() + 1).padStart(2, '0') + '/' + c.getFullYear() : c));
+}
+
+async function arrancar() {
+  try {
+    await Store.init();
+    if (!DEMO && !Store.session) {
+      if (navigator.onLine === false && LS.get('sva4380-cache')) { /* sin sesión y sin red: no hay nada que mostrar con seguridad */ }
+      $('#tabs').hidden = true; $('#main').innerHTML = vAuth(); return;
+    }
+    if (await refrescar()) render();
+  } catch (e) {
+    $('#main').innerHTML = '<div class="auth"><h1>No se pudo cargar</h1><p class="err">' + esc(e.message || e) + '</p><button class="btn primary block" data-act="recargar">Reintentar</button></div>';
+  }
+}
+window.addEventListener('online', () => { if (S.offline) refrescar().then(ok => ok && render()); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && S.D && !DEMO && !S.sheet) refrescar().then(ok => ok && render()).catch(() => {}); });
+if ('serviceWorker' in navigator && location.protocol === 'https:' && !/claude|anthropic/.test(location.hostname)) {
+  try { navigator.serviceWorker.register('sw.js').catch(() => {}); } catch (e) {}
+}
+arrancar();
+</script>
+</body>
+</html>

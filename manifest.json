@@ -1,0 +1,16 @@
+{
+  "name": "43.80 SVA-E · Guardias",
+  "short_name": "43.80 SVA-E",
+  "description": "Cuadrante, tablón de cambios y avisos de la guardia 43.80 SVA-E",
+  "lang": "es",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f2f1",
+  "theme_color": "#a3131b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
