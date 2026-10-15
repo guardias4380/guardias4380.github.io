@@ -48,6 +48,13 @@ Si el proyecto pasa 7 días sin ninguna actividad, Supabase lo pausa y hay que r
 - Si alguien la olvida: Más → Usuarios → «Generar contraseña temporal». Se la pasas por privado y la cambia al entrar.
 - El enlace «He olvidado mi contraseña» por correo solo funciona si se configura un servidor de correo propio (SMTP) en Supabase; el correo gratuito de Supabase solo envía a los miembros del equipo del proyecto y a 2 correos por hora.
 
+## Fichas clínicas (procedimientos propios)
+- Viven en la carpeta `fichas/`: un archivo `.md` por ficha y la lista en `fichas/index.json`.
+- Se ven en Más → Procedimientos y guías junto a los PDF, con buscador por contenido, y quedan disponibles sin conexión al abrir la app con cobertura.
+- Cabecera de cada ficha: `titulo`, `categoria`, `estado` (`borrador` o `validado`), `version`, `fecha`, `palabras` (términos extra para el buscador).
+- Formato: `## Sección` (con `## ! Sección` queda abierta y destacada), listas con `-` o `1.`, tablas con `|`, `**negrita**`, `>! alerta roja` y `>i nota informativa`.
+- Al validar una ficha: cambiar `estado: validado`, subir la `version` y la `fecha`.
+
 ## Importar el cuadrante cada mes
 - En Excel, selecciona desde la fila de cabecera hasta el último día (columnas FECHA a NOCTURNO 12 H), copia y pégalo en la app. Se conservan las columnas.
 - O sube el `.xlsx` directamente (necesita conexión la primera vez).

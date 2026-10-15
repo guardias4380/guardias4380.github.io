@@ -155,6 +155,24 @@ th{background:var(--sunk);font-size:12px;text-transform:uppercase;letter-spacing
 .check{display:flex;gap:8px;align-items:center;font-weight:600}
 .check input{width:20px;height:20px;accent-color:var(--accent)}
 .num{text-align:right;font-variant-numeric:tabular-nums}
+.ficha{width:100%;max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px;line-height:1.5}
+.ficha p{margin:0}
+.ficha ul,.ficha ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:4px}
+.ficha h4{margin:6px 0 0;font-family:var(--f-display);font-size:16px}
+.fborr{background:var(--warn-soft);color:var(--warn);font-weight:700;border-radius:10px;padding:10px 12px;font-size:14px}
+.fsec{background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+.fsec summary{cursor:pointer;padding:14px 16px;font-family:var(--f-display);font-weight:700;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.fsec summary::-webkit-details-marker{display:none}
+.fsec summary::after{content:'+';color:var(--muted);font-weight:400}
+.fsec[open] summary::after{content:'–'}
+.fsec.clave{border:2px solid var(--accent)}
+.fsec.clave summary{color:var(--accent)}
+.fbody{padding:0 16px 16px;display:flex;flex-direction:column;gap:10px}
+.falert{border-radius:10px;padding:10px 12px;font-size:15px}
+.falert.peligro{background:var(--accent-soft);color:var(--err);border-left:4px solid var(--err)}
+.falert.info{background:var(--cN);color:var(--cN-ink)}
+.ftab td,.ftab th{white-space:normal;vertical-align:top}
+.ftab td:first-child{font-weight:600}
 @media (prefers-reduced-motion:no-preference){.sheet{animation:up .18s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}}
 </style>
 </head>
@@ -185,7 +203,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.0'
+  VERSION: '0.3.1'
 };
 </script>
 
@@ -902,7 +920,7 @@ function vMas() {
   const u = me();
   let h = '<div class="stack"><h1>Más</h1></div>';
   h += '<div class="card menu">' +
-    '<button class="mi" data-act="sub" data-v="procs"><div><b>Procedimientos y guías</b><div class="sub">' + ((S.D.procedimientos || []).length) + ' documentos · se pueden guardar para consultar sin conexión</div></div><span class="arr">›</span></button>' +
+    '<button class="mi" data-act="sub" data-v="procs"><div><b>Procedimientos y guías</b><div class="sub">' + (((S.D.procedimientos || []).length) + Fichas.lista.length) + ' documentos · fichas y PDF</div></div><span class="arr">›</span></button>' +
     '<button class="mi" data-act="sub" data-v="tels"><div><b>Teléfonos útiles</b><div class="sub">' + ((S.D.contactos || []).length) + ' contactos</div></div><span class="arr">›</span></button>' +
     '<a href="' + esc(CONFIG.MULTIEMERGENCIAS_URL) + '" target="_blank" rel="noopener"><div><b>Multiemergencias</b><div class="sub">Herramienta de escena. Se abre como app independiente.</div></div><span class="arr">↗</span></a>' +
     '<button class="mi" data-act="ics"><div><b>Añadir mis guardias al calendario</b><div class="sub">Descarga un archivo para Google Calendar o el calendario del iPhone</div></div><span class="arr">↓</span></button>' +
@@ -928,22 +946,100 @@ function vMas() {
 }
 
 function vProcs() {
-  if (!fase2()) return cabeceraSub('Procedimientos') + '<div class="empty">Falta activar esta sección en el servidor (fase2.sql).</div>';
   const u = me(), q = S.procFiltro.trim().toLowerCase();
-  const ps = (S.D.procedimientos || []).filter(p => !q || (p.titulo + ' ' + p.categoria).toLowerCase().includes(q));
-  const total = (S.D.procedimientos || []).length, guardados = (S.D.procedimientos || []).filter(p => S.pdfOffline.has(String(p.id))).length;
+  const pdfs = fase2() ? (S.D.procedimientos || []) : [];
+  const fichas = Fichas.lista;
+  const items = fichas.map(f => ({ k: 'ficha', id: f.id, titulo: f.titulo, categoria: f.categoria, f }))
+    .concat(pdfs.map(p => ({ k: 'pdf', id: p.id, titulo: p.titulo, categoria: p.categoria, p })))
+    .filter(x => !q || (x.titulo + ' ' + x.categoria + ' ' + (x.k === 'ficha' ? (x.f.palabras || '') + ' ' + (Fichas.textos[x.id] || '') : '')).toLowerCase().includes(q))
+    .sort((a, b) => a.titulo.localeCompare(b.titulo, 'es'));
+  const guardados = pdfs.filter(p => S.pdfOffline.has(String(p.id))).length;
   let h = cabeceraSub('Procedimientos y guías');
-  if (u.rol === 'admin') h += '<button class="btn primary block" data-act="nuevoProc">+ Subir PDF</button>';
-  if (total) h += '<div class="row" style="justify-content:space-between"><span class="meta">' + guardados + ' de ' + total + ' disponibles sin conexión</span>' + (guardados < total ? '<button class="btn ghost" data-act="guardarTodos"' + (S.offline ? ' disabled' : '') + '>Guardar todos</button>' : '') + '</div>' +
-    '<input class="search" id="procBusca" type="search" placeholder="Buscar procedimiento…" value="' + esc(S.procFiltro) + '">';
-  if (!total) return h + '<div class="empty">Aún no hay documentos.' + (u.rol === 'admin' ? ' Sube el primero con el botón de arriba.' : '') + '</div>';
+  if (u.rol === 'admin' && fase2()) h += '<button class="btn primary block" data-act="nuevoProc">+ Subir PDF</button>';
+  if (pdfs.length) h += '<div class="row" style="justify-content:space-between"><span class="meta">PDF: ' + guardados + ' de ' + pdfs.length + ' disponibles sin conexión</span>' + (guardados < pdfs.length ? '<button class="btn ghost" data-act="guardarTodos"' + (S.offline ? ' disabled' : '') + '>Guardar todos</button>' : '') + '</div>';
+  if (fichas.length || pdfs.length) h += '<input class="search" id="procBusca" type="search" placeholder="Buscar: anafilaxia, adrenalina…" value="' + esc(S.procFiltro) + '">';
+  else return h + '<div class="empty">Aún no hay documentos.' + (u.rol === 'admin' ? ' Sube el primero con el botón de arriba.' : '') + '</div>';
   const cats = {};
-  ps.forEach(p => (cats[p.categoria] = cats[p.categoria] || []).push(p));
-  h += Object.keys(cats).sort().map(c => '<div class="stack"><div class="eyebrow">' + esc(c) + '</div><div class="card menu">' + cats[c].map(p =>
-    '<button class="mi" data-act="abrirProc" data-id="' + p.id + '"><div style="min-width:0"><b>' + esc(p.titulo) + '</b><div class="sub">' + (p.bytes ? kb(p.bytes) + ' · ' : '') + (S.pdfOffline.has(String(p.id)) ? '✓ disponible sin conexión' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>' +
-    (u.rol === 'admin' ? '<button class="mi" data-act="borrarProc" data-id="' + p.id + '" style="padding:8px 4px;color:var(--err)"><div class="sub" style="color:var(--err)">Borrar «' + esc(p.titulo) + '»</div></button>' : '')
+  items.forEach(x => (cats[x.categoria] = cats[x.categoria] || []).push(x));
+  h += Object.keys(cats).sort((a, b) => a.localeCompare(b, 'es')).map(c => '<div class="stack"><div class="eyebrow">' + esc(c) + '</div><div class="card menu">' + cats[c].map(x => x.k === 'ficha'
+    ? '<button class="mi" data-act="abrirFicha" data-f="' + esc(x.id) + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">Ficha · v' + esc(x.f.version || '') + ' · ' + (x.f.estado === 'validado' ? 'validada' : '<span style="color:var(--warn);font-weight:600">borrador pendiente de validar</span>') + ' · ' + (Fichas.textos[x.id] ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>'
+    : '<button class="mi" data-act="abrirProc" data-id="' + x.p.id + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">PDF · ' + (x.p.bytes ? kb(x.p.bytes) + ' · ' : '') + (S.pdfOffline.has(String(x.p.id)) ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>' +
+      (u.rol === 'admin' ? '<button class="mi" data-act="borrarProc" data-id="' + x.p.id + '" style="padding:8px 4px;color:var(--err)"><div class="sub" style="color:var(--err)">Borrar «' + esc(x.titulo) + '»</div></button>' : '')
   ).join('') + '</div></div>').join('') || '<div class="empty">Ningún documento coincide con la búsqueda.</div>';
   return h;
+}
+
+/* ---------- Fichas clínicas (archivos .md del repositorio, disponibles sin conexión) ---------- */
+const Fichas = {
+  lista: [], textos: {},
+  async cargar() {
+    try {
+      const idx = await (await fetch('fichas/index.json', { cache: 'no-cache' })).json();
+      const out = [];
+      for (const e of idx) {
+        try {
+          const t = await (await fetch('fichas/' + e.archivo, { cache: 'no-cache' })).text();
+          const { meta, cuerpo } = parseFicha(t);
+          this.textos[e.id] = cuerpo;
+          out.push({ id: e.id, titulo: meta.titulo || e.id, categoria: meta.categoria || 'General', estado: meta.estado || 'borrador', version: meta.version || '', fecha: meta.fecha || '', palabras: meta.palabras || '' });
+        } catch (err) { /* sin conexión y sin copia: se omite */ }
+      }
+      this.lista = out;
+    } catch (e) { /* sin índice disponible */ }
+  }
+};
+function parseFicha(t) {
+  const meta = {}; let cuerpo = t.replace(/\r/g, '');
+  const m = cuerpo.match(/^---\n([\s\S]*?)\n---\n?/);
+  if (m) { m[1].split('\n').forEach(l => { const i = l.indexOf(':'); if (i > 0) meta[l.slice(0, i).trim()] = l.slice(i + 1).trim(); }); cuerpo = cuerpo.slice(m[0].length); }
+  return { meta, cuerpo };
+}
+function mdInline(s) { return esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>'); }
+function renderFicha(cuerpo) {
+  const L = cuerpo.split('\n'); let h = '', i = 0, abierta = false, nsec = 0;
+  const cerrar = () => { if (abierta) { h += '</div></details>'; abierta = false; } };
+  while (i < L.length) {
+    const l = L[i];
+    if (/^## /.test(l)) {
+      cerrar(); let t = l.slice(3).trim(); const open = t.startsWith('! '); if (open) t = t.slice(2);
+      h += '<details class="fsec' + (open ? ' clave' : '') + '"' + (open ? ' open' : '') + ' id="fs' + (nsec++) + '"><summary>' + mdInline(t) + '</summary><div class="fbody">'; abierta = true; i++; continue;
+    }
+    if (/^### /.test(l)) { h += '<h4>' + mdInline(l.slice(4)) + '</h4>'; i++; continue; }
+    if (/^>[!i] /.test(l)) { h += '<div class="falert ' + (l[1] === '!' ? 'peligro' : 'info') + '">' + mdInline(l.slice(3)) + '</div>'; i++; continue; }
+    if (/^\|/.test(l)) {
+      const rows = []; while (i < L.length && /^\|/.test(L[i])) { rows.push(L[i]); i++; }
+      const cells = r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
+      const head = cells(rows[0]), body = rows.slice(rows[1] && /^\|[\s:|-]+\|$/.test(rows[1]) ? 2 : 1);
+      h += '<div class="tablewrap"><table class="ftab"><thead><tr>' + head.map(c => '<th>' + mdInline(c) + '</th>').join('') + '</tr></thead><tbody>' + body.map(r => '<tr>' + cells(r).map(c => '<td>' + mdInline(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+      continue;
+    }
+    if (/^(\s*)([-*]|\d+\.) /.test(l)) {
+      const ord = /^\d+\./.test(l.trim()); let out = '<' + (ord ? 'ol' : 'ul') + '>', sub = false;
+      while (i < L.length && /^(\s*)([-*]|\d+\.) /.test(L[i])) {
+        const ind = /^\s{2,}/.test(L[i]), txt = L[i].replace(/^\s*([-*]|\d+\.) /, '');
+        if (ind && !sub) { out = out.replace(/<\/li>$/, '') + '<ul>'; sub = true; }
+        if (!ind && sub) { out += '</ul></li>'; sub = false; }
+        out += '<li>' + mdInline(txt) + (ind ? '</li>' : '</li>'); i++;
+      }
+      if (sub) out += '</ul></li>';
+      h += out + '</' + (ord ? 'ol' : 'ul') + '>'; continue;
+    }
+    if (!l.trim()) { i++; continue; }
+    const par = []; while (i < L.length && L[i].trim() && !/^(##|>[!i] |\||\s*([-*]|\d+\.) )/.test(L[i])) { par.push(L[i]); i++; }
+    h += '<p>' + mdInline(par.join(' ')) + '</p>';
+  }
+  cerrar();
+  return h;
+}
+function abrirFicha(id) {
+  cerrarVisor();
+  const f = Fichas.lista.find(x => x.id === id), t = Fichas.textos[id];
+  if (!f || !t) return toast('La ficha no está disponible sin conexión todavía.');
+  const borr = f.estado !== 'validado';
+  document.body.insertAdjacentHTML('beforeend', '<div class="overlay" id="visor" role="dialog" aria-modal="true"><div class="bar"><b>' + esc(f.titulo) + '</b><button data-act="fichaTodo">Abrir todo</button><button data-act="cerrarVisor">Cerrar</button></div>' +
+    '<div class="body" style="align-items:stretch"><div class="ficha">' +
+    (borr ? '<div class="fborr">BORRADOR · pendiente de validación por el responsable médico. No sustituye al protocolo del servicio.</div>' : '') +
+    '<div class="meta">Versión ' + esc(f.version) + ' · ' + esc(f.fecha) + ' · ' + esc(f.categoria) + '</div>' + renderFicha(t) + '</div></div></div>');
 }
 
 function vTels() {
@@ -1228,6 +1324,7 @@ async function refrescar() {
   }
   S.cola = DEMO ? [] : await Cola.todos();
   S.pdfOffline = new Set(await PdfCache.ids());
+  if (!Fichas.lista.length || !S.offline) await Fichas.cargar();
   if (!S.mes) S.mes = mesInicial();
   return true;
 }
@@ -1371,6 +1468,8 @@ document.addEventListener('click', async ev => {
       S.subiendo = false; if (S.sheet) renderSheet();
       return;
     }
+    case 'abrirFicha': return abrirFicha(b.dataset.f);
+    case 'fichaTodo': { const ds = document.querySelectorAll('#visor details'); const abrir = [...ds].some(d => !d.open); ds.forEach(d => d.open = abrir); b.textContent = abrir ? 'Cerrar todo' : 'Abrir todo'; return; }
     case 'abrirProc': { const p = S.D.procedimientos.find(x => x.id === id); return abrirProc(p); }
     case 'borrarProc': {
       if (!b.dataset.ok) { const p = S.D.procedimientos.find(x => x.id === id); S.sheet = { t: 'confirm', texto: '¿Borrar «' + p.titulo + '» para todos?', act, id }; return renderSheet(); }
