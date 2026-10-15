@@ -11,5 +11,6 @@
   {"id": "potasio", "archivo": "potasio.md"},
   {"id": "neumotorax", "archivo": "neumotorax.md"},
   {"id": "laringitis", "archivo": "laringitis.md"},
-  {"id": "tep", "archivo": "tep.md"}
+  {"id": "tep", "archivo": "tep.md"},
+  {"id": "tce", "archivo": "tce.md"}
 ]
