@@ -2,9 +2,9 @@
 titulo: Síndrome coronario agudo y Código Infarto
 categoria: Cardiovascular
 estado: borrador
-version: 0.2
+version: 0.3
 fecha: 2026-10-15
-palabras: SCA IAM infarto IAMEST SCASEST código infarto dolor torácico ECG elevación descenso ST cara anterior inferior lateral posterior ventrículo derecho BRIHH AAS aspirina clopidogrel plavix ticagrelor brilique nitroglicerina morfina coordinador 112
+palabras: solinitrina trinispray SCA IAM infarto IAMEST SCASEST código infarto dolor torácico ECG elevación descenso ST cara anterior inferior lateral posterior ventrículo derecho BRIHH AAS aspirina clopidogrel plavix ticagrelor brilique nitroglicerina morfina coordinador 112
 ---
 
 ## ! Abordaje
@@ -15,7 +15,7 @@ palabras: SCA IAM infarto IAMEST SCASEST código infarto dolor torácico ECG ele
 3. **Hora exacta de inicio del dolor.**
 4. Vía venosa en el **brazo izquierdo**.
 5. **AAS 300 mg masticado.**
-6. **Nitroglicerina SL** si hay dolor y PAS >90 (no en infarto de VD).
+6. **Nitroglicerina SL** (spray 0,4 mg o comprimido 0,8 mg) si hay dolor y PAS >90 (no en infarto de VD).
 7. Oxígeno **solo si SpO₂ <90 %**.
 8. Llamar al **coordinador sanitario del 112** (ver cuándo) y trasladar según indique.
 9. Repetir el ECG si cambia el dolor o la clínica.
@@ -23,7 +23,8 @@ palabras: SCA IAM infarto IAMEST SCASEST código infarto dolor torácico ECG ele
 | Fármaco | Dosis | Cuándo |
 |---|---|---|
 | **AAS** | **300 mg** masticado (1 comp. de 300) | Siempre, salvo alergia, sangrado activo o sospecha de disección |
-| **Nitroglicerina SL** | 0,4 mg cada 5 min, hasta 3 | Dolor con PAS >90. No en VD, hipotensión ni PDE-5 |
+| **Nitroglicerina SL** | **Spray 0,4 mg:** 1 pulsación · **Comprimido 0,8 mg:** medio o uno. Cada 5 min, hasta 3 dosis | Dolor con PAS >90. No en VD, hipotensión ni PDE-5 |
+| **Nitroglicerina IV** | Perfusión en bomba: inicio 10–20 µg/min, subir cada 3–5 min (máx. 200). Preparación según Guía de Perfusión | Dolor que persiste tras la SL, HTA o EAP |
 | **Morfina** | 2–4 mg IV lenta | Dolor intenso que persiste |
 | **Ticagrelor** | **180 mg** (2 comp. de 90) | **Solo con indicación** del coordinador o cardiólogo |
 | **Clopidogrel** | **600 mg** (2 comp. de 300) si ICP · **300 mg** si fibrinólisis (75 mg si ≥75 años) | **Solo con indicación** del coordinador o cardiólogo |
@@ -88,4 +89,4 @@ Sospechar en **todo infarto inferior**: hacer **V3R–V4R** (elevación ≥1 mm 
 - ESC. Guía de síndromes coronarios agudos, 2023.
 - Fichas técnicas de AAS, clopidogrel, ticagrelor, nitroglicerina y morfina.
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación: AAS 100 y 300 mg, clopidogrel 75 y 300 mg, ticagrelor 90 mg. Confirmar la presentación de nitroglicerina SL.
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación: AAS 100 y 300 mg, clopidogrel 75 y 300 mg, ticagrelor 90 mg, nitroglicerina SL (comprimidos 0,8 mg y spray 0,4 mg/pulsación) e IV.

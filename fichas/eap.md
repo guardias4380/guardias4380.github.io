@@ -2,7 +2,7 @@
 titulo: Edema agudo de pulmón
 categoria: Cardiovascular
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: EAP insuficiencia cardiaca disnea CPAP BiPAP VMNI ventilación no invasiva nitroglicerina solinitrina furosemida midazolam crepitantes
 ---
@@ -81,7 +81,7 @@ Ecografía pulmonar o cardiaca solo si hay personal entrenado y **sin retrasar e
 
 ## Nitroglicerina
 **Indicación:** PA sistólica ≥110 mmHg (EAP hipertensivo o normotenso).
-- **Sublingual** si el paciente puede colaborar, según protocolo del servicio.
+- **Sublingual** si el paciente puede colaborar: **spray 0,4 mg** (1–2 pulsaciones) o **comprimido 0,8 mg**, cada 5 min mientras la PAS siga ≥110.
 - Después **IV en perfusión**, titulada según PA y respuesta. Preparación según la Guía de Perfusión del servicio. Referencia habitual: inicio 10–20 µg/min, aumentando cada 3–5 minutos, hasta 200 µg/min.
 
 >! **Contraindicada** si hay hipotensión, hipovolemia, infarto de ventrículo derecho o toma de inhibidores de la fosfodiesterasa-5: sildenafilo o vardenafilo en las últimas 24 h, tadalafilo en las últimas 48 h.
