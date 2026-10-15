@@ -2,9 +2,9 @@
 titulo: Parada cardiaca adulto y pediátrica (ERC 2025)
 categoria: Soporte vital y urgencias
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
-palabras: PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025 FV TVSP fibrilación ventricular asistolia AESP desfibrilación descarga adrenalina amiodarona lidocaína 4H 4T capnografía ETCO2 RCE recuperación circulación espontánea pediátrica lactante niño intraósea IO dosis por peso
+palabras: Zoll BIG Big One intraósea cardiocompresor RCP mecánica PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025 FV TVSP fibrilación ventricular asistolia AESP desfibrilación descarga adrenalina amiodarona lidocaína 4H 4T capnografía ETCO2 RCE recuperación circulación espontánea pediátrica lactante niño intraósea IO dosis por peso
 ---
 
 ## ! Adulto: algoritmo
@@ -13,7 +13,7 @@ palabras: PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025
 1. Inconsciente y sin respiración normal: **PCR**. Pedir apoyo al 112.
 2. RCP 30:2 y conectar parches (**anterolateral**: el lateral bajo la axila, en línea medioaxilar).
 3. Analizar ritmo cada **2 minutos**.
-4. Vía **IV**; si no se consigue en 2 intentos, **IO**.
+4. Vía **IV**; si no se consigue en 2 intentos, **IO con BIG** (ver abajo).
 5. Oxígeno al máximo. Vía aérea avanzada si se domina, y **capnografía siempre**.
 6. Buscar y tratar las **4H y 4T**.
 
@@ -25,14 +25,33 @@ palabras: PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025
 ## Adulto: fármacos y descargas
 | Qué | Dosis | Cuándo |
 |---|---|---|
-| **Descarga** | ≥150 J bifásica (la que indique el fabricante). Se puede subir en las siguientes. Si no se sabe: máxima | Cada análisis con FV/TVSP |
+| **Descarga (Zoll)** | **150 J** la 1.ª · **200 J** la 2.ª y siguientes (máximo del equipo) | Cada análisis con FV/TVSP |
 | **Adrenalina** | **1 mg IV/IO** | No desfibrilable: ya. Desfibrilable: tras la 3.ª descarga. Después **cada 3–5 min** (cada 2 ciclos) |
 | **Amiodarona** | **300 mg** IV/IO en bolo (2 ampollas de 150) · **150 mg** | 300 tras la **3.ª** descarga · 150 tras la **5.ª** |
-| **Lidocaína** (alternativa si no hay amiodarona) | 100 mg · 50 mg | Tras la 3.ª · tras la 5.ª |
+| **Lidocaína** (solo si no se puede usar amiodarona; uso no habitual) | 100 mg · 50 mg | Tras la 3.ª · tras la 5.ª |
 
 - **3 descargas seguidas** solo si la FV/TVSP es presenciada y monitorizada con el desfibrilador ya conectado (cuentan como la «1.ª» a efectos de fármacos).
 - **FV refractaria** (persiste tras 3 descargas): comprobar los parches y cambiar a posición **anteroposterior**. La doble descarga secuencial no se recomienda de rutina.
 - No de rutina: **calcio, bicarbonato ni corticoides**. Sueros solo si la causa es hipovolemia.
+
+## Vía intraósea: BIG
+- **Cuándo:** si no hay IV tras 2 intentos (adulto) o en 5 min (niño). En la PCR pediátrica puede ser la primera vía.
+- **BIG adulto** (≥12 años): tibia proximal, **2 cm medial y 1 cm proximal** a la tuberosidad tibial. Alternativa: cabeza humeral.
+- **BIG pediátrico**: tibia proximal, **1–2 cm medial y 1 cm distal** a la tuberosidad. **Ajustar la profundidad** según la edad marcada en el dispositivo.
+- Sujetar firme a 90°, disparar, retirar el fiador y **fijar** (no dejar suelta la vaina).
+- **Lavar con suero:** 10 mL en adulto, 5 mL en niño, y tras cada fármaco.
+- **No usar** en hueso fracturado, con punción IO previa en ese hueso o con infección en la zona.
+
+>i Comprobar en el kit la profundidad y los colores del BIG pediátrico que llevamos.
+
+## RCP mecánica (cardiocompresor)
+**Usarla cuando la RCP manual no se puede hacer bien o pone en riesgo al equipo:**
+- **Traslado con RCP en curso** (posible ECMO, TEP tras fibrinólisis, hipotermia).
+- **RCP prolongada** o pocos reanimadores.
+
+**Colocación:** sin parar la RCP manual salvo los segundos imprescindibles. Pausas cortas y planificadas (**<10 s**), idealmente coincidiendo con un análisis de ritmo. Comprobar la posición tras cada movilización del paciente. La desfibrilación puede hacerse **sin detener** el dispositivo, según fabricante.
+
+>i Solo adultos y según el tamaño del tórax que admita el equipo. Pendiente de confirmar el modelo exacto.
 
 ## Adulto: vía aérea y capnografía
 - Empezar con **bolsa-mascarilla** (o cánula + bolsa) y progresar según la habilidad del equipo.
@@ -65,8 +84,8 @@ palabras: PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025
 2. **5 ventilaciones de rescate** con bolsa-mascarilla y O₂ al 100 % (mejor entre dos).
 3. **15:2**, 100–120 compresiones/min, profundidad **un tercio del tórax**.
 4. **Lactante:** **dos pulgares rodeando el tórax** (ya no dos dedos). **Niño:** talón de una o dos manos.
-5. Parches: **anteroposterior** si <25 kg o <8 años.
-6. Vía **IV**; si no en **5 min** (o de entrada si es difícil), **IO**.
+5. Parches **pediátricos** del Zoll en **anteroposterior** si <25 kg o <8 años. Desfibrilador en **modo manual** para elegir la energía.
+6. Vía **IV**; si no en **5 min** (o de entrada si es difícil), **IO con BIG pediátrico**.
 7. Analizar ritmo cada 2 min. 4H y 4T.
 
 | Ritmo | Qué hacer |
@@ -77,10 +96,10 @@ palabras: PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025
 ## Pediátrica: fármacos y descargas
 | Qué | Dosis | Cuándo |
 |---|---|---|
-| **Descarga** | **4 J/kg** (sin pasar la de adulto). FV refractaria (desde la 6.ª): subir hasta **8 J/kg (máx. 360 J)** | Cada análisis con FV/TVSP |
+| **Descarga** | **4 J/kg** (sin pasar la de adulto). FV refractaria (desde la 6.ª): subir hasta **8 J/kg** (el Zoll llega a **200 J máximo**) | Cada análisis con FV/TVSP |
 | **Adrenalina** | **10 µg/kg** (máx. 1 mg) = **0,1 mL/kg** de la dilución 1 mg en 10 mL | No desfibrilable: ya. Desfibrilable: tras la 3.ª. Después cada 3–5 min |
 | **Amiodarona** | **5 mg/kg** (máx. 300 mg) en bolo = **0,1 mL/kg** de la ampolla 150 mg/3 mL | Tras la **3.ª** y la **5.ª** descarga |
-| **Lidocaína** (alternativa) | 1 mg/kg (máx. 100 mg) | Igual que la amiodarona |
+| **Lidocaína** (solo si no se puede usar amiodarona) | 1 mg/kg (máx. 100 mg) | Igual que la amiodarona |
 | **Suero fisiológico** | 10 mL/kg, repetir según respuesta | Hipovolemia o shock |
 | **Glucosa 10 %** | 2 mL/kg | Hipoglucemia |
 
@@ -90,18 +109,18 @@ palabras: PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025
 ## Pediátrica: tabla por peso
 **Peso estimado:** lactante (meses ÷ 2) + 4 · 1–10 años (edad + 4) × 2. Mejor la cinta de Broselow si se dispone.
 
-| Peso | Adrenalina (1 mg en 10 mL) | Amiodarona (150 mg/3 mL) | Descarga 4 J/kg | Descarga 8 J/kg |
+| Peso | Adrenalina (1 mg en 10 mL) | Amiodarona (150 mg/3 mL) | Descarga 4 J/kg (Zoll) | Descarga 8 J/kg (Zoll) |
 |---|---|---|---|---|
-| **5 kg** | 50 µg · 0,5 mL | 25 mg · 0,5 mL | 20 J | 40 J |
-| **10 kg** | 100 µg · 1 mL | 50 mg · 1 mL | 40 J | 80 J |
-| **15 kg** | 150 µg · 1,5 mL | 75 mg · 1,5 mL | 60 J | 120 J |
-| **20 kg** | 200 µg · 2 mL | 100 mg · 2 mL | 80 J | 160 J |
+| **5 kg** | 50 µg · 0,5 mL | 25 mg · 0,5 mL | 20 J | 50 J |
+| **10 kg** | 100 µg · 1 mL | 50 mg · 1 mL | 50 J | 85 J |
+| **15 kg** | 150 µg · 1,5 mL | 75 mg · 1,5 mL | 70 J | 120 J |
+| **20 kg** | 200 µg · 2 mL | 100 mg · 2 mL | 85 J | 150 J |
 | **25 kg** | 250 µg · 2,5 mL | 125 mg · 2,5 mL | 100 J | 200 J |
-| **30 kg** | 300 µg · 3 mL | 150 mg · 3 mL | 120 J | 240 J |
-| **40 kg** | 400 µg · 4 mL | 200 mg · 4 mL | 160 J | 320 J |
-| **≥50 kg** | 1 mg | 300 mg | Dosis de adulto | Dosis de adulto |
+| **30 kg** | 300 µg · 3 mL | 150 mg · 3 mL | 120 J | 200 J |
+| **40 kg** | 400 µg · 4 mL | 200 mg · 4 mL | 150 J | 200 J |
+| **≥50 kg** | 1 mg | 300 mg | 150–200 J | 200 J |
 
->i Energía: usar el escalón del desfibrilador más cercano. Lavar con suero tras cada fármaco por IO.
+>i Energías redondeadas al escalón más cercano del Zoll (…30, 50, 70, 85, 100, 120, 150, 200 J). El máximo del equipo es 200 J. Lavar con suero tras cada fármaco por IO.
 
 ## Tras la RCE
 | Objetivo | Adulto | Pediátrico |
@@ -135,4 +154,4 @@ palabras: PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025
 - Resuscitation Council UK. Algoritmos de SVA adulto y pediátrico 2025 (adaptados de ERC 2025).
 - Grupo Español de RCP Pediátrica y Neonatal. Recomendaciones 2026 (An Pediatr).
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Comprobar: lidocaína en la dotación, dispositivo de RCP mecánica, tipo de IO y escalones de energía del desfibrilador. El Grupo Español de RCP Pediátrica propone adrenalina pediátrica **cada 4 min**; la ficha mantiene el rango ERC de 3–5 min.
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: lidocaína (uso no habitual), cardiocompresor, intraósea BIG y monitor-desfibrilador Zoll. Pendiente: modelo exacto del Zoll y del cardiocompresor para confirmar escalones de energía y uso. El Grupo Español de RCP Pediátrica propone adrenalina pediátrica **cada 4 min**; la ficha mantiene el rango ERC de 3–5 min.
