@@ -132,6 +132,7 @@ textarea{min-height:90px;resize:vertical}
 table{border-collapse:collapse;width:100%;font-size:14px}
 th,td{padding:6px 8px;border-top:1px solid var(--line);text-align:left;white-space:nowrap}
 th{background:var(--sunk);font-size:12px;text-transform:uppercase;letter-spacing:.06em;border-top:0}
+#visor th{text-transform:none;letter-spacing:0;font-size:13px}
 .auth{max-width:420px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:14px;padding-top:12px}
 .aviso{display:flex;flex-direction:column;gap:8px;border-left:5px solid var(--line)}
 .aviso.urgente{border-left-color:var(--err)}
@@ -180,7 +181,7 @@ th{background:var(--sunk);font-size:12px;text-transform:uppercase;letter-spacing
   .apilar tr{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden;background:var(--surface)}
   .apilar td{border-top:1px solid var(--line);padding:8px 10px}
   .apilar td:first-child{border-top:0;background:var(--sunk);font-family:var(--f-display);font-size:16px}
-  .apilar td:not(:first-child):not(:empty)::before{content:attr(data-l);display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .apilar td:not(:first-child):not(:empty)::before{content:attr(data-l);display:block;font-size:12px;font-weight:700;letter-spacing:0;color:var(--muted);margin-bottom:2px}
   .apilar td:empty{display:none}
 }
 @media (prefers-reduced-motion:no-preference){.sheet{animation:up .18s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}}
@@ -213,7 +214,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.3'
+  VERSION: '0.3.4'
 };
 </script>
 
