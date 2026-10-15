@@ -7,5 +7,6 @@
   {"id": "epoc", "archivo": "epoc.md"},
   {"id": "fibrilacion-auricular", "archivo": "fibrilacion-auricular.md"},
   {"id": "hiperglucemia", "archivo": "hiperglucemia.md"},
-  {"id": "hiponatremia", "archivo": "hiponatremia.md"}
+  {"id": "hiponatremia", "archivo": "hiponatremia.md"},
+  {"id": "potasio", "archivo": "potasio.md"}
 ]
