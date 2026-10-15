@@ -1,6 +1,6 @@
 ---
 titulo: AmbulancePad: incidencias frecuentes
-categoria: Tablet del recurso (AmbulancePad)
+categoria: Material y equipos
 estado: guia
 version: 0.1
 fecha: 2026-10-15
