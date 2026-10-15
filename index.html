@@ -173,6 +173,16 @@ th{background:var(--sunk);font-size:12px;text-transform:uppercase;letter-spacing
 .falert.info{background:var(--cN);color:var(--cN-ink)}
 .ftab td,.ftab th{white-space:normal;vertical-align:top}
 .ftab td:first-child{font-weight:600}
+@media (max-width:560px){
+  .apilar{overflow:visible;border:0}
+  .apilar table,.apilar tbody,.apilar tr,.apilar td{display:block;width:100%}
+  .apilar thead{display:none}
+  .apilar tr{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;overflow:hidden;background:var(--surface)}
+  .apilar td{border-top:1px solid var(--line);padding:8px 10px}
+  .apilar td:first-child{border-top:0;background:var(--sunk);font-family:var(--f-display);font-size:16px}
+  .apilar td:not(:first-child):not(:empty)::before{content:attr(data-l);display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+  .apilar td:empty{display:none}
+}
 @media (prefers-reduced-motion:no-preference){.sheet{animation:up .18s ease-out}@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}}
 </style>
 </head>
@@ -203,7 +213,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.1'
+  VERSION: '0.3.2'
 };
 </script>
 
@@ -1010,7 +1020,8 @@ function renderFicha(cuerpo) {
       const rows = []; while (i < L.length && /^\|/.test(L[i])) { rows.push(L[i]); i++; }
       const cells = r => r.replace(/^\||\|$/g, '').split('|').map(c => c.trim());
       const head = cells(rows[0]), body = rows.slice(rows[1] && /^\|[\s:|-]+\|$/.test(rows[1]) ? 2 : 1);
-      h += '<div class="tablewrap"><table class="ftab"><thead><tr>' + head.map(c => '<th>' + mdInline(c) + '</th>').join('') + '</tr></thead><tbody>' + body.map(r => '<tr>' + cells(r).map(c => '<td>' + mdInline(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
+      const ancha = head.length > 3 || (head.length === 3 && body.some(r => r.length > 90));
+      h += '<div class="tablewrap' + (ancha ? ' apilar' : '') + '"><table class="ftab"><thead><tr>' + head.map(c => '<th>' + mdInline(c) + '</th>').join('') + '</tr></thead><tbody>' + body.map(r => '<tr>' + cells(r).map((c, k) => '<td data-l="' + esc(head[k] || '').replace(/\*\*/g, '') + '">' + mdInline(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table></div>';
       continue;
     }
     if (/^(\s*)([-*]|\d+\.) /.test(l)) {
