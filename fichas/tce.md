@@ -2,7 +2,7 @@
 titulo: Traumatismo craneoencefálico
 categoria: Trauma y respiratorio
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: TCE traumatismo craneal Glasgow pupilas anisocoria herniación hipertensión intracraneal lesión secundaria hipoxia hipotensión EtCO2 capnografía manitol salino hipertónico tranexámico amchafibrin supraglótico intubación SRI
 ---
@@ -54,7 +54,16 @@ palabras: TCE traumatismo craneal Glasgow pupilas anisocoria herniación hiperte
 2. **Dispositivo supraglótico** (de elección en el recurso).
 3. **IOT con secuencia rápida** solo con indicación médica y operador entrenado, preoxigenación, plan de rescate y estabilización manual en línea (abrir la parte anterior del collarín durante la laringoscopia).
 
->! **Hipotensión periintubación:** es especialmente dañina en el TCE. Tener vasopresor preparado y elegir inductor con poca repercusión hemodinámica (etomidato). Evitar intentos múltiples: si no se consigue rápido, supraglótico.
+>! **Hipotensión periintubación:** es especialmente dañina en el TCE. Tener vasopresor preparado antes de inducir. Evitar intentos múltiples: si no se consigue rápido, supraglótico.
+
+**Inductor:**
+| Fármaco | Dosis | Cuándo |
+|---|---|---|
+| **Midazolam** (el habitual del equipo) | 0,1–0,2 mg/kg IV · **0,05 mg/kg** si PA límite, ancianos o shock | Paciente con **PA estable** |
+| **Etomidato** | 0,2–0,3 mg/kg IV | **Hipotensión o PA límite**: menor caída de la PA |
+
+- El midazolam produce **más hipotensión** que el etomidato y tarda algo más en hacer efecto. Si se usa, reducir la dosis en el paciente inestable y tener la noradrenalina preparada.
+- Opioide para atenuar la respuesta a la laringoscopia: **fentanilo 1–2 µg/kg**, omitir o reducir si hay hipotensión.
 
 **Ventilación:**
 - Preoxigenar al 100 % y después **titular a SpO₂ 94–98 %** (evitar también la hiperoxia).
@@ -124,4 +133,4 @@ palabras: TCE traumatismo craneal Glasgow pupilas anisocoria herniación hiperte
 - Neurocritical Care Society. Guía de osmoterapia, 2020.
 - Referencias del documento de origen pendientes de verificar.
 
->i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Adaptado al SVA de enfermería: supraglótico de elección; IOT con secuencia rápida solo con indicación médica. Dotación: NaCl 20 %, manitol 20 %, ácido tranexámico, fentanilo, morfina, etomidato y midazolam (sin ketamina).
+>i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Adaptado al SVA de enfermería: supraglótico de elección; IOT con secuencia rápida solo con indicación médica. Dotación: NaCl 20 %, manitol 20 %, ácido tranexámico, fentanilo, morfina, midazolam (inductor habitual) y etomidato (sin ketamina).
