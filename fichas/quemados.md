@@ -2,7 +2,7 @@
 titulo: Quemados e inhalación de humo
 categoria: Trauma
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: quemado quemadura gran quemado incendio humo inhalación hollín vibrisas esputo carbonáceo ronquera estridor edema vía aérea monóxido de carbono cianuro regla de los nueve Lund Browder superficie corporal quemada SCQ Parkland enfriar film escarotomía circunferencial eléctrica alto voltaje rayo química lavado unidad de quemados
 ---
@@ -13,11 +13,11 @@ palabras: quemado quemadura gran quemado incendio humo inhalación hollín vibri
 1. **Detener el proceso:** retirar ropa y joyas (no lo adherido). Químicos: lavar. Electricidad: cortar la corriente.
 2. **ABCDE.** Vía aérea **antes** que la piel. **O₂ al 100 %** a todo expuesto a humo en espacio cerrado.
 3. **Enfriar** con agua corriente templada (15–25 °C) **20 min**, si han pasado <3 h. **No hielo.**
-4. **Cubrir** con film transparente en tiras (no circular) o apósito limpio, y **mantener caliente** (manta, ambulancia caliente).
+4. **Cubrir** con **apósitos de hidrogel** (tipo Water-Jel) o film transparente en tiras (no circular), y **mantener caliente** (manta, ambulancia caliente). En quemaduras extensas, el hidrogel también enfría: vigilar la temperatura.
 5. Calcular la **superficie quemada** (SCQ) y la **profundidad**.
 6. **Vía IV** (en piel sana si es posible; IO si no) y **analgesia**.
 7. Buscar **trauma asociado** (explosión, caída, salto).
-8. Consultar al **médico coordinador**: vía aérea, sueroterapia y **destino** (unidad de quemados).
+8. Consultar al **médico coordinador**: vía aérea, sueroterapia y **destino** (hospital de referencia de la zona).
 
 | Gran quemado si | |
 |---|---|
@@ -96,7 +96,7 @@ palabras: quemado quemadura gran quemado incendio humo inhalación hollín vibri
 
 ## Sueroterapia
 **Indicada** si SCQ **>20 % en adulto** o **>10 % en niño**, o traslado largo con SCQ menor.
-- **Ringer lactato** (o suero fisiológico si no hay), **templado**.
+- **Ringer lactato**, **templado**.
 - **Ritmo inicial prehospitalario** (ATLS):
 
 | Edad | Ritmo inicial |
@@ -135,8 +135,10 @@ palabras: quemado quemadura gran quemado incendio humo inhalación hollín vibri
 - Más riesgo de **hipotermia** e hipovolemia. Calcular la SCQ con la regla del lactante.
 - Sospechar **maltrato** si: historia que no cuadra, retraso en pedir ayuda, quemaduras en **guante o calcetín** (inmersión), bordes nítidos, **colillas** (círculos de 5–10 mm), en nalgas o periné. Registrar y comunicar.
 
-## Destino: unidad de quemados
-**Consultar derivación** a unidad de quemados si:
+## Destino
+>i **Circuito:** traslado al **hospital de referencia de la zona** para estabilización. Desde allí, el gran quemado se deriva a la **Unidad de Quemados de Sevilla**. La ambulancia no traslada directamente a la unidad de quemados.
+
+**Avisar en la prealerta que puede ser candidato a unidad de quemados** si:
 - SCQ dérmica **>10 %** (adulto) o **>5 %** (niño), o **cualquier subdérmica** extensa.
 - **Cara, manos, pies, genitales, periné** o grandes articulaciones.
 - **Inhalación**, **eléctrica** (incluido rayo) o **química**.
@@ -166,4 +168,4 @@ palabras: quemado quemadura gran quemado incendio humo inhalación hollín vibri
 - European Burns Association. Guías de manejo de quemados.
 - Fichas de la app: intoxicaciones (CO y cianuro), politrauma y pediatría.
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Comprobar: Ringer lactato en la dotación, film o apósitos para quemados (tipo Water-Jel), unidad de quemados de referencia y circuito de derivación del SUC.
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación: Ringer lactato y apósitos de hidrogel tipo Water-Jel. Destino: hospital de referencia de la zona; derivación secundaria a la Unidad de Quemados de Sevilla.
