@@ -10,5 +10,6 @@
   {"id": "hiponatremia", "archivo": "hiponatremia.md"},
   {"id": "potasio", "archivo": "potasio.md"},
   {"id": "neumotorax", "archivo": "neumotorax.md"},
-  {"id": "laringitis", "archivo": "laringitis.md"}
+  {"id": "laringitis", "archivo": "laringitis.md"},
+  {"id": "tep", "archivo": "tep.md"}
 ]
