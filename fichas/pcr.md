@@ -164,4 +164,4 @@ palabras: AutoPulse X Series Zoll BIG Big One intraósea cardiocompresor RCP mec
 - Resuscitation Council UK. Algoritmos de SVA adulto y pediátrico 2025 (adaptados de ERC 2025).
 - Grupo Español de RCP Pediátrica y Neonatal. Recomendaciones 2026 (An Pediatr).
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: lidocaína (uso no habitual), intraósea BIG, Monitor-desfibrilador Zoll X Series y cardiocompresor Zoll AutoPulse. El Grupo Español de RCP Pediátrica propone adrenalina pediátrica **cada 4 min**; la ficha mantiene el rango ERC de 3–5 min.
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: lidocaína (uso no habitual), intraósea BIG, monitor-desfibrilador Zoll X Series y cardiocompresor Zoll AutoPulse. El Grupo Español de RCP Pediátrica propone adrenalina pediátrica **cada 4 min**; la ficha mantiene el rango ERC de 3–5 min.
