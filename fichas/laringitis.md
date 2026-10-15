@@ -2,7 +2,7 @@
 titulo: Laringitis aguda (crup) en el niño
 categoria: Pediatría
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: laringitis crup croup laringotraqueítis estridor tos perruna disfonía Westley dexametasona fortecortin budesonida adrenalina nebulizada epiglotitis cuerpo extraño pediatría
 ---
@@ -21,9 +21,9 @@ palabras: laringitis crup croup laringotraqueítis estridor tos perruna disfoní
 
 | Fármaco | Dosis | Vía |
 |---|---|---|
-| **Dexametasona** | 0,15 mg/kg (leve) a **0,6 mg/kg** (moderada-grave), máx. 10 mg | Oral, IM o IV |
+| **Dexametasona (Fortecortin 4 mg/mL)** | 0,15 mg/kg (leve) a **0,6 mg/kg = 0,15 mL/kg** (moderada-grave), máx. 10 mg = 2,5 mL | Oral (la ampolla), IM o IV |
 | **Adrenalina 1 mg/mL** | **0,5 mL/kg (máx. 5 mL)**, completar hasta 5 mL con suero fisiológico | Nebulizada con O₂ a 6–8 L/min |
-| **Budesonida** | 2 mg | Nebulizada (si vomita y no hay vía IM/IV) |
+| **Budesonida** | 2 mg | Nebulizada (alternativa si vomita) |
 
 ## Gravedad: escala de Westley
 | Ítem | Puntos |
@@ -57,7 +57,15 @@ palabras: laringitis crup croup laringotraqueítis estridor tos perruna disfoní
 ## Tratamiento
 **Dexametasona** (todos los grados):
 - 0,15 mg/kg en la leve; **0,6 mg/kg** en la moderada-grave. Máximo 10 mg. Dosis única.
-- Oral si la tolera; si no, IM o IV. La ampolla IV puede darse por boca mezclada con un poco de zumo.
+- **Fortecortin ampolla 4 mg/mL:** 0,6 mg/kg = **0,15 mL/kg**; 0,15 mg/kg = 0,04 mL/kg. Máximo 10 mg = 2,5 mL.
+- **Vía oral de elección:** la ampolla se puede dar por boca, mezclada con un poco de zumo o agua. Si vomita o no la toma: IM o IV.
+
+| Peso | 0,6 mg/kg | Volumen (4 mg/mL) |
+|---|---|---|
+| 5 kg | 3 mg | 0,75 mL |
+| 10 kg | 6 mg | 1,5 mL |
+| 15 kg | 9 mg | 2,25 mL |
+| ≥17 kg | 10 mg (máx.) | 2,5 mL |
 - Empieza a hacer efecto en 1–2 horas.
 
 **Adrenalina nebulizada** (estridor en reposo o dificultad moderada-grave):
@@ -67,7 +75,7 @@ palabras: laringitis crup croup laringotraqueítis estridor tos perruna disfoní
 - Se puede repetir si persiste o reaparece el estridor, según protocolo, sin retrasar la evacuación.
 - Vigilar taquicardia, temblor, palidez y arritmias.
 
-**Budesonida nebulizada 2 mg:** alternativa a la dexametasona si vomita y no se puede usar otra vía.
+**Budesonida nebulizada 2 mg:** alternativa a la dexametasona si vomita. Comprobar la concentración de la ampolla (con 0,5 mg/mL son 4 mL). Puede nebulizarse junto con la adrenalina.
 
 **No usar:** vapor o suero fisiológico nebulizado como tratamiento, antibióticos ni salbutamol (solo si hay además broncoespasmo).
 
@@ -95,4 +103,4 @@ Agotamiento, alteración de conciencia, hipoxemia persistente, cianosis, apnea o
 - Cochrane: glucocorticoides y adrenalina nebulizada en el crup.
 - Referencias del documento de origen pendientes de verificar.
 
->i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Dosis de adrenalina nebulizada ajustada a la pauta SEUP (0,5 mL/kg, máx. 5 mL); el documento de origen proponía 0,2 mg/kg.
+>i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Dosis de adrenalina nebulizada ajustada a la pauta SEUP (0,5 mL/kg, máx. 5 mL); el documento de origen proponía 0,2 mg/kg. Dotación: Fortecortin 4 mg/mL y budesonida nebulizada.
