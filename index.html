@@ -223,7 +223,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.6'
+  VERSION: '0.3.7'
 };
 </script>
 
@@ -719,7 +719,7 @@ async function obtenerPdf(p) {
 
 /* ================= ESTADO Y UTILIDADES DE INTERFAZ ================= */
 const S = { D: null, tab: 'inicio', sub: null, mes: null, cat: 'ENF', soloMias: false, offline: false, cacheAt: null, sheet: null, authMode: 'login',
-  avisosSeg: 'avisos', verResueltos: false, fotoUrl: {}, cola: [], pdfOffline: new Set(), procFiltro: '', procCat: '', horasMes: null };
+  avisosSeg: 'avisos', verResueltos: false, fotoUrl: {}, cola: [], pdfOffline: new Set(), procFiltro: '', procCat: '', procGestion: false, horasMes: null };
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const me = () => Store.me();
@@ -989,7 +989,9 @@ function vProcs() {
     .sort((a, b) => a.titulo.localeCompare(b.titulo, 'es'));
   const guardados = pdfs.filter(p => S.pdfOffline.has(String(p.id))).length;
   let h = cabeceraSub('Procedimientos y guías');
-  if (u.rol === 'admin' && fase2()) h += '<button class="btn primary block" data-act="nuevoProc">+ Subir PDF</button>';
+  if (u.rol === 'admin' && fase2()) h += '<div class="row"><button class="btn primary" style="flex:1" data-act="nuevoProc">+ Subir PDF</button>' +
+    (pdfs.length ? '<button class="btn ghost" data-act="procGestion">' + (S.procGestion ? 'Terminar' : 'Gestionar') + '</button>' : '') + '</div>' +
+    (S.procGestion ? '<p class="muted" style="margin:0;font-size:14px">Modo gestión: aparece «Borrar» bajo cada PDF. Las fichas no se borran desde aquí.</p>' : '');
   if (pdfs.length) h += '<div class="row" style="justify-content:space-between"><span class="meta">PDF: ' + guardados + ' de ' + pdfs.length + ' disponibles sin conexión</span>' + (guardados < pdfs.length ? '<button class="btn ghost" data-act="guardarTodos"' + (S.offline ? ' disabled' : '') + '>Guardar todos</button>' : '') + '</div>';
   if (fichas.length || pdfs.length) h += '<input class="search" id="procBusca" type="search" placeholder="Buscar: anafilaxia, adrenalina…" value="' + esc(S.procFiltro) + '">';
   else return h + '<div class="empty">Aún no hay documentos.' + (u.rol === 'admin' ? ' Sube el primero con el botón de arriba.' : '') + '</div>';
@@ -1001,7 +1003,7 @@ function vProcs() {
   h += Object.keys(cats).sort((a, b) => a.localeCompare(b, 'es')).map(c => '<div class="stack" style="--c:' + catColor(c) + '"><div class="eyebrow"><span class="cdot"></span>' + esc(c) + '</div><div class="card menu">' + cats[c].map(x => x.k === 'ficha'
     ? '<button class="mi cat" data-act="abrirFicha" data-f="' + esc(x.id) + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">Ficha · v' + esc(x.f.version || '') + ' · ' + (x.f.estado === 'validado' ? 'validada' : x.f.estado === 'guia' ? 'guía de uso' : '<span style="color:var(--warn);font-weight:600">borrador pendiente de validar</span>') + ' · ' + (Fichas.textos[x.id] ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>'
     : '<button class="mi cat" data-act="abrirProc" data-id="' + x.p.id + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">PDF · ' + (x.p.bytes ? kb(x.p.bytes) + ' · ' : '') + (S.pdfOffline.has(String(x.p.id)) ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>' +
-      (u.rol === 'admin' ? '<button class="mi" data-act="borrarProc" data-id="' + x.p.id + '" style="padding:8px 4px;color:var(--err)"><div class="sub" style="color:var(--err)">Borrar «' + esc(x.titulo) + '»</div></button>' : '')
+      (u.rol === 'admin' && S.procGestion ? '<button class="mi" data-act="borrarProc" data-id="' + x.p.id + '" style="padding:8px 4px;color:var(--err)"><div class="sub" style="color:var(--err)">Borrar «' + esc(x.titulo) + '»</div></button>' : '')
   ).join('') + '</div></div>').join('') || '<div class="empty">Ningún documento coincide con la búsqueda.</div>';
   return h;
 }
@@ -1420,6 +1422,7 @@ document.addEventListener('click', async ev => {
     case 'guardia': S.sheet = { t: 'guardia', id }; return renderSheet();
     case 'irTablon': return go('tablon');
     case 'sub': S.sub = b.dataset.v || null; render(); return window.scrollTo(0, 0);
+    case 'procGestion': S.procGestion = !S.procGestion; return render();
     case 'procCat': { S.procCat = b.dataset.v || ''; render(); const c = document.querySelector('.catchip.on'); if (c) c.parentNode.scrollLeft = c.offsetLeft - 16; return; }
     case 'mes': { let [y, m] = S.mes.split('-').map(Number); m += +b.dataset.d; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } S.mes = y + '-' + String(m).padStart(2, '0'); return render(); }
     case 'cat': S.cat = b.dataset.v; return render();
@@ -1516,8 +1519,8 @@ document.addEventListener('click', async ev => {
     case 'fichaTodo': { const ds = document.querySelectorAll('#visor details'); const abrir = [...ds].some(d => !d.open); ds.forEach(d => d.open = abrir); b.textContent = abrir ? 'Cerrar todo' : 'Abrir todo'; return; }
     case 'abrirProc': { const p = S.D.procedimientos.find(x => x.id === id); return abrirProc(p); }
     case 'borrarProc': {
-      if (!b.dataset.ok) { const p = S.D.procedimientos.find(x => x.id === id); S.sheet = { t: 'confirm', texto: '¿Borrar «' + p.titulo + '» para todos?', act, id }; return renderSheet(); }
-      await PdfCache.del(id); return accion('borrarProc', [id], 'Procedimiento borrado');
+      if (!b.dataset.ok) { const p = S.D.procedimientos.find(x => x.id === id); S.sheet = { t: 'confirm', texto: '¿Borrar «' + p.titulo + '» para todos los usuarios? Se elimina el archivo y no se puede deshacer.', act, id }; return renderSheet(); }
+      await PdfCache.del(id); S.procGestion = false; return accion('borrarProc', [id], 'Procedimiento borrado');
     }
     case 'guardarTodos': {
       const faltan = (S.D.procedimientos || []).filter(p => !S.pdfOffline.has(String(p.id)));

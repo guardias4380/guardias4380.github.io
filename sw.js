@@ -1,7 +1,7 @@
 // 43.80 SVA-E · service worker
 // La página principal se pide primero a la red (así las actualizaciones llegan solas al abrir con cobertura)
 // y, si no hay red, se sirve la copia guardada. Si cambias iconos o manifest, sube el número de VERSION.
-const VERSION = 'sva4380-v8';
+const VERSION = 'sva4380-v9';
 const BASE = ['./', 'index.html', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png', 'vendor/supabase.js', 'vendor/pdf.min.js', 'vendor/pdf.worker.min.js'];
 const CDN = ['cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
