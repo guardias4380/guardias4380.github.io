@@ -2,9 +2,9 @@
 titulo: Taquicardias con pulso (TSV, TV y torsades)
 categoria: Cardiovascular
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
-palabras: taquicardia arritmia TSV taquicardia supraventricular paroxística TPSV intranodal reentrada flutter adenosina adenocor maniobras vagales Valsalva modificada TV taquicardia ventricular QRS ancho monomórfica polimórfica torsades de pointes QT largo sulfato de magnesio amiodarona trangorex procainamida verapamilo manidon metoprolol cardioversión sincronizada Zoll marcapasos sobreestimulación
+palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taquicardia supraventricular paroxística TPSV intranodal reentrada flutter adenosina adenocor maniobras vagales Valsalva modificada TV taquicardia ventricular QRS ancho monomórfica polimórfica torsades de pointes QT largo sulfato de magnesio amiodarona trangorex procainamida verapamilo manidon metoprolol cardioversión sincronizada Zoll marcapasos sobreestimulación
 ---
 
 ## ! Abordaje
@@ -26,7 +26,7 @@ palabras: taquicardia arritmia TSV taquicardia supraventricular paroxística TPS
 1. Activar **SYNC** y comprobar que marca **cada QRS**. Revisarlo antes de cada descarga.
 2. **Sedación** si está consciente, sin retrasar si está muy grave: **etomidato** 0,15–0,2 mg/kg (de elección si hay hipotensión) o **midazolam** 1–2 mg repetido. Bolsa-mascarilla y aspiración preparadas.
 3. Hasta **3 intentos** subiendo energía.
-4. Si no revierte: **amiodarona 300 mg IV en 10–20 min** (o procainamida, abajo) y nuevo intento. Consultar.
+4. Si no revierte: **amiodarona 300 mg IV en 10–20 min** y nuevo intento. Consultar.
 
 | Ritmo | 1.ª descarga | Siguientes |
 |---|---|---|
@@ -67,8 +67,9 @@ palabras: taquicardia arritmia TSV taquicardia supraventricular paroxística TPS
 
 **TV estable:**
 - **Consultar** antes de tratar: con cardiopatía estructural o duda, la guía prefiere **cardioversión eléctrica con sedación**.
-- **Procainamida** (de elección si no hay IC): **10–15 mg/kg en 20 min** (máx. 1 g). Suspender si hipotensión, el QRS se ensancha >50 % o revierte.
-- **Amiodarona** (si hay IC o FEVI reducida): **300 mg IV en 10–20 min** en suero glucosado 5 %.
+- **Amiodarona:** **300 mg IV en 10–20 min** en suero glucosado 5 %. Es el fármaco disponible en la ambulancia.
+- La guía prefiere **procainamida** si no hay IC (10–15 mg/kg en 20 min, máx. 1 g), pero está **pendiente de confirmar** que la llevemos.
+- **Flecainida (Apocard): NO en TV.** Está contraindicada con cardiopatía estructural o isquémica y puede empeorar la arritmia.
 - **Adenosina** solo si es regular, monomórfica y se sospecha TSV con aberrancia, con consulta y desfibrilador listo.
 
 **Vigilar:** PA, anchura del QRS y QT. Si se deteriora: cardioversión sincronizada.
@@ -84,7 +85,7 @@ palabras: taquicardia arritmia TSV taquicardia supraventricular paroxística TPS
 
 - **Retirar fármacos que alargan el QT** y anotar los que toma.
 - Corregir **potasio y magnesio** (ver ficha de potasio).
-- **Recurrente, sobre todo con bradicardia o pausas:** subir la frecuencia con **marcapasos transcutáneo del Zoll** (sobreestimulación a ~90–110 lpm) o **isoprenalina** si se dispone (ver ficha de bloqueos). Consultar.
+- **Recurrente, sobre todo con bradicardia o pausas:** subir la frecuencia con **marcapasos transcutáneo del Zoll** (sobreestimulación a ~90–110 lpm) o **isoprenalina (Aleudrina)** en perfusión, 2–10 µg/min (ver ficha de bloqueos). Consultar.
 
 >! En torsades **no dar amiodarona ni procainamida**: alargan el QT.
 
@@ -121,4 +122,4 @@ palabras: taquicardia arritmia TSV taquicardia supraventricular paroxística TPS
 - Ensayo REVERT (Valsalva modificada). Ensayo PROCAMIO (procainamida frente a amiodarona en TV estable).
 - Fichas técnicas de adenosina, verapamilo, metoprolol, procainamida, amiodarona y sulfato de magnesio.
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Comprobar que la dotación incluye adenosina 6 mg/2 mL y procainamida, y si hay isoprenalina.
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: adenosina 6 mg/2 mL, flecainida (Apocard), isoprenalina (Aleudrina), amiodarona, verapamilo, metoprolol y sulfato de magnesio. Pendiente: confirmar si hay procainamida.
