@@ -213,7 +213,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.2'
+  VERSION: '0.3.3'
 };
 </script>
 
@@ -984,11 +984,16 @@ const Fichas = {
   lista: [], textos: {},
   async cargar() {
     try {
-      const idx = await (await fetch('fichas/index.json', { cache: 'no-cache' })).json();
+      const ri = await fetch('fichas/index.json', { cache: 'no-cache' });
+      if (!ri.ok) return;
+      const idx = await ri.json();
       const out = [];
       for (const e of idx) {
         try {
-          const t = await (await fetch('fichas/' + e.archivo, { cache: 'no-cache' })).text();
+          const r = await fetch('fichas/' + e.archivo, { cache: 'no-cache' });
+          if (!r.ok) continue;
+          const t = await r.text();
+          if (/^\s*<!DOCTYPE|^\s*<html/i.test(t)) continue;
           const { meta, cuerpo } = parseFicha(t);
           this.textos[e.id] = cuerpo;
           out.push({ id: e.id, titulo: meta.titulo || e.id, categoria: meta.categoria || 'General', estado: meta.estado || 'borrador', version: meta.version || '', fecha: meta.fecha || '', palabras: meta.palabras || '' });
