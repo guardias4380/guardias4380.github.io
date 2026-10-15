@@ -54,6 +54,15 @@ main{flex:1;padding-block:16px 96px;padding-left:max(16px,env(safe-area-inset-le
 h1,h2,h3{font-family:var(--f-display);font-weight:700;margin:0;text-wrap:balance;line-height:1.15}
 h1{font-size:26px} h2{font-size:20px} h3{font-size:17px}
 .eyebrow{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.cdot{width:10px;height:10px;border-radius:50%;background:var(--c);display:inline-block;flex:0 0 auto;vertical-align:middle}
+.eyebrow .cdot{margin-right:7px;position:relative;top:-1px}
+.menu button.mi.cat{box-shadow:inset 4px 0 0 var(--c);padding-left:14px}
+.catchips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none}
+.catchips::-webkit-scrollbar{display:none}
+.catchip{display:flex;align-items:center;gap:6px;white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 11px;font-size:13px;font-weight:600}
+.catchip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.catchip.on[style]{background:var(--c);border-color:var(--c);color:#fff}
+.catchip.on .cdot{background:#fff}
 .muted{color:var(--muted)}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .stack{display:flex;flex-direction:column;gap:10px}
@@ -214,7 +223,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.5'
+  VERSION: '0.3.6'
 };
 </script>
 
@@ -710,7 +719,7 @@ async function obtenerPdf(p) {
 
 /* ================= ESTADO Y UTILIDADES DE INTERFAZ ================= */
 const S = { D: null, tab: 'inicio', sub: null, mes: null, cat: 'ENF', soloMias: false, offline: false, cacheAt: null, sheet: null, authMode: 'login',
-  avisosSeg: 'avisos', verResueltos: false, fotoUrl: {}, cola: [], pdfOffline: new Set(), procFiltro: '', horasMes: null };
+  avisosSeg: 'avisos', verResueltos: false, fotoUrl: {}, cola: [], pdfOffline: new Set(), procFiltro: '', procCat: '', horasMes: null };
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const me = () => Store.me();
@@ -956,12 +965,26 @@ function vMas() {
   return h;
 }
 
+const CAT_COLOR = {
+  'Soporte vital y urgencias': '#d32f2f', 'Cardiovascular': '#c2185b', 'Respiratorio': '#1e88e5',
+  'Neurología': '#8e24aa', 'Endocrino y metabólico': '#e09b00', 'Pediatría': '#00897b',
+  'Obstetricia': '#f4511e', 'Trauma': '#8d6e63', 'Trauma y respiratorio': '#8d6e63',
+  'Toxicología': '#558b2f', 'Salud mental': '#3949ab', 'Material y equipos': '#607d8b',
+  'Tablet del recurso (AmbulancePad)': '#827717'
+};
+function catColor(c) {
+  if (CAT_COLOR[c]) return CAT_COLOR[c];
+  const pal = ['#5d4037', '#00838f', '#ad1457', '#2e7d32', '#4527a0', '#ef6c00'];
+  let h = 0; for (const ch of String(c || '')) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return pal[h % pal.length];
+}
 function vProcs() {
   const u = me(), q = S.procFiltro.trim().toLowerCase();
   const pdfs = fase2() ? (S.D.procedimientos || []) : [];
   const fichas = Fichas.lista;
   const items = fichas.map(f => ({ k: 'ficha', id: f.id, titulo: f.titulo, categoria: f.categoria, f }))
     .concat(pdfs.map(p => ({ k: 'pdf', id: p.id, titulo: p.titulo, categoria: p.categoria, p })))
+    .filter(x => !S.procCat || x.categoria === S.procCat)
     .filter(x => !q || (x.titulo + ' ' + x.categoria + ' ' + (x.k === 'ficha' ? (x.f.palabras || '') + ' ' + (Fichas.textos[x.id] || '') : '')).toLowerCase().includes(q))
     .sort((a, b) => a.titulo.localeCompare(b.titulo, 'es'));
   const guardados = pdfs.filter(p => S.pdfOffline.has(String(p.id))).length;
@@ -970,11 +993,14 @@ function vProcs() {
   if (pdfs.length) h += '<div class="row" style="justify-content:space-between"><span class="meta">PDF: ' + guardados + ' de ' + pdfs.length + ' disponibles sin conexión</span>' + (guardados < pdfs.length ? '<button class="btn ghost" data-act="guardarTodos"' + (S.offline ? ' disabled' : '') + '>Guardar todos</button>' : '') + '</div>';
   if (fichas.length || pdfs.length) h += '<input class="search" id="procBusca" type="search" placeholder="Buscar: anafilaxia, adrenalina…" value="' + esc(S.procFiltro) + '">';
   else return h + '<div class="empty">Aún no hay documentos.' + (u.rol === 'admin' ? ' Sube el primero con el botón de arriba.' : '') + '</div>';
+  const todasCats = [...new Set(fichas.map(f => f.categoria).concat(pdfs.map(p => p.categoria)))].sort((a, b) => a.localeCompare(b, 'es'));
+  h += '<div class="catchips"><button class="catchip' + (S.procCat ? '' : ' on') + '" data-act="procCat" data-v="">Todas</button>' +
+    todasCats.map(c => '<button class="catchip' + (S.procCat === c ? ' on' : '') + '" style="--c:' + catColor(c) + '" data-act="procCat" data-v="' + esc(c) + '"><span class="cdot"></span>' + esc(c) + '</button>').join('') + '</div>';
   const cats = {};
   items.forEach(x => (cats[x.categoria] = cats[x.categoria] || []).push(x));
-  h += Object.keys(cats).sort((a, b) => a.localeCompare(b, 'es')).map(c => '<div class="stack"><div class="eyebrow">' + esc(c) + '</div><div class="card menu">' + cats[c].map(x => x.k === 'ficha'
-    ? '<button class="mi" data-act="abrirFicha" data-f="' + esc(x.id) + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">Ficha · v' + esc(x.f.version || '') + ' · ' + (x.f.estado === 'validado' ? 'validada' : x.f.estado === 'guia' ? 'guía de uso' : '<span style="color:var(--warn);font-weight:600">borrador pendiente de validar</span>') + ' · ' + (Fichas.textos[x.id] ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>'
-    : '<button class="mi" data-act="abrirProc" data-id="' + x.p.id + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">PDF · ' + (x.p.bytes ? kb(x.p.bytes) + ' · ' : '') + (S.pdfOffline.has(String(x.p.id)) ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>' +
+  h += Object.keys(cats).sort((a, b) => a.localeCompare(b, 'es')).map(c => '<div class="stack" style="--c:' + catColor(c) + '"><div class="eyebrow"><span class="cdot"></span>' + esc(c) + '</div><div class="card menu">' + cats[c].map(x => x.k === 'ficha'
+    ? '<button class="mi cat" data-act="abrirFicha" data-f="' + esc(x.id) + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">Ficha · v' + esc(x.f.version || '') + ' · ' + (x.f.estado === 'validado' ? 'validada' : x.f.estado === 'guia' ? 'guía de uso' : '<span style="color:var(--warn);font-weight:600">borrador pendiente de validar</span>') + ' · ' + (Fichas.textos[x.id] ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>'
+    : '<button class="mi cat" data-act="abrirProc" data-id="' + x.p.id + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">PDF · ' + (x.p.bytes ? kb(x.p.bytes) + ' · ' : '') + (S.pdfOffline.has(String(x.p.id)) ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>' +
       (u.rol === 'admin' ? '<button class="mi" data-act="borrarProc" data-id="' + x.p.id + '" style="padding:8px 4px;color:var(--err)"><div class="sub" style="color:var(--err)">Borrar «' + esc(x.titulo) + '»</div></button>' : '')
   ).join('') + '</div></div>').join('') || '<div class="empty">Ningún documento coincide con la búsqueda.</div>';
   return h;
@@ -1056,7 +1082,7 @@ function abrirFicha(id) {
   document.body.insertAdjacentHTML('beforeend', '<div class="overlay" id="visor" role="dialog" aria-modal="true"><div class="bar"><b>' + esc(f.titulo) + '</b><button data-act="fichaTodo">Abrir todo</button><button data-act="cerrarVisor">Cerrar</button></div>' +
     '<div class="body" style="align-items:stretch"><div class="ficha">' +
     (borr ? '<div class="fborr">BORRADOR · pendiente de validación por el responsable médico. No sustituye al protocolo del servicio.</div>' : '') +
-    '<div class="meta">Versión ' + esc(f.version) + ' · ' + esc(f.fecha) + ' · ' + esc(f.categoria) + '</div>' + renderFicha(t) + '</div></div></div>');
+    '<div class="meta" style="--c:' + catColor(f.categoria) + '">Versión ' + esc(f.version) + ' · ' + esc(f.fecha) + ' · <span class="cdot"></span> ' + esc(f.categoria) + '</div>' + renderFicha(t) + '</div></div></div>');
 }
 
 function vTels() {
@@ -1394,6 +1420,7 @@ document.addEventListener('click', async ev => {
     case 'guardia': S.sheet = { t: 'guardia', id }; return renderSheet();
     case 'irTablon': return go('tablon');
     case 'sub': S.sub = b.dataset.v || null; render(); return window.scrollTo(0, 0);
+    case 'procCat': { S.procCat = b.dataset.v || ''; render(); const c = document.querySelector('.catchip.on'); if (c) c.parentNode.scrollLeft = c.offsetLeft - 16; return; }
     case 'mes': { let [y, m] = S.mes.split('-').map(Number); m += +b.dataset.d; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } S.mes = y + '-' + String(m).padStart(2, '0'); return render(); }
     case 'cat': S.cat = b.dataset.v; return render();
     case 'mias': S.soloMias = b.dataset.v === '1'; return render();

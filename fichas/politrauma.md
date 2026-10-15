@@ -1,6 +1,6 @@
 ---
 titulo: Paciente politraumatizado
-categoria: Trauma y respiratorio
+categoria: Trauma
 estado: borrador
 version: 0.1
 fecha: 2026-10-15

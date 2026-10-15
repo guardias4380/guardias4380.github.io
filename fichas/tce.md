@@ -1,6 +1,6 @@
 ---
 titulo: Traumatismo craneoencefálico
-categoria: Trauma y respiratorio
+categoria: Trauma
 estado: borrador
 version: 0.2
 fecha: 2026-10-15
