@@ -2,9 +2,9 @@
 titulo: Parada cardiaca adulto y pediátrica (ERC 2025)
 categoria: Soporte vital y urgencias
 estado: borrador
-version: 0.2
+version: 0.3
 fecha: 2026-10-15
-palabras: Zoll BIG Big One intraósea cardiocompresor RCP mecánica PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025 FV TVSP fibrilación ventricular asistolia AESP desfibrilación descarga adrenalina amiodarona lidocaína 4H 4T capnografía ETCO2 RCE recuperación circulación espontánea pediátrica lactante niño intraósea IO dosis por peso
+palabras: AutoPulse X Series Zoll BIG Big One intraósea cardiocompresor RCP mecánica PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025 FV TVSP fibrilación ventricular asistolia AESP desfibrilación descarga adrenalina amiodarona lidocaína 4H 4T capnografía ETCO2 RCE recuperación circulación espontánea pediátrica lactante niño intraósea IO dosis por peso
 ---
 
 ## ! Adulto: algoritmo
@@ -44,14 +44,24 @@ palabras: Zoll BIG Big One intraósea cardiocompresor RCP mecánica PCR parada c
 
 >i Comprobar en el kit la profundidad y los colores del BIG pediátrico que llevamos.
 
-## RCP mecánica (cardiocompresor)
+## RCP mecánica: AutoPulse
 **Usarla cuando la RCP manual no se puede hacer bien o pone en riesgo al equipo:**
 - **Traslado con RCP en curso** (posible ECMO, TEP tras fibrinólisis, hipotermia).
 - **RCP prolongada** o pocos reanimadores.
 
-**Colocación:** sin parar la RCP manual salvo los segundos imprescindibles. Pausas cortas y planificadas (**<10 s**), idealmente coincidiendo con un análisis de ritmo. Comprobar la posición tras cada movilización del paciente. La desfibrilación puede hacerse **sin detener** el dispositivo, según fabricante.
+**Colocación (sin parar la RCP manual salvo lo imprescindible):**
+1. Parches del Zoll **antes** de la plataforma. Si se prevé cambio a anteroposterior, poner ya el parche posterior.
+2. Torso desnudo. En una pausa de **<10 s** (mejor coincidiendo con el análisis), deslizar la **plataforma** bajo el paciente.
+3. **Alinear las axilas con la línea de la plataforma**: la banda queda centrada en el tórax, a la altura del tercio inferior del esternón.
+4. Cerrar la banda, comprobar que está centrada y sin pliegues, y pulsar **Continuar**: ajusta la banda y empieza a comprimir.
 
->i Solo adultos y según el tamaño del tórax que admita el equipo. Pendiente de confirmar el modelo exacto.
+**Durante su uso:**
+- **Modo 30:2** sin vía aérea avanzada (hace una pausa para las 2 ventilaciones). **Modo continuo** con IOT o supraglótico: 10 ventilaciones/min.
+- Se puede **desfibrilar con el dispositivo en marcha**. Pausarlo solo para analizar el ritmo.
+- **Comprobar la posición de la banda tras cada movilización** (tiende a desplazarse hacia arriba o abajo).
+- **Batería** de unos 30 min: llevar una de repuesto cargada.
+
+>! Solo **adultos**. No usar si el tórax no encaja en la banda o en traumatismo torácico grave. Comprobar rangos de tamaño en el manual del equipo.
 
 ## Adulto: vía aérea y capnografía
 - Empezar con **bolsa-mascarilla** (o cánula + bolsa) y progresar según la habilidad del equipo.
@@ -120,7 +130,7 @@ palabras: Zoll BIG Big One intraósea cardiocompresor RCP mecánica PCR parada c
 | **40 kg** | 400 µg · 4 mL | 200 mg · 4 mL | 150 J | 200 J |
 | **≥50 kg** | 1 mg | 300 mg | 150–200 J | 200 J |
 
->i Energías redondeadas al escalón más cercano del Zoll (…30, 50, 70, 85, 100, 120, 150, 200 J). El máximo del equipo es 200 J. Lavar con suero tras cada fármaco por IO.
+>i Energías redondeadas al escalón más cercano del Zoll X Series (…30, 50, 70, 85, 100, 120, 150, 200 J). El máximo del equipo es 200 J. Lavar con suero tras cada fármaco por IO.
 
 ## Tras la RCE
 | Objetivo | Adulto | Pediátrico |
@@ -154,4 +164,4 @@ palabras: Zoll BIG Big One intraósea cardiocompresor RCP mecánica PCR parada c
 - Resuscitation Council UK. Algoritmos de SVA adulto y pediátrico 2025 (adaptados de ERC 2025).
 - Grupo Español de RCP Pediátrica y Neonatal. Recomendaciones 2026 (An Pediatr).
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: lidocaína (uso no habitual), cardiocompresor, intraósea BIG y monitor-desfibrilador Zoll. Pendiente: modelo exacto del Zoll y del cardiocompresor para confirmar escalones de energía y uso. El Grupo Español de RCP Pediátrica propone adrenalina pediátrica **cada 4 min**; la ficha mantiene el rango ERC de 3–5 min.
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: lidocaína (uso no habitual), intraósea BIG, Monitor-desfibrilador Zoll X Series y cardiocompresor Zoll AutoPulse. El Grupo Español de RCP Pediátrica propone adrenalina pediátrica **cada 4 min**; la ficha mantiene el rango ERC de 3–5 min.
