@@ -2,9 +2,9 @@
 titulo: Fibrilación auricular
 categoria: Cardiovascular
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
-palabras: FA arritmia taquicardia irregular respuesta ventricular rápida cardioversión sincronizada preexcitada WPW Wolff-Parkinson-White metoprolol beloken verapamilo manidon digoxina amiodarona trangorex flecainida apocard procainamida etomidato
+palabras: FA arritmia taquicardia irregular respuesta ventricular rápida cardioversión sincronizada preexcitada WPW Wolff-Parkinson-White metoprolol beloken verapamilo manidon digoxina amiodarona trangorex flecainida apocard etomidato
 ---
 
 ## ! Actuación inmediata
@@ -21,7 +21,7 @@ palabras: FA arritmia taquicardia irregular respuesta ventricular rápida cardio
 | Situación | Conducta |
 |---|---|
 | **Inestable** | Cardioversión sincronizada 200 J bifásicos |
-| **QRS ancho e irregular / sospecha de WPW** | **Nada que frene el nodo AV.** Inestable: cardioversión. Estable: procainamida o flecainida con apoyo médico |
+| **QRS ancho e irregular / sospecha de WPW** | **Nada que frene el nodo AV.** Inestable: cardioversión. Estable: flecainida (sin cardiopatía estructural) o cardioversión, con apoyo médico |
 | **Estable, sin insuficiencia cardiaca, PA normal** | Metoprolol o verapamilo IV |
 | **Insuficiencia cardiaca o FEVI reducida** | Metoprolol a dosis bajas si la perfusión es buena. Con hipotensión: amiodarona o digoxina |
 | **Bien tolerada** | Monitorizar, tratar la causa y trasladar. Sin cardioversión prehospitalaria rutinaria |
@@ -56,8 +56,9 @@ Buscar y tratar: hipoxemia, isquemia, sepsis o fiebre, dolor, deshidratación, a
 **Inestable:** cardioversión sincronizada inmediata.
 
 **Estable:** monitor-desfibrilador conectado y traslado urgente. Con apoyo médico:
-- **Procainamida IV:** 20–50 mg/min hasta que ceda, hasta un máximo de 17 mg/kg. Suspender si hay hipotensión o el QRS se ensancha más de un 50 %.
-- **Flecainida IV** (alternativa): 2 mg/kg (máx. 150 mg) en 10–20 min. **No usar si hay cardiopatía estructural**, cardiopatía isquémica o disfunción ventricular.
+- **Flecainida IV (Apocard):** 2 mg/kg (máx. 150 mg) en 10–20 min. **No usar si hay cardiopatía estructural**, cardiopatía isquémica o disfunción ventricular.
+- Si no se puede usar flecainida o no revierte: **cardioversión eléctrica sincronizada** con sedación.
+- No llevamos procainamida (la alternativa farmacológica de las guías).
 - Vigilar PA, anchura del QRS y QT, con el desfibrilador listo.
 
 El tratamiento definitivo es la ablación de la vía accesoria.
@@ -80,7 +81,7 @@ El tratamiento definitivo es la ablación de la vía accesoria.
 >i Bisoprolol oral no es un fármaco de urgencia: es el tratamiento crónico de control de frecuencia. Anotarlo si el paciente lo toma.
 
 ## Cardioversión no urgente y anticoagulación
-- Si la FA dura **más de 24–48 horas o se desconoce** su inicio: **no cardiovertir de forma electiva** fuera del hospital, ni eléctricamente ni con fármacos que puedan revertirla (amiodarona, flecainida, procainamida), sin anticoagulación adecuada.
+- Si la FA dura **más de 24–48 horas o se desconoce** su inicio: **no cardiovertir de forma electiva** fuera del hospital, ni eléctricamente ni con fármacos que puedan revertirla (amiodarona, flecainida), sin anticoagulación adecuada.
 - La cardioversión urgente por inestabilidad **no se retrasa** por la anticoagulación.
 - La anticoagulación se inicia en el hospital según el riesgo embólico.
 
@@ -100,7 +101,7 @@ Toda FA sintomática de debut debe llegar a un área con monitorización continu
 - ESC. Guía de taquicardias supraventriculares, 2019 (FA preexcitada).
 - European Resuscitation Council. Guías 2021 y 2025: taquicardia con pulso.
 - Canadian Cardiovascular Society. Guía de fibrilación auricular, 2020.
-- Fichas técnicas de metoprolol, verapamilo, digoxina, amiodarona, flecainida, procainamida, etomidato y midazolam.
+- Fichas técnicas de metoprolol, verapamilo, digoxina, amiodarona, flecainida, etomidato y midazolam.
 - Referencias del documento de origen pendientes de verificar.
 
->i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Diltiazem e ibutilida, citados en el documento de origen, se han sustituido por los fármacos de la ambulancia.
+>i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Diltiazem e ibutilida, citados en el documento de origen, se han sustituido por los fármacos de la ambulancia. Sin procainamida en la dotación.

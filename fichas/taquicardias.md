@@ -2,9 +2,9 @@
 titulo: Taquicardias con pulso (TSV, TV y torsades)
 categoria: Cardiovascular
 estado: borrador
-version: 0.2
+version: 0.3
 fecha: 2026-10-15
-palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taquicardia supraventricular paroxística TPSV intranodal reentrada flutter adenosina adenocor maniobras vagales Valsalva modificada TV taquicardia ventricular QRS ancho monomórfica polimórfica torsades de pointes QT largo sulfato de magnesio amiodarona trangorex procainamida verapamilo manidon metoprolol cardioversión sincronizada Zoll marcapasos sobreestimulación
+palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taquicardia supraventricular paroxística TPSV intranodal reentrada flutter adenosina adenocor maniobras vagales Valsalva modificada TV taquicardia ventricular QRS ancho monomórfica polimórfica torsades de pointes QT largo sulfato de magnesio amiodarona trangorex verapamilo manidon metoprolol cardioversión sincronizada Zoll marcapasos sobreestimulación
 ---
 
 ## ! Abordaje
@@ -68,7 +68,7 @@ palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taq
 **TV estable:**
 - **Consultar** antes de tratar: con cardiopatía estructural o duda, la guía prefiere **cardioversión eléctrica con sedación**.
 - **Amiodarona:** **300 mg IV en 10–20 min** en suero glucosado 5 %. Es el fármaco disponible en la ambulancia.
-- La guía prefiere **procainamida** si no hay IC (10–15 mg/kg en 20 min, máx. 1 g), pero está **pendiente de confirmar** que la llevemos.
+- **No llevamos procainamida** (la que prefiere la guía si no hay IC). Si la amiodarona no revierte: **cardioversión sincronizada** con sedación.
 - **Flecainida (Apocard): NO en TV.** Está contraindicada con cardiopatía estructural o isquémica y puede empeorar la arritmia.
 - **Adenosina** solo si es regular, monomórfica y se sospecha TSV con aberrancia, con consulta y desfibrilador listo.
 
@@ -102,7 +102,7 @@ palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taq
 
 ## Cuándo consultar con el coordinador del 112
 - **Toda taquicardia inestable** y toda **TV**, aunque esté estable.
-- Antes de **procainamida, amiodarona o cardioversión** en un paciente estable.
+- Antes de **amiodarona o cardioversión** en un paciente estable.
 - **Torsades** o QT largo.
 - **TSV que no cede** con 3 dosis de adenosina.
 - **FA preexcitada** (ver ficha FA).
@@ -119,7 +119,7 @@ palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taq
 - Resuscitation Council UK. Adult Advanced Life Support Guidelines 2025.
 - ESC. Guía de taquicardias supraventriculares, 2019.
 - ESC. Guía de arritmias ventriculares y prevención de muerte súbita, 2022.
-- Ensayo REVERT (Valsalva modificada). Ensayo PROCAMIO (procainamida frente a amiodarona en TV estable).
-- Fichas técnicas de adenosina, verapamilo, metoprolol, procainamida, amiodarona y sulfato de magnesio.
+- Ensayo REVERT (Valsalva modificada).
+- Fichas técnicas de adenosina, verapamilo, metoprolol, amiodarona y sulfato de magnesio.
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: adenosina 6 mg/2 mL, flecainida (Apocard), isoprenalina (Aleudrina), amiodarona, verapamilo, metoprolol y sulfato de magnesio. Pendiente: confirmar si hay procainamida.
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: adenosina 6 mg/2 mL, flecainida (Apocard), isoprenalina (Aleudrina), amiodarona, verapamilo, metoprolol y sulfato de magnesio. Sin procainamida.
