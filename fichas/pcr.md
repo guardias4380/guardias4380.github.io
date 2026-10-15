@@ -2,7 +2,7 @@
 titulo: Parada cardiaca adulto y pediátrica (ERC 2025)
 categoria: Soporte vital y urgencias
 estado: borrador
-version: 0.3
+version: 0.4
 fecha: 2026-10-15
 palabras: AutoPulse X Series Zoll BIG Big One intraósea cardiocompresor RCP mecánica PCR parada cardiorrespiratoria RCP SVA soporte vital avanzado ERC 2025 FV TVSP fibrilación ventricular asistolia AESP desfibrilación descarga adrenalina amiodarona lidocaína 4H 4T capnografía ETCO2 RCE recuperación circulación espontánea pediátrica lactante niño intraósea IO dosis por peso
 ---
@@ -21,6 +21,13 @@ palabras: AutoPulse X Series Zoll BIG Big One intraósea cardiocompresor RCP mec
 |---|---|
 | **Desfibrilable (FV / TVSP)** | Descarga → 2 min RCP → analizar. **Adrenalina 1 mg y amiodarona 300 mg tras la 3.ª descarga** |
 | **No desfibrilable (asistolia / AESP)** | **Adrenalina 1 mg lo antes posible**. 2 min RCP → analizar |
+
+## SVA de enfermería: quién decide
+| Por protocolo de enfermería | Con indicación del médico coordinador |
+|---|---|
+| RCP, desfibrilación y cardioversión del paciente en parada, adrenalina, amiodarona, vía IV/IO (BIG), supraglótico, AutoPulse, O₂ y capnografía, glucosa, naloxona, descompresión con aguja del neumotórax | IOT (salvo que esté en vuestro protocolo y acreditación), lidocaína, bicarbonato, calcio, fibrinólisis, **no iniciar o finalizar la RCP**, candidato a ECMO, destino tras la RCE |
+
+>i Recurso sin médico a bordo: lo que no esté en el protocolo del servicio se hace **con indicación del médico coordinador** y se registra quién la da y a qué hora. Ajustar esta tabla al protocolo vigente del SUC.
 
 ## Adulto: fármacos y descargas
 | Qué | Dosis | Cuándo |
@@ -81,7 +88,7 @@ palabras: AutoPulse X Series Zoll BIG Big One intraósea cardiocompresor RCP mec
 | **Trombosis coronaria** | RCE: ECG y Código Infarto (ver ficha SCA) |
 | **TEP** | Consultar **fibrinólisis (tenecteplasa)** y mantener RCP **60–90 min** tras ella (ver ficha TEP) |
 | **Neumotórax a tensión** | Descompresión con aguja (ver ficha neumotórax) |
-| **Taponamiento** | Ecografía si se domina. Traslado y consulta |
+| **Taponamiento** | Traslado urgente y consulta |
 | **Tóxicos** | Antídoto y RCP prolongada |
 
 - **Traumática:** priorizar las causas (hemorragia, oxigenación, neumotórax, taponamiento) sobre las compresiones y la adrenalina.
@@ -145,7 +152,7 @@ palabras: AutoPulse X Series Zoll BIG Big One intraósea cardiocompresor RCP mec
 - Sedación si precisa para la vía aérea; vigilar la PA.
 - Reevaluar ABCDE y causa desencadenante.
 
-## Cuándo consultar con el coordinador del 112
+## Cuándo consultar con el coordinador sanitario del 112
 **Siempre:** activación de apoyo y destino. **Consulta inmediata si:**
 - **FV refractaria** presenciada en paciente joven o sin comorbilidad grave: posible candidato a **ECMO (ECPR)** o RCP mecánica, si el circuito lo permite.
 - Sospecha de **TEP** (fibrinólisis).

@@ -2,7 +2,7 @@
 titulo: Intoxicaciones agudas
 categoria: Toxicología
 estado: borrador
-version: 0.3
+version: 0.4
 fecha: 2026-10-15
 palabras: intoxicación tóxico sobredosis antídoto síndrome tóxico toxíndrome opioides heroína metadona fentanilo naloxona benzodiacepinas flumazenilo anexate alcohol etílico tiamina benerva paracetamol N-acetilcisteína hidonac carbón activado tricíclicos amitriptilina bicarbonato betabloqueantes antagonistas del calcio glucagón gluconato cálcico monóxido de carbono CO humo incendio cianuro organofosforados insecticidas atropina cocaína anfetaminas éxtasis MDMA agitación hipertermia distonía biperideno akineton serotoninérgico anticolinérgico información toxicológica
 ---
@@ -15,10 +15,17 @@ palabras: intoxicación tóxico sobredosis antídoto síndrome tóxico toxíndro
 3. **Qué, cuánto, cuándo y por qué vía.** Recoger **envases, blísteres y recetas**. Testigos.
 4. Identificar el **síndrome tóxico** (tabla) y dar el **antídoto** si está indicado.
 5. **Intencionalidad:** si es autolítica, **no dejarlo solo** y trasladar siempre.
-6. Consultar al **coordinador del 112** y, si hace falta, al **Servicio de Información Toxicológica: 91 562 04 20** (24 h).
+6. Consultar al **coordinador sanitario del 112** y, si hace falta, al **Servicio de Información Toxicológica: 91 562 04 20** (24 h).
 7. Trasladar con monitorización. **Llevar los envases.**
 
 >! **No provocar el vómito.** Nunca en cáusticos, hidrocarburos ni con bajo nivel de conciencia.
+
+## SVA de enfermería: quién decide
+| Por protocolo de enfermería | Con indicación del médico coordinador |
+|---|---|
+| Soporte ABCDE, O₂, glucosa, **naloxona**, tiamina, posición, contacto con el Servicio de Información Toxicológica | Flumazenilo, carbón activado, N-acetilcisteína, glucagón (fuera de hipoglucemia), gluconato cálcico, bicarbonato, atropina en organofosforados, biperideno, sedación, **no traslado** |
+
+>i Recurso sin médico a bordo: lo que no esté en el protocolo del servicio se hace **con indicación del médico coordinador** y se registra quién la da y a qué hora. Ajustar esta tabla al protocolo vigente del SUC.
 
 ## Síndromes tóxicos
 | Síndrome | Signos | Típico de | Qué hacer |
@@ -134,7 +141,7 @@ Bradicardia, bloqueo AV, hipotensión, shock. Los antagonistas del calcio, adem�
 - Glucemia siempre.
 - Dosis por peso en la tabla de antídotos.
 
-## Cuándo consultar con el coordinador del 112
+## Cuándo consultar con el coordinador sanitario del 112
 - **Toda intoxicación grave** o con alteración de conciencia, ECG o constantes.
 - **Antes de** flumazenilo, N-acetilcisteína o carbón activado.
 - **Paciente que rechaza el traslado** tras la naloxona o con intento autolítico.

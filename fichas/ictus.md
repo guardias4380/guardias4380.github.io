@@ -2,7 +2,7 @@
 titulo: Código Ictus y escala RACE
 categoria: Neurología
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: ictus ACV accidente cerebrovascular código ictus RACE oclusión gran vaso trombectomía fibrinólisis hemiparesia afasia disartria desviación mirada Cincinnati FAST hora de inicio última vez visto bien coordinador 112
 ---
@@ -13,7 +13,7 @@ palabras: ictus ACV accidente cerebrovascular código ictus RACE oclusión gran 
 1. ABCDE. **Glucemia capilar** (la hipoglucemia imita un ictus).
 2. **Hora de inicio** o **última vez visto bien**. Si se despertó con el déficit: la hora en que se acostó bien.
 3. **Escala RACE** (abajo).
-4. Llamar al **coordinador del 112**: «POSIBLE Código Ictus», con hora de inicio, RACE y situación previa.
+4. Llamar al **coordinador sanitario del 112**: «POSIBLE Código Ictus», con hora de inicio, RACE y situación previa.
 5. **Testigo con teléfono** que pueda acompañar o ser localizado (hora de inicio y consentimiento).
 6. Cabecera a 30° (0° si no hay riesgo de aspiración y lo indica el protocolo). **Nada por boca.**
 7. Vía venosa en el **brazo no parético**. Suero fisiológico. **Sin sueros glucosados.**
@@ -25,6 +25,13 @@ palabras: ictus ACV accidente cerebrovascular código ictus RACE oclusión gran 
 | **SpO₂** | ≥94 %. Oxígeno solo si es menor |
 | **PA** | **No bajarla** salvo PAS >220 o PAD >120 (consultar). Tratar si PAS <120 |
 | **Temperatura** | Tratar si >37,5 °C (paracetamol) |
+
+## SVA de enfermería: quién decide
+| Por protocolo de enfermería | Con indicación del médico coordinador |
+|---|---|
+| Valoración, glucemia y corrección de hipoglucemia, RACE, O₂ si SpO₂ <94 %, vía venosa, suero fisiológico, activación del Código Ictus | Tratar la **PA alta**, antitérmico si no está en vuestro protocolo, destino (unidad de ictus o trombectomía) |
+
+>i Recurso sin médico a bordo: lo que no esté en el protocolo del servicio se hace **con indicación del médico coordinador** y se registra quién la da y a qué hora. Ajustar esta tabla al protocolo vigente del SUC.
 
 ## Escala RACE
 **Puntuación 0–9.** **RACE ≥5:** probable **oclusión de gran vaso** → valorar **centro de trombectomía**.
@@ -58,7 +65,7 @@ palabras: ictus ACV accidente cerebrovascular código ictus RACE oclusión gran 
 - **Anticoagulantes** y última toma.
 - Teléfono del testigo o familiar.
 
-## Cuándo consultar con el coordinador del 112
+## Cuándo consultar con el coordinador sanitario del 112
 **Siempre** para activar el código. **Además, consulta inmediata si:**
 - **RACE ≥5** (posible destino directo a trombectomía).
 - **PAS >220 o PAD >120**, o PAS >185 si puede ser candidato a fibrinólisis.

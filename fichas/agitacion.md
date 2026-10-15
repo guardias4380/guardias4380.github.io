@@ -2,7 +2,7 @@
 titulo: Agitación psicomotriz y conducta agresiva
 categoria: Salud mental
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: agitación psicomotriz agresividad violencia conducta alterada paciente agresivo desescalada verbal contención mecánica sujeción correas sedación midazolam haloperidol levomepromazina sinogan diazepam biperideno akineton delirium psicosis brote psicótico síndrome de abstinencia alcohol delirium tremens ingreso involuntario 763 LEC fuerzas de seguridad policía guardia civil
 ---
@@ -15,13 +15,20 @@ palabras: agitación psicomotriz agresividad violencia conducta alterada pacient
 3. **Desescalada verbal** (casi siempre se intenta primero).
 4. **Buscar causa orgánica:** glucemia, SpO₂, temperatura, signos de TCE o intoxicación, en cuanto sea seguro.
 5. Si no basta: **medicación oral voluntaria → IM → contención mecánica + sedación**. Escalar solo lo necesario.
-6. Consultar al **coordinador del 112**: tratamiento, apoyo policial y **traslado involuntario**.
+6. Consultar al **médico coordinador del 112**: sedación, apoyo policial y **traslado involuntario**.
 
 | Nivel | Paciente | Qué hacer |
 |---|---|---|
 | **1. Inquieto, colabora** | Habla, se calma al escucharle | Desescalada verbal. Ofrecer medicación oral |
 | **2. Agitado, no colabora** | Grita, amenaza, no se sienta | Desescalada + **medicación IM**. Pedir apoyo |
 | **3. Violento** | Agrede o riesgo inminente | **Fuerzas de Seguridad**, **contención mecánica** y **sedación IM** |
+
+## SVA de enfermería: quién decide
+| Por protocolo de enfermería | Con indicación del médico coordinador |
+|---|---|
+| Seguridad, desescalada verbal, glucemia y constantes, solicitar Fuerzas de Seguridad, **contención inmediata ante riesgo inminente** (y comunicar en cuanto se pueda) | **Toda la sedación** (midazolam, haloperidol, levomepromazina, diazepam), contención programada, biperideno, **traslado involuntario** |
+
+>i Recurso sin médico a bordo: lo que no esté en el protocolo del servicio se hace **con indicación del médico coordinador** y se registra quién la da y a qué hora. Ajustar esta tabla al protocolo vigente del SUC.
 
 ## Desescalada verbal
 - **Presentarse**, llamarle por su nombre y explicar quiénes somos.
@@ -94,7 +101,7 @@ palabras: agitación psicomotriz agresividad violencia conducta alterada pacient
 - **Menores:** consentimiento de los padres o tutores; si hay riesgo grave, se actúa igual y se comunica.
 - **Paciente capaz que rechaza:** si no hay riesgo grave ni trastorno que anule su capacidad, puede negarse. Registrar y consultar.
 
-## Cuándo consultar con el coordinador del 112
+## Cuándo consultar con el coordinador sanitario del 112
 - **Siempre** antes de sedar o contener (salvo riesgo inminente) y para el **traslado involuntario**.
 - Apoyo de **Fuerzas de Seguridad**.
 - **Sospecha de causa orgánica** grave o agitación con **hipertermia**.

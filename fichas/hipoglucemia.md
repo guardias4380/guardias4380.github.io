@@ -2,7 +2,7 @@
 titulo: Hipoglucemia
 categoria: Endocrino y metabólico
 estado: borrador
-version: 0.2
+version: 0.3
 fecha: 2026-10-15
 palabras: humalog novorapid lantus toujeo tresiba levemir actrapid insulatard novomix daonil diamicron amaryl novonorm repaglinida glinidas metformina gliflozinas hipoglucemia glucemia baja diabetes insulina sulfonilureas glibenclamida gliclazida glimepirida glucosa glucosmon glucosado 10 % 33 % 50 % glucagón glucagen tiamina alcohol bomba de insulina alta in situ no traslado
 ---
@@ -26,6 +26,13 @@ palabras: humalog novorapid lantus toujeo tresiba levemir actrapid insulatard no
 | **Alcohol o desnutrición** | **Tiamina 100 mg IV o IM**, sin retrasar la glucosa | — |
 
 >i Se prefiere **glucosa al 10 %**: corrige igual, con menos hiperglucemia de rebote y menos daño si se extravasa. Al 33 % y 50 % son **irritantes**: vía de buen calibre, comprobar que refluye y lavar con suero. **En niños, nunca al 33 % ni al 50 %.**
+
+## SVA de enfermería: quién decide
+| Por protocolo de enfermería | Con indicación del médico coordinador |
+|---|---|
+| Glucosa oral, glucosa IV (10, 33 o 50 %), glucagón IM, tiamina, repetir dosis según glucemia | Perfusión de glucosa, **alta en el lugar (no traslado)**, rechazo del traslado |
+
+>i Recurso sin médico a bordo: lo que no esté en el protocolo del servicio se hace **con indicación del médico coordinador** y se registra quién la da y a qué hora. Ajustar esta tabla al protocolo vigente del SUC.
 
 ## Glucagón: cuándo no funciona
 - Tarda **10–15 min** en hacer efecto y su acción dura poco: dar hidratos al despertar.
@@ -73,7 +80,7 @@ palabras: humalog novorapid lantus toujeo tresiba levemir actrapid insulatard no
 - Hipoglucemia **recurrente o persistente**: perfusión de **glucosa al 10 %** (100 mL/h orientativo) y traslado.
 
 ## Alta en el lugar (no traslado)
-**Solo con todos estos criterios y tras consultar** al coordinador, según el protocolo del servicio:
+**Solo con todos estos criterios y con indicación del médico coordinador**, según el protocolo del servicio:
 - Diabético conocido tratado **solo con insulina rápida o mixta habitual** (no sulfonilureas, no sobredosis).
 - **Causa clara** (comida saltada, ejercicio) y episodio **aislado**.
 - **Recuperación completa** y glucemia **>100 mg/dL** tras comer.
@@ -84,7 +91,7 @@ palabras: humalog novorapid lantus toujeo tresiba levemir actrapid insulatard no
 
 >! **Trasladar siempre:** sulfonilureas, insulina lenta a dosis alta, intento autolítico, no diabético, no recupera del todo, recurrencia, vive solo, alcohol, otra patología o duda.
 
-## Cuándo consultar con el coordinador del 112
+## Cuándo consultar con el coordinador sanitario del 112
 - **Alta en el lugar** (siempre).
 - **Rechazo del traslado** (registrar capacidad y consentimiento informado de rechazo).
 - Hipoglucemia **por sulfonilureas o sobredosis**.

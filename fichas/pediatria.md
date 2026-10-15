@@ -2,7 +2,7 @@
 titulo: Pediatría: urgencias frecuentes
 categoria: Pediatría
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: pediatría niño lactante triángulo de evaluación pediátrica TEP constantes por edad bronquiolitis VRS lavados nasales aspiración convulsión febril crisis febril buccolam diazepam rectal deshidratación gastroenteritis vómitos diarrea ondansetrón suero oral fiebre sepsis petequias púrpura meningitis paracetamol ibuprofeno
 ---
@@ -28,6 +28,13 @@ palabras: pediatría niño lactante triángulo de evaluación pediátrica TEP co
 
 >! Apariencia alterada = **niño grave**. Glucemia, O₂ y consulta precoz.
 
+## SVA de enfermería: quién decide
+| Por protocolo de enfermería | Con indicación del médico coordinador |
+|---|---|
+| Triángulo de evaluación, O₂, lavados y aspiración, **convulsión >5 min** (Buccolam, midazolam IN/IM, diazepam rectal), antitérmicos, glucosa, vía IV/IO, **1.er bolo de 10 mL/kg** en shock | Bolos sucesivos, ondansetrón, prueba de salbutamol en bronquiolitis, **no traslado** o niño que se queda en domicilio |
+
+>i Recurso sin médico a bordo: lo que no esté en el protocolo del servicio se hace **con indicación del médico coordinador** y se registra quién la da y a qué hora. Ajustar esta tabla al protocolo vigente del SUC.
+
 ## Constantes normales por edad
 | Edad | FR | FC | PAS mínima |
 |---|---|---|---|
@@ -46,7 +53,7 @@ palabras: pediatría niño lactante triángulo de evaluación pediátrica TEP co
 
 | Gravedad | Signos | Qué hacer |
 |---|---|---|
-| **Leve** | Come bien, tiraje leve, SpO₂ ≥94 % | Lavados y aspiración. Puede quedarse en casa con normas y control pediátrico |
+| **Leve** | Come bien, tiraje leve, SpO₂ ≥94 % | Lavados y aspiración. Quedarse en domicilio **solo con indicación del médico coordinador** |
 | **Moderada** | Tiraje moderado, FR 50–70, come <50–75 %, SpO₂ 90–93 % | O₂, lavados, traslado |
 | **Grave** | **Apneas**, quejido, cianosis, tiraje intenso, FR >70, agotamiento, SpO₂ <90 % | O₂, **consulta inmediata**, traslado urgente. Bolsa-mascarilla si apnea |
 
@@ -81,7 +88,7 @@ palabras: pediatría niño lactante triángulo de evaluación pediátrica TEP co
 
 >! **Signos de alarma (meningitis o encefalitis):** petequias o púrpura, rigidez de nuca, **fontanela abombada**, irritabilidad o letargia que no mejora, **no recupera en 1 h**, crisis focal, <12 meses, antibiótico previo (puede enmascarar). **Traslado urgente y consulta.**
 
-**Trasladar:** primer episodio, compleja, <18 meses, signos de alarma, foco no aclarado o padres que no pueden vigilar. Si es una simple repetida, con recuperación completa y foco claro: **consultar** la posibilidad de quedarse con control pediátrico.
+**Trasladar:** primer episodio, compleja, <18 meses, signos de alarma, foco no aclarado o padres que no pueden vigilar. Si es una simple repetida, con recuperación completa y foco claro: quedarse en domicilio **solo con indicación del médico coordinador**.
 
 ## Deshidratación y gastroenteritis
 | Grado | Signos |
@@ -120,7 +127,7 @@ palabras: pediatría niño lactante triángulo de evaluación pediátrica TEP co
 - **Parada pediátrica y dosis por peso:** ver ficha de parada.
 - **Intoxicaciones** (una pastilla puede ser grave): ver ficha de intoxicaciones.
 
-## Cuándo consultar con el coordinador del 112
+## Cuándo consultar con el coordinador sanitario del 112
 - **Apariencia alterada** o triángulo con 2 o más lados alterados.
 - Bronquiolitis **grave**, con **apneas** o en <6 semanas.
 - Convulsión **que no cede** con la 1.ª dosis, **compleja** o con signos de alarma.

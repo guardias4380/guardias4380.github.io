@@ -2,7 +2,7 @@
 titulo: Taquicardias con pulso (TSV, TV y torsades)
 categoria: Cardiovascular
 estado: borrador
-version: 0.3
+version: 0.4
 fecha: 2026-10-15
 palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taquicardia supraventricular paroxística TPSV intranodal reentrada flutter adenosina adenocor maniobras vagales Valsalva modificada TV taquicardia ventricular QRS ancho monomórfica polimórfica torsades de pointes QT largo sulfato de magnesio amiodarona trangorex verapamilo manidon metoprolol cardioversión sincronizada Zoll marcapasos sobreestimulación
 ---
@@ -21,6 +21,13 @@ palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taq
 | **Estrecho** | Irregular | **FA** (o flutter con conducción variable) | Ficha FA |
 | **Ancho** | Regular | **TV** hasta que se demuestre lo contrario | TV |
 | **Ancho** | Irregular | FA con bloqueo de rama, **FA preexcitada** o **TV polimórfica / torsades** | Ficha FA · Torsades |
+
+## SVA de enfermería: quién decide
+| Por protocolo de enfermería | Con indicación del médico coordinador |
+|---|---|
+| Monitorización, ECG, maniobras vagales, **cardioversión o desfibrilación del paciente inestable**, sulfato de magnesio en torsades sin pulso | Adenosina (salvo protocolo propio), verapamilo, metoprolol, amiodarona en paciente estable, sedación para la cardioversión, isoprenalina, marcapasos fuera de la bradicardia inestable, flecainida |
+
+>i Recurso sin médico a bordo: lo que no esté en el protocolo del servicio se hace **con indicación del médico coordinador** y se registra quién la da y a qué hora. Ajustar esta tabla al protocolo vigente del SUC.
 
 ## Paciente inestable: cardioversión (Zoll X Series)
 1. Activar **SYNC** y comprobar que marca **cada QRS**. Revisarlo antes de cada descarga.
@@ -100,7 +107,7 @@ palabras: aleudrina apocard flecainida isoprenalina taquicardia arritmia TSV taq
 - **Inestable:** cardioversión sincronizada **1 J/kg**, luego **2 J/kg**. Parches pediátricos y modo manual.
 - Consultar siempre.
 
-## Cuándo consultar con el coordinador del 112
+## Cuándo consultar con el coordinador sanitario del 112
 - **Toda taquicardia inestable** y toda **TV**, aunque esté estable.
 - Antes de **amiodarona o cardioversión** en un paciente estable.
 - **Torsades** o QT largo.
