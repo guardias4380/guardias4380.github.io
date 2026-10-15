@@ -214,7 +214,7 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.4'
+  VERSION: '0.3.5'
 };
 </script>
 
@@ -973,7 +973,7 @@ function vProcs() {
   const cats = {};
   items.forEach(x => (cats[x.categoria] = cats[x.categoria] || []).push(x));
   h += Object.keys(cats).sort((a, b) => a.localeCompare(b, 'es')).map(c => '<div class="stack"><div class="eyebrow">' + esc(c) + '</div><div class="card menu">' + cats[c].map(x => x.k === 'ficha'
-    ? '<button class="mi" data-act="abrirFicha" data-f="' + esc(x.id) + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">Ficha · v' + esc(x.f.version || '') + ' · ' + (x.f.estado === 'validado' ? 'validada' : '<span style="color:var(--warn);font-weight:600">borrador pendiente de validar</span>') + ' · ' + (Fichas.textos[x.id] ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>'
+    ? '<button class="mi" data-act="abrirFicha" data-f="' + esc(x.id) + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">Ficha · v' + esc(x.f.version || '') + ' · ' + (x.f.estado === 'validado' ? 'validada' : x.f.estado === 'guia' ? 'guía de uso' : '<span style="color:var(--warn);font-weight:600">borrador pendiente de validar</span>') + ' · ' + (Fichas.textos[x.id] ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>'
     : '<button class="mi" data-act="abrirProc" data-id="' + x.p.id + '"><div style="min-width:0"><b>' + esc(x.titulo) + '</b><div class="sub">PDF · ' + (x.p.bytes ? kb(x.p.bytes) + ' · ' : '') + (S.pdfOffline.has(String(x.p.id)) ? 'sin conexión ✓' : 'requiere conexión') + '</div></div><span class="arr">›</span></button>' +
       (u.rol === 'admin' ? '<button class="mi" data-act="borrarProc" data-id="' + x.p.id + '" style="padding:8px 4px;color:var(--err)"><div class="sub" style="color:var(--err)">Borrar «' + esc(x.titulo) + '»</div></button>' : '')
   ).join('') + '</div></div>').join('') || '<div class="empty">Ningún documento coincide con la búsqueda.</div>';
@@ -1052,7 +1052,7 @@ function abrirFicha(id) {
   cerrarVisor();
   const f = Fichas.lista.find(x => x.id === id), t = Fichas.textos[id];
   if (!f || !t) return toast('La ficha no está disponible sin conexión todavía.');
-  const borr = f.estado !== 'validado';
+  const borr = f.estado !== 'validado' && f.estado !== 'guia';
   document.body.insertAdjacentHTML('beforeend', '<div class="overlay" id="visor" role="dialog" aria-modal="true"><div class="bar"><b>' + esc(f.titulo) + '</b><button data-act="fichaTodo">Abrir todo</button><button data-act="cerrarVisor">Cerrar</button></div>' +
     '<div class="body" style="align-items:stretch"><div class="ficha">' +
     (borr ? '<div class="fborr">BORRADOR · pendiente de validación por el responsable médico. No sustituye al protocolo del servicio.</div>' : '') +
