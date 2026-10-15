@@ -2,7 +2,7 @@
 titulo: Reagudización de EPOC
 categoria: Respiratorio
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: EPOC bronquitis enfisema disnea hipercapnia retenedor oxígeno titulado venturi salbutamol ipratropio prednisona hidrocortisona metilprednisolona budesonida BiPAP VMNI
 ---
@@ -12,7 +12,7 @@ palabras: EPOC bronquitis enfisema disnea hipercapnia retenedor oxígeno titulad
 
 1. Sentado. ABCDE y monitorización: SpO₂, FR, FC, PA, ECG, conciencia, temperatura. Capnografía si se dispone.
 2. **Oxígeno** con gafas nasales o Venturi 24–28 % hasta **SpO₂ 88–92 %**.
-3. **Salbutamol 5 mg + ipratropio 0,5 mg nebulizados**, mejor con **aire** (ver nota sobre el oxígeno).
+3. **Salbutamol 5 mg + ipratropio 0,5 mg nebulizados** con oxígeno, **limitando la nebulización a unos 6 minutos** y volviendo después al oxígeno titulado.
 4. **Corticoide precoz:** prednisona 40 mg VO; si no puede tragar, corticoide IV.
 5. Vía venosa y glucemia.
 6. **VMNI (BiPAP)** si persiste el fracaso ventilatorio o hay sospecha de hipercapnia con acidosis.
@@ -24,8 +24,8 @@ palabras: EPOC bronquitis enfisema disnea hipercapnia retenedor oxígeno titulad
 | **Salbutamol** | 5 mg, repetir según respuesta | Nebulizado |
 | **Ipratropio** | 0,5 mg junto con el salbutamol | Nebulizado |
 | **Prednisona** | 40 mg | Oral, si puede tragar |
-| **Hidrocortisona** | 200 mg, dosis única inicial | IV, si no puede tragar |
-| **Metilprednisolona** | 40 mg | IV, alternativa a la hidrocortisona |
+| **Metilprednisolona** | 40 mg, dosis única inicial | IV, si no puede tragar |
+| **Hidrocortisona** | 200 mg, dosis única inicial | IV, alternativa a la metilprednisolona |
 
 ## Valoración
 **Preguntar:**
@@ -51,16 +51,16 @@ palabras: EPOC bronquitis enfisema disnea hipercapnia retenedor oxígeno titulad
 - SpO₂ <88 % o hipoxemia amenazante: concentración alta al principio y bajar en cuanto se alcance el objetivo. Revaluar de forma continua.
 - No mantener de forma sistemática una mascarilla a 8–10 L/min.
 
->! **Nebulizar con oxígeno** puede aumentar la retención de CO₂. Si la ambulancia no tiene aire comprimido para nebulizar, limitar cada nebulización con oxígeno a unos **6 minutos** y volver después al oxígeno titulado, o usar inhalador presurizado con cámara.
+>! La nebulización se hace con **oxígeno**, que puede aumentar la retención de CO₂. Limitar cada nebulización a unos **6 minutos**, vigilar la conciencia y la capnografía, y **volver al oxígeno titulado** (gafas o Venturi) al terminar. En paciente colaborador, el inhalador presurizado con cámara evita este problema.
 
 ## Broncodilatadores y corticoide
 **Broncodilatadores:**
-- **Salbutamol 5 mg + ipratropio 0,5 mg** nebulizados. Repetir el salbutamol según respuesta y protocolo.
+- **Salbutamol 5 mg + ipratropio 0,5 mg** nebulizados con oxígeno, unos 6 minutos. Repetir el salbutamol según respuesta y protocolo, con la misma limitación de tiempo.
 - Vigilar taquicardia, temblor, dolor torácico, arritmias e hipopotasemia.
 
 **Corticoide sistémico precoz:**
 - **Prednisona 40 mg VO** si puede tragar. La vía oral es tan eficaz como la IV. La pauta completa es de 5 días.
-- Si no puede tragar: **hidrocortisona 200 mg IV** como dosis inicial, o **metilprednisolona 40 mg IV**, según protocolo.
+- Si no puede tragar: **metilprednisolona 40 mg IV** o **hidrocortisona 200 mg IV**, en dosis única inicial. Las dos están en la ambulancia y son equivalentes para esta indicación.
 - No repetir megadosis: la hidrocortisona 200 mg cada 6 horas no mejora los resultados y aumenta los efectos adversos.
 - Vigilar glucemia, PA y estado mental.
 
@@ -114,4 +114,4 @@ palabras: EPOC bronquitis enfisema disnea hipercapnia retenedor oxígeno titulad
 - GesEPOC, Guía Española de la EPOC.
 - Referencias del documento de origen pendientes de verificar.
 
->i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Comprobar los corticoides IV disponibles en la ambulancia y si hay aire comprimido para nebulizar.
+>i Borrador elaborado a partir de un documento de trabajo. Pendiente de validación por el responsable médico del servicio. Nebulización con oxígeno; la ambulancia dispone de metilprednisolona e hidrocortisona.

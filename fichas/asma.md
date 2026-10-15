@@ -2,7 +2,7 @@
 titulo: Crisis asmática
 categoria: Respiratorio
 estado: borrador
-version: 0.2
+version: 0.3
 fecha: 2026-10-15
 palabras: asma broncoespasmo sibilancias tórax silencioso salbutamol ventolin ipratropio atrovent corticoide prednisona metilprednisolona dexametasona magnesio sulfato pediatría
 ---
@@ -23,7 +23,7 @@ palabras: asma broncoespasmo sibilancias tórax silencioso salbutamol ventolin i
 |---|---|---|
 | **Salbutamol neb.** | 2,5–5 mg cada 20 min ×3 | 0,15 mg/kg (2,5 mg si <20 kg; 5 mg si ≥20 kg) cada 20 min ×3 |
 | **Ipratropio neb.** | 0,5 mg cada 20 min ×3 | 0,25 mg si <20 kg; 0,5 mg si ≥20 kg, cada 20 min ×3 |
-| **Corticoide** | Prednisona 40–60 mg VO, o metilprednisolona IV según protocolo | Prednisolona 1–2 mg/kg (máx. 40 mg) o dexametasona 0,3–0,6 mg/kg (máx. 16 mg) |
+| **Corticoide** | Prednisona 40–60 mg VO · IV: metilprednisolona 40–60 mg o hidrocortisona 100–200 mg | VO: prednisolona 1–2 mg/kg (máx. 40 mg) o dexametasona 0,3–0,6 mg/kg (máx. 16 mg) · IV: metilprednisolona 1–2 mg/kg (máx. 60 mg) |
 | **Sulfato de magnesio IV** | 2 g en 20 min | 40 mg/kg (máx. 2 g) en 20 min |
 
 ## Gravedad
@@ -45,7 +45,7 @@ palabras: asma broncoespasmo sibilancias tórax silencioso salbutamol ventolin i
 - Objetivo de SpO₂: **adulto 93–95 %**, **niño 94–98 %**. Individualizar si hay hipercapnia conocida o enfermedad pulmonar asociada.
 - SpO₂ y ECG continuos. PA y estado mental de forma repetida.
 - Capnografía si se dispone, valorando sobre todo la tendencia.
-- Nebulizar con oxígeno como gas motor si hay hipoxemia.
+- La nebulización se hace con oxígeno como gas motor (adecuado en el asma: no hay riesgo de retención de CO₂ como en la EPOC).
 
 ## Broncodilatadores
 **Salbutamol:**
@@ -62,8 +62,8 @@ palabras: asma broncoespasmo sibilancias tórax silencioso salbutamol ventolin i
 
 ## Corticoide sistémico
 En la **primera hora**. No se espera mejoría inmediata: reduce la inflamación y las recaídas.
-- **Adulto:** prednisona o prednisolona 40–60 mg VO si puede tragar. Si hay vómitos, alteración de conciencia o no es posible la vía oral: metilprednisolona IV según protocolo del servicio.
-- **Niño:** prednisolona 1–2 mg/kg (máx. 40 mg) VO o IV, o dexametasona 0,3–0,6 mg/kg (máx. 16 mg).
+- **Adulto:** prednisona o prednisolona 40–60 mg VO si puede tragar. Si hay vómitos, alteración de conciencia o no es posible la vía oral: **metilprednisolona 40–60 mg IV** o **hidrocortisona 100–200 mg IV**.
+- **Niño:** prednisolona 1–2 mg/kg (máx. 40 mg) VO o dexametasona 0,3–0,6 mg/kg (máx. 16 mg). Si no es posible la vía oral: **metilprednisolona 1–2 mg/kg IV (máx. 60 mg)**.
 
 >! Metilprednisolona IV: solo la presentación de **succinato sódico**. El acetato no se administra por vía IV.
 
