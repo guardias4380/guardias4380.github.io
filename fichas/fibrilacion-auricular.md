@@ -2,7 +2,7 @@
 titulo: Fibrilación auricular
 categoria: Cardiovascular
 estado: borrador
-version: 0.2
+version: 0.3
 fecha: 2026-10-15
 palabras: FA arritmia taquicardia irregular respuesta ventricular rápida cardioversión sincronizada preexcitada WPW Wolff-Parkinson-White metoprolol beloken verapamilo manidon digoxina amiodarona trangorex flecainida apocard etomidato
 ---
@@ -56,7 +56,7 @@ Buscar y tratar: hipoxemia, isquemia, sepsis o fiebre, dolor, deshidratación, a
 **Inestable:** cardioversión sincronizada inmediata.
 
 **Estable:** monitor-desfibrilador conectado y traslado urgente. Con apoyo médico:
-- **Flecainida IV (Apocard):** 2 mg/kg (máx. 150 mg) en 10–20 min. **No usar si hay cardiopatía estructural**, cardiopatía isquémica o disfunción ventricular.
+- **Flecainida IV (Apocard, ampolla 150 mg/15 mL = 10 mg/mL):** 2 mg/kg (máx. 150 mg) = **0,2 mL/kg** (máx. 15 mL), diluida en **suero glucosado 5 %**, en 10–20 min. Suspender si se ensancha el QRS o hipotensión. **No usar si hay cardiopatía estructural**, cardiopatía isquémica o disfunción ventricular.
 - Si no se puede usar flecainida o no revierte: **cardioversión eléctrica sincronizada** con sedación.
 - No llevamos procainamida (la alternativa farmacológica de las guías).
 - Vigilar PA, anchura del QRS y QT, con el desfibrilador listo.

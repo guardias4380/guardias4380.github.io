@@ -2,7 +2,7 @@
 titulo: Intoxicaciones agudas
 categoria: Toxicología
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: intoxicación tóxico sobredosis antídoto síndrome tóxico toxíndrome opioides heroína metadona fentanilo naloxona benzodiacepinas flumazenilo anexate alcohol etílico tiamina benerva paracetamol N-acetilcisteína hidonac carbón activado tricíclicos amitriptilina bicarbonato betabloqueantes antagonistas del calcio glucagón gluconato cálcico monóxido de carbono CO humo incendio cianuro organofosforados insecticidas atropina cocaína anfetaminas éxtasis MDMA agitación hipertermia distonía biperideno akineton serotoninérgico anticolinérgico información toxicológica
 ---
@@ -97,7 +97,9 @@ Bradicardia, bloqueo AV, hipotensión, shock. Los antagonistas del calcio, adem�
 
 ## Monóxido de carbono y humo
 - **Sacar de la zona** sin exponerse. **O₂ al 100 %** con mascarilla con reservorio a 15 L/min (o IOT con FiO₂ 1).
-- **La SpO₂ es falsamente normal.** Usar SpCO si el Zoll lo mide.
+- **La SpO₂ es falsamente normal** (el pulsioxímetro confunde la COHb con oxígeno).
+- **Cooxímetro de CO espirado** si el paciente colabora: inspirar, **aguantar la respiración 15 s** y soplar en la boquilla. Medirlo **sin retrasar el O₂** (el O₂ lo baja rápido y subestima la exposición). Anotar la hora y si ya llevaba O₂.
+- Orientación: **fumador hasta ~10 %**; **>10 % en no fumador** o síntomas compatibles = intoxicación. Un valor bajo **no la descarta** si hay clínica o ha pasado tiempo.
 - **Síntomas:** cefalea, náuseas, mareo, confusión, síncope, dolor torácico. Varios afectados en el mismo sitio (brasero, calentador, garaje).
 - **ECG** (isquemia) y **embarazo** (el feto es más sensible).
 - **Consultar cámara hiperbárica** si: pérdida de conocimiento, focalidad o convulsiones, isquemia miocárdica, embarazada o COHb >25 %.
@@ -153,4 +155,4 @@ Bradicardia, bloqueo AV, hipotensión, shock. Los antagonistas del calcio, adem�
 - Sociedad Española de Urgencias y Emergencias (SEMES-Toxicología). Antídotos en urgencias y emergencias.
 - Fichas técnicas de naloxona, flumazenilo, carbón activado, glucagón, N-acetilcisteína, biperideno, tiamina, atropina, bicarbonato sódico 1 M y gluconato cálcico.
 
->i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: naloxona, flumazenilo, carbón activado, glucagón, N-acetilcisteína IV, biperideno, tiamina. Sin hidroxocobalamina, emulsión lipídica, fisostigmina ni pralidoxima. Comprobar presentaciones (cuántos viales de glucagón llevamos).
+>i Borrador práctico. Pendiente de validación por el responsable médico del servicio. Dotación confirmada: naloxona, flumazenilo, carbón activado, glucagón, N-acetilcisteína IV, biperideno, tiamina. Sin hidroxocobalamina, emulsión lipídica, fisostigmina ni pralidoxima. Glucagón: varios viales de 1 mg. CO: solo cooxímetro de aire espirado (el Zoll no mide SpCO).
