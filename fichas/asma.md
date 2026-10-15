@@ -2,7 +2,7 @@
 titulo: Crisis asmática
 categoria: Respiratorio
 estado: borrador
-version: 0.1
+version: 0.2
 fecha: 2026-10-15
 palabras: asma broncoespasmo sibilancias tórax silencioso salbutamol ventolin ipratropio atrovent corticoide prednisona metilprednisolona dexametasona magnesio sulfato pediatría
 ---
@@ -22,7 +22,7 @@ palabras: asma broncoespasmo sibilancias tórax silencioso salbutamol ventolin i
 | Fármaco | Adulto | Niño |
 |---|---|---|
 | **Salbutamol neb.** | 2,5–5 mg cada 20 min ×3 | 0,15 mg/kg (2,5 mg si <20 kg; 5 mg si ≥20 kg) cada 20 min ×3 |
-| **Ipratropio neb.** | 0,5 mg cada 20 min ×3 | 1 mes–5 años: 0,125–0,25 mg · 6–11 años: 0,25 mg · ≥12 años: 0,5 mg |
+| **Ipratropio neb.** | 0,5 mg cada 20 min ×3 | 0,25 mg si <20 kg; 0,5 mg si ≥20 kg, cada 20 min ×3 |
 | **Corticoide** | Prednisona 40–60 mg VO, o metilprednisolona IV según protocolo | Prednisolona 1–2 mg/kg (máx. 40 mg) o dexametasona 0,3–0,6 mg/kg (máx. 16 mg) |
 | **Sulfato de magnesio IV** | 2 g en 20 min | 40 mg/kg (máx. 2 g) en 20 min |
 
@@ -55,7 +55,7 @@ palabras: asma broncoespasmo sibilancias tórax silencioso salbutamol ventolin i
 
 **Ipratropio** (añadir en crisis moderada o grave, o con respuesta insuficiente al salbutamol):
 - Adulto: 0,5 mg nebulizado cada 20 minutos, 3 dosis, junto al salbutamol.
-- Niño: 1 mes–5 años 0,125–0,25 mg; 6–11 años 0,25 mg; desde 12 años 0,5 mg.
+- Niño: **0,25 mg si <20 kg; 0,5 mg si ≥20 kg**, cada 20 minutos, 3 dosis, junto al salbutamol.
 - Evitar que entre en los ojos (glaucoma de ángulo estrecho): boquilla mejor que mascarilla si es posible.
 
 >i Paciente colaborador y sin hipoxemia importante: puede usarse inhalador presurizado con cámara. Preferir nebulización si hay hipoxemia, mala coordinación o agotamiento.
