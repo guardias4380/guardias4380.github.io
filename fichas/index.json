@@ -1,5 +1,6 @@
 [
   { "id": "anafilaxia", "archivo": "anafilaxia.md" },
   { "id": "eap", "archivo": "eap.md" },
-  { "id": "bloqueos-av", "archivo": "bloqueos-av.md" }
+  { "id": "bloqueos-av", "archivo": "bloqueos-av.md" },
+  { "id": "asma", "archivo": "asma.md" }
 ]
