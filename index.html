@@ -223,7 +223,8 @@ const CONFIG = {
   SUPABASE_URL: 'https://ainukwqjqgsrjfcqweqi.supabase.co',
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
-  VERSION: '0.3.7'
+  GRAFCAN_URL: 'https://visor.grafcan.es/',
+  VERSION: '0.3.8'
 };
 </script>
 
@@ -943,6 +944,7 @@ function vMas() {
     '<button class="mi" data-act="sub" data-v="procs"><div><b>Procedimientos y guías</b><div class="sub">' + (((S.D.procedimientos || []).length) + Fichas.lista.length) + ' documentos · fichas y PDF</div></div><span class="arr">›</span></button>' +
     '<button class="mi" data-act="sub" data-v="tels"><div><b>Teléfonos útiles</b><div class="sub">' + ((S.D.contactos || []).length) + ' contactos</div></div><span class="arr">›</span></button>' +
     '<a href="' + esc(CONFIG.MULTIEMERGENCIAS_URL) + '" target="_blank" rel="noopener"><div><b>Multiemergencias</b><div class="sub">Herramienta de escena. Se abre como app independiente.</div></div><span class="arr">↗</span></a>' +
+    '<a href="' + esc(CONFIG.GRAFCAN_URL) + '" target="_blank" rel="noopener"><div><b>Visor GRAFCAN</b><div class="sub">Mapas de Canarias: callejero, ortofoto y búsqueda de direcciones. Se abre en el navegador.</div></div><span class="arr">↗</span></a>' +
     '<button class="mi" data-act="ics"><div><b>Añadir mis guardias al calendario</b><div class="sub">Descarga un archivo para Google Calendar o el calendario del iPhone</div></div><span class="arr">↓</span></button>' +
     '</div>';
   if (u.rol === 'admin') {
