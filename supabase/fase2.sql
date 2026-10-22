@@ -57,6 +57,8 @@ alter table public.procedimientos enable row level security;
 alter table public.contactos      enable row level security;
 revoke all on public.avisos, public.incidencias, public.procedimientos, public.contactos from anon, authenticated;
 grant select on public.avisos, public.incidencias, public.procedimientos, public.contactos to authenticated;
+-- Supabase (desde el 30/10/2026) no concede permisos automáticos a tablas nuevas: se declaran aquí.
+grant all on public.avisos, public.incidencias, public.procedimientos, public.contactos to service_role;
 
 drop policy if exists leer_avisos on public.avisos;
 create policy leer_avisos on public.avisos for select using (public.es_aprobado());

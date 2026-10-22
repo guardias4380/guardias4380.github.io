@@ -62,6 +62,8 @@ alter table public.propuestas enable row level security;
 alter table public.historial  enable row level security;
 revoke all on public.perfiles, public.guardias, public.ofertas, public.propuestas, public.historial from anon, authenticated;
 grant select on public.perfiles, public.guardias, public.ofertas, public.propuestas, public.historial to authenticated;
+-- Supabase (desde el 30/10/2026) no concede permisos automáticos a tablas nuevas: se declaran aquí.
+grant all on public.perfiles, public.guardias, public.ofertas, public.propuestas, public.historial to service_role;
 
 create or replace function public.es_aprobado() returns boolean
 language sql stable security definer set search_path = public as $$
