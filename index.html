@@ -224,7 +224,7 @@ const CONFIG = {
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
   GRAFCAN_URL: 'https://visor.grafcan.es/',
-  VERSION: '0.3.9'
+  VERSION: '0.3.10'
 };
 </script>
 
@@ -441,19 +441,19 @@ function rowsFromText(txt) {
 function seedDemo() {
   const D = { seq: 0, guardias: [], ofertas: [], propuestas: [], historial: [], usuarios: [] };
   const nov = [
-    ['01'], ['02', null, 'Airam Acosta', null], ['03', 'Robert Friedwald'], ['04', 'Jael Reyes'], ['05', 'Alejandro Armas'],
-    ['06', 'Jesús Tovar'], ['07', null, null, 'Airam Acosta'], ['08'], ['09'], ['10', null, null, 'Susana Yanes'],
-    ['11', 'Sara Pérez'], ['12', 'Susana Yanes'], ['13'], ['14', 'Robert Friedwald'], ['15'], ['16', 'Jesús Tovar'],
-    ['17', null, 'Airam Acosta', null], ['18', 'Pablo Arrocha'], ['19', null, null, 'Airam Acosta'], ['20'],
-    ['21', 'Pablo Arrocha'], ['22'], ['23', 'Nacho Herranz'], ['24', 'Robert Friedwald'], ['25', 'Airam Acosta'],
-    ['26', 'Susana Yanes'], ['27', 'Víctor Alexis'], ['28'], ['29', null, 'Airam Acosta', null], ['30']
+    ['01'], ['02', null, 'Ana López', null], ['03', 'Bruno Díaz'], ['04', 'Carla Ruiz'], ['05', 'David Gil'],
+    ['06', 'Elena Mora'], ['07', null, null, 'Ana López'], ['08'], ['09'], ['10', null, null, 'Fran Soto'],
+    ['11', 'Gema Vidal'], ['12', 'Fran Soto'], ['13'], ['14', 'Bruno Díaz'], ['15'], ['16', 'Elena Mora'],
+    ['17', null, 'Ana López', null], ['18', 'Hugo Rey'], ['19', null, null, 'Ana López'], ['20'],
+    ['21', 'Hugo Rey'], ['22'], ['23', 'Irene Paz'], ['24', 'Bruno Díaz'], ['25', 'Ana López'],
+    ['26', 'Fran Soto'], ['27', 'Javier Luna'], ['28'], ['29', null, 'Ana López', null], ['30']
   ];
   const rows = nov.map(([d, a, di, no]) => [d + '/11/2026', '', a || '', di || '', no || '']);
   const p = parseCuadrante(rows);
   p.filas.forEach(f => D.guardias.push({ id: ++D.seq, fecha: f.fecha, franja: f.franja, categoria: 'ENF', titular: f.titular }));
-  ['Airam Acosta', 'Robert Friedwald', 'Jael Reyes', 'Alejandro Armas', 'Jesús Tovar', 'Susana Yanes', 'Sara Pérez', 'Pablo Arrocha', 'Nacho Herranz', 'Víctor Alexis']
+  ['Ana López', 'Bruno Díaz', 'Carla Ruiz', 'David Gil', 'Elena Mora', 'Fran Soto', 'Gema Vidal', 'Hugo Rey', 'Irene Paz', 'Javier Luna']
     .forEach((n, i) => D.usuarios.push({ nombre: n, categoria: 'ENF', externo: false, rol: i === 0 ? 'admin' : 'usuario', aprobado: true }));
-  hist(D, 'Airam Acosta', 'Importa el cuadrante de enfermería del 01/11 al 30/11');
+  hist(D, 'Ana López', 'Importa el cuadrante de enfermería del 01/11 al 30/11');
   // Ejemplos para que el tablón no aparezca vacío en la demo
   const g = (f, fr) => D.guardias.find(x => x.fecha === f && x.franja === fr).id;
   core.publicar(D, D.usuarios[1], g('2026-11-14', '24h'), 'cesion', 'Tengo un compromiso familiar ese sábado.');
@@ -463,7 +463,7 @@ function seedDemo() {
   core.crearAviso(D, D.usuarios[4], { client_id: 'demo-2', tipo: 'material', prioridad: 'normal', texto: 'Quedan 2 mascarillas laríngeas del n.º 4. Pedir reposición.' });
   core.crearIncidencia(D, D.usuarios[1], { client_id: 'demo-3', fecha: '2026-11-03', franja: '24h', texto: 'Relevo a las 9:20 por retraso del traslado anterior. Vehículo repostado.' });
   D.contactos.push({ id: ++D.seq, nombre: 'Emergencias', telefono: '112', nota: 'Centro coordinador 1-1-2 Canarias', orden: 1 }, { id: ++D.seq, nombre: 'Información toxicológica', telefono: '91 562 04 20', nota: 'Servicio de Información Toxicológica (24 h)', orden: 2 });
-  D.procedimientos.push({ id: ++D.seq, titulo: 'Ejemplo de procedimiento', categoria: 'General', archivo: 'demo', bytes: 0, creado: new Date().toISOString(), autor: 'Airam Acosta' });
+  D.procedimientos.push({ id: ++D.seq, titulo: 'Ejemplo de procedimiento', categoria: 'General', archivo: 'demo', bytes: 0, creado: new Date().toISOString(), autor: 'Ana López' });
   return D;
 }
 
@@ -574,7 +574,7 @@ const DemoStore = {
   async init() { this.D = asegurar(LS.get(this.key) || seedDemo()); this.save(); },
   save() { LS.set(this.key, this.D); },
   async load() { return clone(this.D); },
-  me() { const n = LS.get('sva4380-demo-user') || 'Airam Acosta'; return this.D.usuarios.find(u => u.nombre === n) || this.D.usuarios[0]; },
+  me() { const n = LS.get('sva4380-demo-user') || 'Ana López'; return this.D.usuarios.find(u => u.nombre === n) || this.D.usuarios[0]; },
   async run(fn, ...a) { const copy = clone(this.D); const r = core[fn](copy, this.me(), ...a); this.D = copy; this.save(); return r; },
   reset() { LS.del(this.key); this.D = seedDemo(); this.save(); },
   async subirFoto(id, blob) { return await blobADataURL(blob); },
@@ -1361,7 +1361,7 @@ function vAuth(msg, ok) {
     (reg ? '<p class="muted" style="margin:0">Tu acceso quedará pendiente hasta que un administrador lo apruebe.</p>' : '') +
     '<form id="authForm" class="stack"><label class="f">Correo<input type="email" id="aEmail" autocomplete="email" required></label>' +
     '<label class="f">Contraseña<input type="password" id="aPass" autocomplete="' + (reg ? 'new-password' : 'current-password') + '" minlength="8" required></label>' +
-    (reg ? '<label class="f">Nombre tal como aparece en el cuadrante<input type="text" id="aNombre" required placeholder="Ej.: Airam Acosta"></label>' +
+    (reg ? '<label class="f">Nombre tal como aparece en el cuadrante<input type="text" id="aNombre" required placeholder="Ej.: Ana López"></label>' +
       '<label class="f">Categoría<select id="aCat"><option value="ENF">Enfermería</option><option value="TES">TES</option></select></label>' +
       '<label class="check"><input type="checkbox" id="aExt"> Soy personal externo</label>' : '') +
     (msg ? '<p class="' + (ok ? 'muted' : 'err') + '">' + esc(msg) + '</p>' : '') +
