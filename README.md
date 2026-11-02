@@ -30,7 +30,7 @@ Con `SUPABASE_URL` vacío la app funciona en **modo demo**: los datos se guardan
 7. En el SQL Editor ejecuta (con tu nombre tal como lo registraste):
    ```sql
    update public.perfiles set rol = 'admin', aprobado = true
-   where nombre = 'Airam Acosta';
+   where nombre = 'Nombre Apellido';
    ```
 8. Entra, ve a Más → Importar cuadrante y carga noviembre.
 9. Pasa el enlace a los compañeros. Cada alta aparece en Más → Usuarios para que la apruebes.
