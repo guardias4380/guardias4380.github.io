@@ -224,7 +224,7 @@ const CONFIG = {
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
   GRAFCAN_URL: 'https://visor.grafcan.es/',
-  VERSION: '0.3.8'
+  VERSION: '0.3.9'
 };
 </script>
 
@@ -285,6 +285,35 @@ const core = {
     const g = D.guardias.find(x => x.id === o.guardia_id);
     cerrarOfertasDe(D, [o.guardia_id], 'cancelada');
     hist(D, me.nombre, 'Retira del tablón la ' + descG(g));
+  },
+  dividir(D, me, gid) {
+    const g = D.guardias.find(x => x.id === gid) || err('La guardia no existe.');
+    if (g.franja !== '24h') err('Solo se pueden dividir las guardias de 24 h.');
+    if (me.rol !== 'admin' && g.titular !== me.nombre) err('Esta guardia no es tuya.');
+    if (haEmpezado(g)) err('La guardia ya ha empezado o ha pasado.');
+    if (ofertaAbiertaDe(D, gid)) err('Está publicada en el tablón: retírala antes de dividirla.');
+    descartarPropuestasCon(D, [gid]);
+    const antes = descG(g);
+    g.franja = 'D';
+    D.guardias.push({ id: ++D.seq, fecha: g.fecha, franja: 'N', categoria: g.categoria, titular: g.titular });
+    hist(D, me.nombre, 'Divide en diurno y nocturno la ' + antes);
+  },
+  unir(D, me, gid) {
+    const g = D.guardias.find(x => x.id === gid) || err('La guardia no existe.');
+    if (g.franja === '24h') err('Ya es una guardia de 24 h.');
+    const d = D.guardias.find(x => x.fecha === g.fecha && x.categoria === g.categoria && x.franja === 'D');
+    const n = D.guardias.find(x => x.fecha === g.fecha && x.categoria === g.categoria && x.franja === 'N');
+    if (!d || !n) err('Falta el otro turno de 12 h de ese día.');
+    if (d.titular !== n.titular) err('Los dos turnos tienen titulares distintos.');
+    if (me.rol !== 'admin' && d.titular !== me.nombre) err('Estos turnos no son tuyos.');
+    if (haEmpezado(d)) err('El turno ya ha empezado o ha pasado.');
+    if (ofertaAbiertaDe(D, d.id) || ofertaAbiertaDe(D, n.id)) err('Algún turno está publicado en el tablón: retíralo antes.');
+    descartarPropuestasCon(D, [d.id, n.id]);
+    D.guardias = D.guardias.filter(x => x.id !== n.id);
+    D.ofertas = D.ofertas.filter(o => o.guardia_id !== n.id);
+    D.propuestas = D.propuestas.filter(p => p.guardia_id !== n.id);
+    d.franja = '24h';
+    hist(D, me.nombre, 'Une en una ' + descG(d));
   },
   aceptarCesion(D, me, oid) {
     const o = D.ofertas.find(x => x.id === oid) || err('La oferta no existe.');
@@ -597,7 +626,11 @@ const SupaStore = {
     return D;
   },
   me() { return this.perfil; },
-  async rpc(name, args) { const { data, error } = await this.sb.rpc(name, args); if (error) throw new Error(error.message); return data; },
+  async rpc(name, args) {
+    const { data, error } = await this.sb.rpc(name, args);
+    if (error) throw new Error(/could not find the function|PGRST202/i.test(error.message + ' ' + (error.code || '')) ? 'Esta opción necesita actualizar la base de datos. Avisa al administrador.' : error.message);
+    return data;
+  },
   async run(fn, ...a) {
     const m = {
       publicar: () => this.rpc('publicar_oferta', { p_guardia: a[0], p_tipo: a[1], p_nota: a[2] || '' }),
@@ -608,6 +641,8 @@ const SupaStore = {
       aceptarPropuesta: () => this.rpc('aceptar_propuesta', { p_propuesta: a[0] }),
       importar: () => this.rpc('importar_cuadrante', { p_categoria: a[0], p_desde: a[1], p_hasta: a[2], p_filas: a[3] }),
       asignar: () => this.rpc('asignar_guardia', { p_guardia: a[0], p_nombre: a[1] || null }),
+      dividir: () => this.rpc('dividir_guardia', { p_guardia: a[0] }),
+      unir: () => this.rpc('unir_guardia', { p_guardia: a[0] }),
       aprobar: () => this.rpc('gestionar_usuario', a[0]),
       crearAviso: () => this.rpc('crear_aviso', { p_client: a[0].client_id, p_tipo: a[0].tipo, p_prioridad: a[0].prioridad, p_texto: a[0].texto, p_foto: a[0].foto || null }),
       resolverAviso: () => this.rpc('resolver_aviso', { p_id: a[0], p_nota: a[1] || '' }),
@@ -1139,6 +1174,15 @@ function sheetGuardia(id) {
   } else if (of) {
     h += '<div class="banner">Publicada en el tablón por ' + esc(of.ofertante) + ' (' + (of.tipo === 'cesion' ? 'la cede' : 'la cambia') + ').</div><button class="btn block" data-act="irTablon">Ver en el tablón</button>';
   }
+  const puedeGestionar = (mia || u.rol === 'admin') && !haEmpezado(g);
+  if (puedeGestionar && g.franja === '24h' && !of) {
+    h += '<div class="stack"><div class="eyebrow">Turnos de 12 h</div><p class="muted" style="margin:0;font-size:14px">Divídela para ceder o cambiar solo el diurno (9–21) o solo el nocturno (21–9). Sigues siendo titular de los dos hasta que alguien acepte.</p>' +
+      '<button class="btn block" data-act="dividir" data-id="' + g.id + '"' + dis + '>Dividir en diurno + nocturno</button></div>';
+  } else if (puedeGestionar && g.franja !== '24h') {
+    const otra = S.D.guardias.find(x => x.fecha === g.fecha && x.categoria === g.categoria && x.franja === (g.franja === 'D' ? 'N' : 'D'));
+    if (otra && otra.titular === g.titular && !of && !ofertaAbiertaDe(S.D, otra.id))
+      h += '<button class="btn ghost block" data-act="unir" data-id="' + g.id + '"' + dis + '>Volver a unir en una guardia de 24 h</button>';
+  }
   if (fase2() && g.titular && rango(g)[0] <= nowMin()) h += '<button class="btn block" data-act="nuevaInc" data-id="' + g.id + '">Anotar incidencia de este turno</button>';
   if (u.rol === 'admin') {
     const nombres = [...new Set(S.D.guardias.filter(x => x.categoria === g.categoria).map(x => x.titular).filter(Boolean))].sort();
@@ -1447,6 +1491,11 @@ document.addEventListener('click', async ev => {
     }
     case 'asignar': return accion('asignar', [id, $('#asigNombre').value], 'Guardia actualizada');
     case 'liberar': return accion('asignar', [id, ''], 'Guardia libre para externos');
+    case 'dividir': {
+      if (!b.dataset.ok) { const g = G(id); S.sheet = { t: 'confirm', texto: '¿Dividir la ' + descG(g) + ' en diurno (9–21) y nocturno (21–9)? Después podrás publicar en el tablón la mitad que quieras.', act, id }; return renderSheet(); }
+      return accion('dividir', [id], 'Guardia dividida en dos turnos de 12 h');
+    }
+    case 'unir': return accion('unir', [id], 'Turnos unidos en una guardia de 24 h');
     case 'importSheet': S.importPrev = null; S.impErr = null; S.impCat = S.impCat || 'ENF'; S.sheet = { t: 'import' }; return renderSheet();
     case 'impCat': { const t = $('#impTxt')?.value; S.impCat = b.dataset.v; renderSheet(); if (t) $('#impTxt').value = t; return; }
     case 'impPrev': {

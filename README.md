@@ -43,6 +43,11 @@ Si el proyecto pasa 7 días sin ninguna actividad, Supabase lo pausa y hay que r
 2. Comprueba en Table Editor que aparecen `avisos`, `incidencias`, `procedimientos` y `contactos`, y en Storage los espacios `fotos` y `procedimientos`.
 3. Hasta que no se ejecute, la app funciona igual que en la fase 1 y esas secciones muestran un aviso.
 
+## Fase 3 · Dividir guardias de 24 h en dos turnos de 12 h
+1. Supabase → SQL Editor → New query → pega `supabase/fase3.sql` entero → Run. Se puede repetir sin riesgo. No crea tablas.
+2. En el detalle de una guardia de 24 h propia aparece «Dividir en diurno + nocturno». Cada mitad se publica en el tablón por separado (ceder o cambiar).
+3. Si las dos mitades siguen siendo del mismo titular, «Volver a unir en una guardia de 24 h» lo deshace. El administrador puede hacerlo en cualquier guardia, también en las libres para externos.
+
 ### Contraseñas
 - Cada usuario puede cambiar la suya en Más → Cambiar mi contraseña.
 - Si alguien la olvida: Más → Usuarios → «Generar contraseña temporal». Se la pasas por privado y la cambia al entrar.
