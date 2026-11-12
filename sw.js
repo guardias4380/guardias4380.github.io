@@ -1,7 +1,7 @@
 // 43.80 SVA-E · service worker
 // La página principal se pide primero a la red (así las actualizaciones llegan solas al abrir con cobertura)
 // y, si no hay red, se sirve la copia guardada. Si cambias iconos o manifest, sube el número de VERSION.
-const VERSION = 'sva4380-v12';
+const VERSION = 'sva4380-v13';
 const BASE = ['./', 'index.html', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png', 'vendor/supabase.js', 'vendor/pdf.min.js', 'vendor/pdf.worker.min.js'];
 const CDN = ['cdn.jsdelivr.net', 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
@@ -18,6 +18,8 @@ self.addEventListener('fetch', e => {
   // Los datos del servidor (Supabase) nunca se guardan aquí: la app guarda su propia copia.
   // Los PDF de procedimientos los guarda la app en su propia caché (sva4380-pdf), que no se borra al actualizar.
   if (url.hostname.endsWith('supabase.co')) return;
+  // La Guía de Perfusión (carpeta perfusion/) tiene su propio service worker y su propia caché.
+  if (url.origin === location.origin && url.pathname.includes('/perfusion/')) return;
   if (req.mode === 'navigate' || (url.origin === location.origin && (url.pathname.endsWith('index.html') || url.pathname.includes('/fichas/')))) {
     e.respondWith(fetch(req).then(r => { if (!r.ok) return caches.match(req.mode === 'navigate' ? 'index.html' : req, { ignoreSearch: true }).then(c => c || r); const copy = r.clone(); const key = req.mode === 'navigate' ? 'index.html' : req; caches.open(VERSION).then(c => c.put(key, copy)); return r; })
       .catch(() => caches.match(req.mode === 'navigate' ? 'index.html' : req, { ignoreSearch: true })));

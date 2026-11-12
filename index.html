@@ -42,6 +42,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .app{max-width:640px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+#perfov{position:fixed;inset:0;z-index:300;background:var(--bg);display:flex;flex-direction:column}
+#perfov .pbar{display:flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);padding:calc(env(safe-area-inset-top,0px) + 8px) 12px 8px}
+#perfov .pbar button{background:rgba(255,255,255,.18);color:inherit;border:0;border-radius:10px;padding:9px 12px;font-weight:700;font-size:15px}
+#perfov .pbar .t{flex:1;min-width:0;line-height:1.2}#perfov .pbar .t b{display:block;font-size:15px}#perfov .pbar .t span{font-size:12px;opacity:.9}
+#perfov iframe{flex:1;width:100%;border:0;background:#0a0d12}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--accent);color:var(--accent-ink);
   padding-block:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   display:flex;align-items:center;gap:12px}
@@ -224,7 +229,7 @@ const CONFIG = {
   SUPABASE_ANON_KEY: 'sb_publishable_Tjj1j2pBRvK_lUKBYhnraA_PHKA6Tbm',
   MULTIEMERGENCIAS_URL: 'https://multiemergencias.ai.studio/',
   GRAFCAN_URL: 'https://visor.grafcan.es/',
-  VERSION: '0.3.10'
+  VERSION: '0.4.0'
 };
 </script>
 
@@ -979,6 +984,7 @@ function vMas() {
     '<button class="mi" data-act="sub" data-v="procs"><div><b>Procedimientos y guías</b><div class="sub">' + (((S.D.procedimientos || []).length) + Fichas.lista.length) + ' documentos · fichas y PDF</div></div><span class="arr">›</span></button>' +
     '<button class="mi" data-act="sub" data-v="tels"><div><b>Teléfonos útiles</b><div class="sub">' + ((S.D.contactos || []).length) + ' contactos</div></div><span class="arr">›</span></button>' +
     '<a href="' + esc(CONFIG.MULTIEMERGENCIAS_URL) + '" target="_blank" rel="noopener"><div><b>Multiemergencias</b><div class="sub">Herramienta de escena. Se abre como app independiente.</div></div><span class="arr">↗</span></a>' +
+    '<button class="mi" data-act="perf"><div><b>Guía Rápida de Perfusión</b><div class="sub">Diluciones y ritmos con jeringa de 50 mL. <b style="color:var(--warn)">Borrador pendiente de validación por Farmacia</b>.</div></div><span class="arr">›</span></button>' +
     '<a href="' + esc(CONFIG.GRAFCAN_URL) + '" target="_blank" rel="noopener"><div><b>Visor GRAFCAN</b><div class="sub">Mapas de Canarias: callejero, ortofoto y búsqueda de direcciones. Se abre en el navegador.</div></div><span class="arr">↗</span></a>' +
     '<button class="mi" data-act="ics"><div><b>Añadir mis guardias al calendario</b><div class="sub">Descarga un archivo para Google Calendar o el calendario del iPhone</div></div><span class="arr">↓</span></button>' +
     '</div>';
@@ -1456,6 +1462,22 @@ async function crearConCola(kind, datos, file) {
 }
 
 /* ================= EVENTOS ================= */
+function abrirPerf() {
+  if (document.getElementById('perfov')) return;
+  const d = document.createElement('div');
+  d.id = 'perfov';
+  d.innerHTML = '<div class="pbar"><button data-act="perfCerrar" aria-label="Volver">‹ Volver</button><div class="t"><b>Guía Rápida de Perfusión</b><span>BORRADOR · pendiente de validación por Farmacia · comprobar con la Guía oficial</span></div></div>' +
+    '<iframe src="perfusion/index.html" title="Guía Rápida de Perfusión"></iframe>';
+  document.body.appendChild(d);
+  document.body.style.overflow = 'hidden';
+  try { history.pushState({ perf: 1 }, ''); } catch (e) {}
+}
+function cerrarPerf(desdeHistorial) {
+  const d = document.getElementById('perfov'); if (!d) return;
+  d.remove(); document.body.style.overflow = '';
+  if (!desdeHistorial && history.state && history.state.perf) history.back();
+}
+window.addEventListener('popstate', () => cerrarPerf(true));
 document.addEventListener('click', async ev => {
   const tb = ev.target.closest('[data-tab]'); if (tb) return go(tb.dataset.tab);
   const tg = ev.target.closest('[data-tab-go]'); if (tg) return go(tg.dataset.tabGo);
@@ -1468,6 +1490,8 @@ document.addEventListener('click', async ev => {
     case 'guardia': S.sheet = { t: 'guardia', id }; return renderSheet();
     case 'irTablon': return go('tablon');
     case 'sub': S.sub = b.dataset.v || null; render(); return window.scrollTo(0, 0);
+    case 'perf': return abrirPerf();
+    case 'perfCerrar': return cerrarPerf(false);
     case 'procGestion': S.procGestion = !S.procGestion; return render();
     case 'procCat': { S.procCat = b.dataset.v || ''; render(); const c = document.querySelector('.catchip.on'); if (c) c.parentNode.scrollLeft = c.offsetLeft - 16; return; }
     case 'mes': { let [y, m] = S.mes.split('-').map(Number); m += +b.dataset.d; if (m < 1) { m = 12; y--; } if (m > 12) { m = 1; y++; } S.mes = y + '-' + String(m).padStart(2, '0'); return render(); }

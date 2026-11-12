@@ -79,3 +79,9 @@ Se consulta el último cuadrante y tablón descargados. Ofertar, aceptar e impor
 
 ## Actualizar la app
 `index.html` se actualiza solo la próxima vez que se abre con cobertura. Si cambias `sw.js`, iconos o `manifest.json`, sube `VERSION` en `sw.js` (`sva4380-v2`, `v3`…).
+
+## Guía Rápida de Perfusión (carpeta `perfusion/`)
+Copia compilada de github.com/jaacos/guia-perfusion que se abre dentro de la app (Más → Guía Rápida de Perfusión) y funciona sin conexión con su propio service worker.
+- Para actualizarla tras cambiar la guía: `bash scripts/actualizar-perfusion.sh`, revisar y hacer commit + push. `perfusion/ORIGEN.txt` indica de qué versión es la copia.
+- El script ajusta dos cosas al copiarla: registra su service worker en su carpeta y hace que solo borre sus propias cachés (comparte dominio con la app).
+
